@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { AppLoading } from "expo";
+import styled from "styled-components";
+import { Text } from "react-native";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+  const [isReady, setIsReady] = useState(false);
+  const loadAssets = async () => {};
+  const onFinish = () => {
+    setIsReady(true);
+  };
+  return isReady ? (
+    <Text>READY!</Text>
+  ) : (
+    <AppLoading
+      startAsync={loadAssets}
+      onFinish={onFinish}
+      onError={(e) => {
+        console.log("LOAD ERROR", e);
+      }}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
