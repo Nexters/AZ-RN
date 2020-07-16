@@ -1,6 +1,6 @@
-import { AsyncActionCreatorBuilder } from "typesafe-actions";
-import { Dispatch } from "redux";
-import { startLoading, finishLoading } from "store/modules/loading/actions";
+import { AsyncActionCreatorBuilder } from 'typesafe-actions';
+import { Dispatch } from 'redux';
+import { startLoading, finishLoading } from 'store/modules/loading/actions';
 
 type AnyAsyncActionCreator = AsyncActionCreatorBuilder<any, any, any>;
 
@@ -8,9 +8,9 @@ const createAsyncThunk = <
   A extends AnyAsyncActionCreator,
   F extends (...params: any[]) => Promise<any>
 >(
-  asyncActionCreator: A,
-  promiseCreator: F
-) => {
+    asyncActionCreator: A,
+    promiseCreator: F,
+  ) => {
   type Params = Parameters<F>;
   return (...params: Params) => {
     return async (dispatch: Dispatch) => {
