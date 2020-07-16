@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image } from 'react-native';
+import { Image } from "react-native";
 import { AppLoading } from 'expo';
 import styled from 'styled-components/native';
 import { Asset } from 'expo-asset';
