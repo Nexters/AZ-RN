@@ -1,20 +1,25 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: lint-CI
 
 on:
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 13.x]
 
     steps:
-    - uses: actions/checkout@v2
-    - name: multi-line script
-      run: |
-        yarn install
-        yarn lint
-      env:
-        CI: true
+      - uses: actions/checkout@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: multi-line script
+        run: |
+          yarn install
+          yarn lint
+        env:
+          CI: true
