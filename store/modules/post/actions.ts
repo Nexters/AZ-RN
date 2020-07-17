@@ -1,4 +1,4 @@
-import { createAsyncAction } from 'typesafe-actions';
+import { createAsyncAction, createAction } from 'typesafe-actions';
 import { AxiosError, AxiosResponse } from 'axios';
 
 export const LOAD_LIST = 'post/LOAD_LIST';
@@ -10,3 +10,5 @@ export const loadPostListRequestAsync = createAsyncAction(
   LOAD_LIST_SUCCESS,
   LOAD_LIST_FAILURE,
 )<void, AxiosResponse, AxiosError>();
+
+export const reduxSampleAction = createAction('SAMPLE');

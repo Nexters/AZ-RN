@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
-import { Image } from 'react-native';
+
+import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
-import styled from 'styled-components/native';
-import { Asset } from 'expo-asset';
 
-const Word = styled.Text``;
+import { PersistGate } from 'redux-persist/integration/react';
 
-const cashImages = (images: Array<string | React.ReactText>) => {
-  images.map((image) => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image);
-    } else {
-      return Asset.fromModule(image).downloadAsync;
-    }
-  });
-};
+import configureStore from './store/configureStore';
+import { Hello } from './Components/Atoms';
+import { cashImages } from 'lib';
+
+const { store, persistor } = configureStore();
 
 const App = (): React.ReactElement => {
   const [isReady, setIsReady] = useState(false);
@@ -29,7 +24,11 @@ const App = (): React.ReactElement => {
   };
 
   return isReady ? (
-    <Word>READY!</Word>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Hello></Hello>
+      </PersistGate>
+    </Provider>
   ) : (
     <AppLoading
       startAsync={loadAssets}
