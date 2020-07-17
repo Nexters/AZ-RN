@@ -1,4 +1,4 @@
-import { PayloadAction, createReducer, action } from 'typesafe-actions';
+import { PayloadAction, createReducer } from 'typesafe-actions';
 import { AxiosResponse } from 'axios';
 import { PostActions } from './types';
 import { LOAD_LIST } from './actions';
