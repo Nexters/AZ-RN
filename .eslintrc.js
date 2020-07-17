@@ -22,6 +22,6 @@ module.exports = {
     quotes: ['error', 'single', { avoidEscape: true }],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-var-requires': 'false'
+    '@typescript-eslint/no-var-requires': 'off',
   },
 };
