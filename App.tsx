@@ -4,9 +4,9 @@ import { AppLoading } from 'expo';
 import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import configureStore from './src/store/configureStore';
-import { cashImages } from './src/lib';
-import Stack from './src/Navigations/Stack';
+import configureStore from 'src/store/configureStore';
+import { cashImages } from 'src/lib';
+import Stack from 'src/Navigations/Stack';
 
 const { store, persistor } = configureStore();
 
@@ -35,7 +35,7 @@ const App = (): React.ReactElement => {
       startAsync={loadAssets}
       onFinish={onFinish}
       onError={(e) => {
-        console.log('LOAD ERROR', e);
+        console.log(e);
       }}
     />
   );

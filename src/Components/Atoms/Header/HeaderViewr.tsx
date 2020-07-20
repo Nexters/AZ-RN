@@ -6,7 +6,7 @@ import { RootStackParams } from '@types';
 const Header = styled.View``;
 const Text = styled.Text``;
 
-const HeaderViewr = (props: any) => {
+const HeaderViewr = () => {
   return (
     <Header>
       <Text>Header</Text>
