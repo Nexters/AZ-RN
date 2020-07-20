@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-
 import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
-
 import { PersistGate } from 'redux-persist/integration/react';
+import { NavigationContainer } from '@react-navigation/native';
 
-import configureStore from './store/configureStore';
-import { Hello } from './Components/Atoms';
-import { cashImages } from 'lib';
+import configureStore from './src/store/configureStore';
+import { cashImages } from './src/lib';
+import Stack from './src/Navigations/Stack';
 
 const { store, persistor } = configureStore();
 
@@ -26,7 +25,9 @@ const App = (): React.ReactElement => {
   return isReady ? (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <Hello></Hello>
+        <NavigationContainer>
+          <Stack />
+        </NavigationContainer>
       </PersistGate>
     </Provider>
   ) : (
