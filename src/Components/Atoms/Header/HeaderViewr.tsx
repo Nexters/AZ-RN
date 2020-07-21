@@ -6,7 +6,13 @@ import { RootStackParams } from '@types';
 const Header = styled.View``;
 const Text = styled.Text``;
 
-const HeaderViewr = () => {
+type HeaderProps = {
+  navigation: StackNavigationProp<RootStackParams, 'Home'>;
+};
+
+const HeaderViewr = ({ navigation }: HeaderProps) => {
+  console.log(navigation);
+
   return (
     <Header>
       <Text>Header</Text>
