@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
+import { StatusBar } from 'react-native';
 import { AppLoading } from 'expo';
 import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 
-import configureStore from 'src/store/configureStore';
-import { cashImages } from 'src/lib';
-import Stack from 'src/Navigations/Stack';
+import configureStore from '~/store/configureStore';
+import { cashImages } from '~/lib';
+import Stack from '~/Navigations/Stack';
 
 const { store, persistor } = configureStore();
 
@@ -26,6 +27,7 @@ const App = (): React.ReactElement => {
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
+          <StatusBar barStyle="light-content" />
           <Stack />
         </NavigationContainer>
       </PersistGate>

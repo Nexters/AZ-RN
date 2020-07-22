@@ -20,7 +20,6 @@ const Input = styled.TextInput<MarginStyleProps>`
 interface BottomLinteProps extends MarginStyleProps {
   inputBinder?: InputBinderTypes;
   placeholder?: string;
-  autoCompleteType?: string;
   secureTextEntry?: boolean;
 }
 
@@ -31,7 +30,6 @@ const BottomLineInputViewer = ({
   marginBottom,
   marginRight,
   placeholder,
-  autoCompleteType,
   secureTextEntry,
 }: BottomLinteProps) => {
   return (
@@ -39,7 +37,6 @@ const BottomLineInputViewer = ({
       {...inputBinder}
       placeholder={placeholder}
       placeholderTextColor="rgba(255, 255, 255, 0.6)"
-      autoCompleteType={autoCompleteType}
       autoCapitalize="none"
       autoCorrect={false}
       secureTextEntry={secureTextEntry}
