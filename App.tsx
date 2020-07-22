@@ -1,20 +1,14 @@
-import React, { useState } from "react";
-import { Image } from "react-native";
+import React, { useState } from 'react';
+import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
-import styled from 'styled-components/native';
-import { Asset } from 'expo-asset';
+import { PersistGate } from 'redux-persist/integration/react';
+import { NavigationContainer } from '@react-navigation/native';
 
-const Word = styled.Text``;
+import configureStore from 'src/store/configureStore';
+import { cashImages } from 'src/lib';
+import Stack from 'src/Navigations/Stack';
 
-const cashImages = (images: Array<string | React.ReactText>) => {
-  images.map((image) => {
-    if (typeof image === 'string') {
-      return Image.prefetch(image);
-    } else {
-      return Asset.fromModule(image).downloadAsync;
-    }
-  });
-};
+const { store, persistor } = configureStore();
 
 const App = (): React.ReactElement => {
   const [isReady, setIsReady] = useState(false);
@@ -29,13 +23,19 @@ const App = (): React.ReactElement => {
   };
 
   return isReady ? (
-    <Word>READY!</Word>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <Stack />
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
   ) : (
     <AppLoading
       startAsync={loadAssets}
       onFinish={onFinish}
       onError={(e) => {
-        console.log('LOAD ERROR', e);
+        console.log(e);
       }}
     />
   );
