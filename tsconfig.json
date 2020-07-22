@@ -8,11 +8,15 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "strict": true,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "src": ["./*"],
-      "@svg/*": ["res/svg/*"],
-      "@hooks/*": ["hooks/*"]
+      "~/*": ["./*"],
+      "@svg/*": ["images/svg/*"],
+      "@png/*": ["images/png/*"],
+      "@hooks/*": ["hooks/*"],
+      "@styles/*": ["styles/*"],
+      "@constants/*": ["constants/*"],
+      "@assets/*": ["assets/*"]
     }
   },
   "exclude": ["./node_modules/**/*"]
