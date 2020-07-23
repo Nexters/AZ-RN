@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import configureStore from '~/store/configureStore';
 import { cashImages } from '~/lib';
-import Stack from '~/Navigations/Stack';
+import RootNavigation from '~/Navigations/RootNavigation';
 
 const { store, persistor } = configureStore();
 
@@ -28,7 +28,7 @@ const App = (): React.ReactElement => {
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
           <StatusBar barStyle="light-content" />
-          <Stack />
+          <RootNavigation />
         </NavigationContainer>
       </PersistGate>
     </Provider>

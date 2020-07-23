@@ -4,26 +4,13 @@ import { RootStackParams } from '@types';
 
 import Home from '~/screens/Home';
 import Detail from '~/screens/Detail';
-import Login from '~/screens/Login';
-import { Header, Image } from '~/Components/Atoms';
-import logo_png from '@png/logo.png';
+import { Header } from '~/Components/Atoms';
 import { screenOptions } from './screenOptions';
 
 const CreateStack = createStackNavigator<RootStackParams>();
 
-const Stack = () => (
+const LoggedInStack = () => (
   <CreateStack.Navigator screenOptions={screenOptions} mode="card">
-    <CreateStack.Screen
-      name="Login"
-      component={Login}
-      options={({ navigation }) => {
-        return {
-          headerShown: false,
-          headerLeft: () => <Image imgSrc={logo_png} marginLeft={29} marginTop={25} />,
-          headerTitle: '',
-        };
-      }}
-    />
     <CreateStack.Screen
       name="Home"
       component={Home}
@@ -37,4 +24,4 @@ const Stack = () => (
   </CreateStack.Navigator>
 );
 
-export default Stack;
+export default LoggedInStack;

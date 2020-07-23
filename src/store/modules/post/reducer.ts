@@ -8,7 +8,7 @@ type PayloadType<Action extends string, T> = PayloadAction<Action, T>;
 const initialState: any = {};
 
 const postReducer = createReducer<AxiosResponse, PostActions>(initialState, {
-  [LOAD_LIST]: (state, action) => state,
+  [LOAD_LIST]: (state) => state,
 });
 
 export default postReducer;

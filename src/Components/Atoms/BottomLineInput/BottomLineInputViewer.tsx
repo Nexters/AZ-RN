@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { InputBinderTypes, MarginStyleProps } from '~/@types';
 import { marginStyles } from '~/styles/mixin';
+import { KeyboardType } from 'react-native';
 
 const Input = styled.TextInput<MarginStyleProps>`
   padding-bottom: 19;
@@ -21,6 +22,7 @@ interface BottomLinteProps extends MarginStyleProps {
   inputBinder?: InputBinderTypes;
   placeholder?: string;
   secureTextEntry?: boolean;
+  keyboardType?: KeyboardType;
 }
 
 const BottomLineInputViewer = ({
@@ -31,6 +33,7 @@ const BottomLineInputViewer = ({
   marginRight,
   placeholder,
   secureTextEntry,
+  keyboardType,
 }: BottomLinteProps) => {
   return (
     <Input
@@ -44,6 +47,7 @@ const BottomLineInputViewer = ({
       marginTop={marginTop}
       marginBottom={marginBottom}
       marginRight={marginRight}
+      keyboardType={keyboardType}
     />
   );
 };
