@@ -1,3 +1,13 @@
 import SafeAreaContainer from './SafeAreaContainer';
 import KeyboardAvoidingViewer from './KeyboardAvoidingViewer';
-export { SafeAreaContainer, KeyboardAvoidingViewer };
+import HeaderWrapper from './HeaderWrapper';
+import SectionWrapper from './SectionWrapper';
+import BackgroundContainer from './BackgroundContainer';
+
+export {
+  SafeAreaContainer,
+  KeyboardAvoidingViewer,
+  HeaderWrapper,
+  SectionWrapper,
+  BackgroundContainer,
+};

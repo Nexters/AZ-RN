@@ -5,9 +5,9 @@ import { RootStackParams } from '@types';
 import Login from '~/screens/Login';
 import logo_png from '@png/logo.png';
 import { Image } from '~/Components/Atoms';
-import { screenOptions } from './screenOptions';
+import { screenOptions } from './stackNaviOptions';
 
-import SectionWrapper from '~/Components/Templates/SectionWrapper';
+import { HeaderWrapper } from '~/Components/Templates';
 
 const CreateStack = createStackNavigator<RootStackParams>();
 
@@ -19,9 +19,9 @@ const NonLoginStack = () => (
       options={({ navigation }) => {
         return {
           headerLeft: () => (
-            <SectionWrapper>
+            <HeaderWrapper>
               <Image imgSrc={logo_png} />
-            </SectionWrapper>
+            </HeaderWrapper>
           ),
           headerTitle: '',
         };
