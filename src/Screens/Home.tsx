@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParams } from '@types';
+import BackgroundContainer from '~/Components/Templates/BackgroundContainer';
 
-const Container = styled.View``;
 const Text = styled.Text``;
 const Button = styled.TouchableOpacity``;
 
@@ -13,12 +13,12 @@ interface HomeProps {
 
 const Home = ({ navigation }: HomeProps) => {
   return (
-    <Container>
+    <BackgroundContainer>
       <Text>Home</Text>
       <Button onPress={() => navigation.navigate('Detail')}>
         <Text>Press Here</Text>
       </Button>
-    </Container>
+    </BackgroundContainer>
   );
 };
 

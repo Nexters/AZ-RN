@@ -1,16 +1,10 @@
 import React from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
-
-import { RootStackParams } from '~/@types';
-import LoginViewer from './LoginViewer';
 import { useDispatch } from 'react-redux';
+
 import { sampleLoginAction } from '~/store/modules/user/actions';
+import LoginViewer from './LoginViewer';
 
-interface LoginProps {
-  navigation: StackNavigationProp<RootStackParams, 'Login'>;
-}
-
-const LoginContainer = ({ navigation }: LoginProps) => {
+const LoginContainer = () => {
   const dispatch = useDispatch();
   const handleLogin = () => {
     dispatch(

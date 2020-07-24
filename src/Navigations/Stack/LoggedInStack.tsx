@@ -4,8 +4,10 @@ import { RootStackParams } from '@types';
 
 import Home from '~/screens/Home';
 import Detail from '~/screens/Detail';
-import { Header } from '~/Components/Atoms';
+import { Image } from '~/Components/Atoms';
 import { screenOptions } from './screenOptions';
+import SectionWrapper from '~/Components/Templates/SectionWrapper';
+import logo_png from '@png/logo.png';
 
 const CreateStack = createStackNavigator<RootStackParams>();
 
@@ -16,11 +18,27 @@ const LoggedInStack = () => (
       component={Home}
       options={({ navigation }) => {
         return {
-          headerTitle: () => <Header navigation={navigation} />,
+          headerLeft: () => (
+            <SectionWrapper>
+              <Image imgSrc={logo_png} />
+            </SectionWrapper>
+          ),
         };
       }}
     />
-    <CreateStack.Screen name="Detail" component={Detail} />
+    <CreateStack.Screen
+      name="Detail"
+      component={Detail}
+      options={({ navigation }) => {
+        return {
+          headerLeft: () => (
+            <SectionWrapper>
+              <Image imgSrc={logo_png} />
+            </SectionWrapper>
+          ),
+        };
+      }}
+    />
   </CreateStack.Navigator>
 );
 
