@@ -11,8 +11,8 @@ type RootProps = {
   children: React.ReactChild | React.ReactChild[];
 };
 
-const RootContainer = ({ children }: RootProps) => {
+const SafeAreaContainer = ({ children }: RootProps) => {
   return <Container>{children}</Container>;
 };
 
-export default RootContainer;
+export default SafeAreaContainer;

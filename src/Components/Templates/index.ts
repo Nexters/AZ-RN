@@ -1,3 +1,3 @@
 import SafeAreaContainer from './SafeAreaContainer';
-
-export { SafeAreaContainer };
+import KeyboardAvoidingViewer from './KeyboardAvoidingViewer';
+export { SafeAreaContainer, KeyboardAvoidingViewer };

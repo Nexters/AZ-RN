@@ -3,8 +3,7 @@ import styled from 'styled-components/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { RootStackParams } from '~/@types';
-
-const Header = styled.View``;
+const Container = styled.View``;
 const Text = styled.Text``;
 
 type HeaderProps = {
@@ -13,9 +12,9 @@ type HeaderProps = {
 
 const HeaderViewr = ({ navigation }: HeaderProps) => {
   return (
-    <Header>
+    <Container>
       <Text>Header</Text>
-    </Header>
+    </Container>
   );
 };
 

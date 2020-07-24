@@ -10,7 +10,9 @@ const Container = styled.View`
 const Text = styled.Text``;
 
 const Detail = () => {
-  const [position, setPosition] = useState(new Animated.ValueXY({ x: 0, y: 0 }));
+  const [position, setPosition] = useState(
+    new Animated.ValueXY({ x: 0, y: 0 }),
+  );
   const moveX = () => {
     Animated.timing(position, {
       toValue: { x: 100, y: 0 },

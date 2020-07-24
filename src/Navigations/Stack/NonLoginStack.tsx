@@ -3,9 +3,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { RootStackParams } from '@types';
 
 import Login from '~/screens/Login';
-import { Image } from '~/Components/Atoms';
 import logo_png from '@png/logo.png';
+import { Image } from '~/Components/Atoms';
 import { screenOptions } from './screenOptions';
+
+import SectionWrapper from '~/Components/Templates/SectionWrapper';
 
 const CreateStack = createStackNavigator<RootStackParams>();
 
@@ -16,8 +18,11 @@ const NonLoginStack = () => (
       component={Login}
       options={({ navigation }) => {
         return {
-          headerShown: false,
-          headerLeft: () => <Image imgSrc={logo_png} marginLeft={29} marginTop={25} />,
+          headerLeft: () => (
+            <SectionWrapper>
+              <Image imgSrc={logo_png} />
+            </SectionWrapper>
+          ),
           headerTitle: '',
         };
       }}
