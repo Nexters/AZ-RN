@@ -5,6 +5,7 @@ import { MarginStyleProps, PaddingStyleProps } from '@types';
 import { marginStyles, paddingStyles } from '~/styles/mixin';
 
 const Container = styled.View<StyleProps>`
+  flex: 1;
   flex-direction: row;
   ${marginStyles};
   ${paddingStyles}
