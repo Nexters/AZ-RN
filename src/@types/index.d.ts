@@ -10,18 +10,18 @@ export type RootStackParams = {
 
 // margin
 export type MarginStyleProps = {
-  marginTop?: number;
-  marginBottom?: number;
-  marginLeft?: number;
-  marginRight?: number;
+  marginTop?: string;
+  marginBottom?: string;
+  marginLeft?: string;
+  marginRight?: string;
 };
 
 // padding
 export type PaddingStyleProps = {
-  paddingTop?: number;
-  paddingBottom?: number;
-  paddingLeft?: number;
-  paddingRight?: number;
+  paddingTop?: string;
+  paddingBottom?: string;
+  paddingLeft?: string;
+  paddingRight?: string;
 };
 
 // input binder
