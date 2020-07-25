@@ -16,6 +16,7 @@ import {
 } from '~/Components/Templates';
 import Layout from '~/constants/Layout';
 import section_png from '@png/section.png';
+import { NonLoginStackTypes } from '~/@types';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -23,16 +24,17 @@ const Wrapper = styled.View`
   margin-right: ${`${Layout.width / 20}px`};
   justify-content: space-between;
 `;
-
 const MiddleBox = styled.View`
   align-items: flex-end;
 `;
+const Touchable = styled.TouchableOpacity``;
 
 type LoginProps = {
-  handleNavigate: () => void;
+  handleLogin: () => void;
+  handleNavigate: (to: NonLoginStackTypes) => void;
 };
 
-const LoginViewer = ({ handleNavigate }: LoginProps) => {
+const LoginViewer = ({ handleLogin, handleNavigate }: LoginProps) => {
   return (
     <BackgroundContainer>
       <KeyboardAvoidingViewer>
@@ -50,7 +52,9 @@ const LoginViewer = ({ handleNavigate }: LoginProps) => {
                 secureTextEntry={true}
                 placeholder="패스워드"
               />
-              <Text text="비밀번호 찾기" marginBottom={'20px'} />
+              <Touchable>
+                <Text text="비밀번호 찾기" marginBottom={'20px'} />
+              </Touchable>
             </MiddleBox>
             <Colbox>
               <RadiusButton
@@ -61,7 +65,7 @@ const LoginViewer = ({ handleNavigate }: LoginProps) => {
                 borderRadius={'45px'}
                 fontSize={'16px'}
                 fontWeight={800}
-                onPress={handleNavigate}
+                onPress={handleLogin}
               />
               <RadiusButton
                 text="회원가입"
@@ -71,6 +75,9 @@ const LoginViewer = ({ handleNavigate }: LoginProps) => {
                 fontSize={'15px'}
                 fontWeight={300}
                 marginBottom={'10px'}
+                onPress={() => {
+                  handleNavigate('CreateAccount');
+                }}
               />
             </Colbox>
           </Wrapper>
