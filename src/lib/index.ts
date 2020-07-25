@@ -1,5 +1,5 @@
 import callApi from './callApi';
 import cashImages from './cashImages';
-import { createAsyncAction } from 'typesafe-actions';
+import widthPersentToPx from './widthPersentToPx';
 
-export { callApi, cashImages, createAsyncAction };
+export { callApi, cashImages, widthPersentToPx };

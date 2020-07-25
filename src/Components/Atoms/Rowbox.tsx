@@ -5,15 +5,26 @@ import { MarginStyleProps, PaddingStyleProps } from '@types';
 import { marginStyles, paddingStyles } from '~/styles/mixin';
 
 const Container = styled.View<StyleProps>`
-  flex: 1;
   flex-direction: row;
   ${marginStyles};
-  ${paddingStyles}
+  ${paddingStyles};
+  align-items: ${({ align }) => (align ? align : 'center')};
+  justify-content: ${({ justifyContent }) =>
+    justifyContent ? justifyContent : 'flex-start'};
+  width: ${({ width }) => (width ? width : '100%')};
+  border: ${({ border }) => (border ? border : 'none')};
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '0')};
 `;
 
-type StyleProps = MarginStyleProps | PaddingStyleProps;
+interface StyleProps extends MarginStyleProps, PaddingStyleProps {
+  width?: string;
+  align?: 'center' | 'flex-start' | 'flex-end';
+  justifyContent?: 'space-around' | 'space-between' | 'center';
+  border?: string;
+  borderRadius?: number;
+}
 
-interface RowboxProps extends MarginStyleProps, PaddingStyleProps {
+interface RowboxProps extends StyleProps {
   children: React.ReactChild | React.ReactChild[];
 }
 
@@ -26,6 +37,11 @@ const Rowbox = ({
   paddingBottom,
   paddingLeft,
   paddingRight,
+  align,
+  width,
+  border,
+  borderRadius,
+  justifyContent,
   children,
 }: RowboxProps) => {
   return (
@@ -37,7 +53,12 @@ const Rowbox = ({
       paddingTop={paddingTop}
       paddingBottom={paddingBottom}
       paddingLeft={paddingLeft}
-      paddingRight={paddingRight}>
+      paddingRight={paddingRight}
+      align={align}
+      width={width}
+      border={border}
+      borderRadius={borderRadius}
+      justifyContent={justifyContent}>
       {children}
     </Container>
   );

@@ -13,7 +13,13 @@ interface ImageProps extends MarginStyleProps {
   imgSrc: ImageSourcePropType;
 }
 
-const ImageViewer = ({ imgSrc, marginLeft, marginTop, marginBottom, marginRight }: ImageProps) => {
+const ImageViewer = ({
+  imgSrc,
+  marginLeft,
+  marginTop,
+  marginBottom,
+  marginRight,
+}: ImageProps) => {
   return (
     <Image
       resizeMode="contain"

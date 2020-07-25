@@ -27,7 +27,7 @@ const LoggedInStack = () => (
           ),
           headerRight: () => (
             <HeaderWrapper>
-              <Image imgSrc={bell_png} marginRight={7} />
+              <Image imgSrc={bell_png} marginRight={'7px'} />
               <Image imgSrc={level_one_profile_png} />
             </HeaderWrapper>
           ),

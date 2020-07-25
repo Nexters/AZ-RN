@@ -3,6 +3,7 @@ import KeyboardAvoidingViewer from './KeyboardAvoidingViewer';
 import HeaderWrapper from './HeaderWrapper';
 import SectionWrapper from './SectionWrapper';
 import BackgroundContainer from './BackgroundContainer';
+import HideScrollbarWrapper from './HideScrollbarWrapper';
 
 export {
   SafeAreaContainer,
@@ -10,4 +11,5 @@ export {
   HeaderWrapper,
   SectionWrapper,
   BackgroundContainer,
+  HideScrollbarWrapper,
 };

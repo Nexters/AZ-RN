@@ -5,7 +5,7 @@ import { RootStackParams } from '@types';
 import Login from '~/screens/Login';
 import logo_png from '@png/logo.png';
 import { Image } from '~/Components/Atoms';
-import { screenOptions } from './stackNaviOptions';
+import { screenOptions, headerStyle } from './stackNaviOptions';
 
 import { HeaderWrapper } from '~/Components/Templates';
 
@@ -24,6 +24,7 @@ const NonLoginStack = () => (
             </HeaderWrapper>
           ),
           headerTitle: '',
+          headerStyle,
         };
       }}
     />
