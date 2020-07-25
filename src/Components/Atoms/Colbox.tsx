@@ -5,14 +5,20 @@ import { MarginStyleProps, PaddingStyleProps } from '@types';
 import { marginStyles, paddingStyles } from '~/styles/mixin';
 
 const Container = styled.View<StyleProps>`
-  flex-direction: row;
   ${marginStyles};
-  ${paddingStyles}
+  ${paddingStyles};
+  width: ${({ width }) => (width ? width : '100%')};
+  border: ${({ border }) => (border ? border : 'none')};
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '0')};
 `;
 
-type StyleProps = MarginStyleProps | PaddingStyleProps;
+interface StyleProps extends MarginStyleProps, PaddingStyleProps {
+  width?: string;
+  border?: string;
+  borderRadius?: number;
+}
 
-interface ColboxProps extends MarginStyleProps, PaddingStyleProps {
+interface ColboxProps extends StyleProps {
   children: React.ReactChild | React.ReactChild[];
 }
 
@@ -25,6 +31,9 @@ const Colbox = ({
   paddingBottom,
   paddingLeft,
   paddingRight,
+  borderRadius,
+  border,
+  width,
   children,
 }: ColboxProps) => {
   return (
@@ -36,7 +45,10 @@ const Colbox = ({
       paddingTop={paddingTop}
       paddingBottom={paddingBottom}
       paddingLeft={paddingLeft}
-      paddingRight={paddingRight}>
+      paddingRight={paddingRight}
+      borderRadius={borderRadius}
+      border={border}
+      width={width}>
       {children}
     </Container>
   );
