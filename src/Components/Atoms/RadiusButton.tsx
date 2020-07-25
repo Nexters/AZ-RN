@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { MarginStyleProps } from '~/@types';
-import { PURPLE, DARK_GREY } from '~/constants/Colors';
+import { DARK_GREY } from '~/constants/Colors';
 import { marginStyles } from '~/styles/mixin';
-import { Text } from '~/Components/Atoms';
+import Text from './Text';
 
 const Container = styled.TouchableOpacity<StyleProps>`
   justify-content: center;
@@ -16,16 +16,16 @@ const Container = styled.TouchableOpacity<StyleProps>`
 `;
 
 interface StyleProps extends MarginStyleProps {
-  width?: number;
-  height: number;
+  width?: string;
+  height: string;
   bgColor?: string;
-  borderRadius: number;
+  borderRadius: string;
 }
 
 interface RadiusButtonProps extends StyleProps {
   text: string;
   color?: string;
-  fontSize?: number;
+  fontSize?: string;
   fontWeight?: number;
   onPress?: () => void;
 }
@@ -56,7 +56,12 @@ const RadiusButton = ({
       marginBottom={marginBottom}
       marginRight={marginRight}
       borderRadius={borderRadius}>
-      <Text color={color} text={text} fontSize={fontSize} fontWeight={fontWeight} />
+      <Text
+        color={color}
+        text={text}
+        fontSize={fontSize}
+        fontWeight={fontWeight}
+      />
     </Container>
   );
 };
