@@ -6,8 +6,8 @@ const Container = styled.View`
   flex: 1;
   flex-direction: row;
   align-items: center;
-  margin-left: ${Layout.width / 20};
-  margin-right: ${Layout.width / 20};
+  margin-left: ${`${Layout.width / 20}px`};
+  margin-right: ${`${Layout.width / 20}px`};
   justify-content: space-between;
 `;
 

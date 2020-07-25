@@ -5,7 +5,7 @@ import { marginStyles } from '~/styles/mixin';
 import { KeyboardType } from 'react-native';
 
 const Input = styled.TextInput<MarginStyleProps>`
-  padding-bottom: 19;
+  padding-bottom: 19px;
   width: 100%;
   background-color: transparent;
   border: 1px;
@@ -14,7 +14,7 @@ const Input = styled.TextInput<MarginStyleProps>`
   border-right-color: transparent;
   border-bottom-color: #ffffff;
   color: rgba(255, 255, 255, 0.6);
-  font-size: 17;
+  font-size: 17px;
   ${marginStyles}
 `;
 

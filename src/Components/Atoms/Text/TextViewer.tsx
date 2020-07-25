@@ -5,14 +5,14 @@ import { marginStyles } from '~/styles/mixin';
 import { LIGHT_GREY } from '~/constants/Colors';
 
 const Text = styled.Text<StyleProps>`
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : 15)};
+  font-size: ${({ fontSize }) => (fontSize ? fontSize : '15px')};
   color: ${({ color }) => (color ? color : `${LIGHT_GREY}`)};
   font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : 'bold')};
   ${marginStyles};
 `;
 
 interface StyleProps extends MarginStyleProps {
-  fontSize?: number;
+  fontSize?: string;
   color?: string;
   fontWeight?: number;
 }
