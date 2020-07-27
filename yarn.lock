@@ -933,6 +933,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@busfor/react-native-collapsible-navbar-scrollview@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@busfor/react-native-collapsible-navbar-scrollview/-/react-native-collapsible-navbar-scrollview-1.1.1.tgz#894bb7a37678b7c06a26459796a165e57f7afa3b"
+  integrity sha512-kecbcpkHCKQq9NgKCqAxNTez+uMEb10ffrQCmuLcQzgTX93YMRkItV3hqAtbKE+Bhc8NeavFdlMVkUu3Oey/OA==
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"

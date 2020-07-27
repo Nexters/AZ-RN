@@ -12,7 +12,7 @@ export type NonLoginStackParams = {
 // Login Stack navigator types
 export type LoginStackTypes = 'Home' | 'Detail';
 // Login Stack Navigator Param types
-export type NonLoginStackParams = {
+export type LoginStackParams = {
   Home: undefined;
   Detail: undefined;
 };
