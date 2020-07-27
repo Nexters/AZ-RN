@@ -8,9 +8,9 @@ import Text from './Text';
 const Container = styled.TouchableOpacity<StyleProps>`
   justify-content: center;
   align-items: center;
-  width: ${({ width }) => (width ? width : '100%')};
+  width: ${({ width }) => width ?? '100%'};
   height: ${({ height }) => height && height};
-  background-color: ${({ bgColor }) => (bgColor ? bgColor : `${DARK_GREY}`)};
+  background-color: ${({ bgColor }) => bgColor ?? `${DARK_GREY}`};
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
   ${marginStyles};
 `;

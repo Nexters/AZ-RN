@@ -7,7 +7,7 @@ import { WHITE } from '~/constants/Colors';
 
 const Input = styled.TextInput<BorderInputProps>`
   width: 100%;
-  height: ${({ height }) => (height ? height : 'auto')};
+  height: ${({ height }) => height ?? 'auto'};
   padding: 16px 25px 16px 25px;
   color: ${WHITE};
   background-color: transparent;

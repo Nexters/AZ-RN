@@ -22,9 +22,9 @@ const Gage = styled.View`
   background-color: #ffffff;
 `;
 const FillGage = styled(Gage)<FillGageProps>`
-  width: ${({ width }) => (width ? width : '0px')};
+  width: ${({ width }) => width ?? '0px'};
   position: absolute;
-  background-color: ${({ fillColor }) => (fillColor ? fillColor : '#b029df')};
+  background-color: ${({ fillColor }) => fillColor ?? '#b029df'};
 `;
 
 type FillGageProps = {

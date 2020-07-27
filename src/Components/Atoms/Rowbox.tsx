@@ -8,12 +8,11 @@ const Container = styled.View<StyleProps>`
   flex-direction: row;
   ${marginStyles};
   ${paddingStyles};
-  align-items: ${({ align }) => (align ? align : 'center')};
-  justify-content: ${({ justifyContent }) =>
-    justifyContent ? justifyContent : 'flex-start'};
-  width: ${({ width }) => (width ? width : '100%')};
-  border: ${({ border }) => (border ? border : 'none')};
-  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '0')};
+  align-items: ${({ align }) => align ?? 'center'};
+  justify-content: ${({ justifyContent }) => justifyContent ?? 'flex-start'};
+  width: ${({ width }) => width ?? '100%'};
+  border: ${({ border }) => border ?? 'none'};
+  border-radius: ${({ borderRadius }) => borderRadius ?? '0'};
 `;
 
 interface StyleProps extends MarginStyleProps, PaddingStyleProps {

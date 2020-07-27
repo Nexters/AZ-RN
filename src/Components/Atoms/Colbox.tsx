@@ -7,9 +7,9 @@ import { marginStyles, paddingStyles } from '~/styles/mixin';
 const Container = styled.View<StyleProps>`
   ${marginStyles};
   ${paddingStyles};
-  width: ${({ width }) => (width ? width : '100%')};
-  border: ${({ border }) => (border ? border : 'none')};
-  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : '0')};
+  width: ${({ width }) => width ?? '100%'};
+  border: ${({ border }) => border ?? 'none'};
+  border-radius: ${({ borderRadius }) => borderRadius ?? '0'};
 `;
 
 interface StyleProps extends MarginStyleProps, PaddingStyleProps {
