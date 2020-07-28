@@ -9,19 +9,32 @@ import {
 import { LoginStackParams } from '@types';
 import { Rowbox, Colbox, Text } from '~/Components/Atoms';
 import { Gagebar } from '~/Components/Molcules';
-import {
-  SectionWrapper,
-  BackgroundContainer,
-  HideScrollbarWrapper,
-} from '~/Components/Templates';
-import { WHITE } from '~/constants/Colors';
+import { SectionWrapper, BackgroundContainer } from '~/Components/Templates';
+import { WHITE, GREY_DARK, LIGHT_DARK } from '~/constants/Colors';
 import Layout from '~/constants/Layout';
 import badgePng from '@png/level_one_badge.png';
-import { ScrollView } from 'react-native';
 
 const Badge = styled.Image`
   position: relative;
   left: ${`${Layout.width / 7}px`};
+`;
+
+const StickyHeader = styled.View`
+  flex: 1;
+  width: 100%;
+  margin-top: ${`${Layout.height / 20}px`};
+  padding-top: 15px;
+  align-items: center;
+  background-color: ${GREY_DARK};
+  height: 100px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+`;
+const Sidebox = styled.View`
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: blue;
 `;
 
 interface HomeProps {
@@ -31,70 +44,75 @@ interface HomeProps {
 const Home = ({ navigation }: HomeProps) => {
   const [stickyView, setStickyView] = useState<boolean>(false);
   return (
-    // <BackgroundContainer>
-    //   <HideScrollbarWrapper>
-    //     <SectionWrapper marginTop={Layout.height / 12}>
-    //       <Rowbox>
-    //         <Colbox>
-    //           <Text
-    //             fontSize={'38px'}
-    //             text="유머쪼랩ㅋ"
-    //             fontWeight={800}
-    //             color={WHITE}
-    //           />
-    //           <Text
-    //             fontSize={'38px'}
-    //             text="분발하자^^"
-    //             fontWeight={100}
-    //             color={WHITE}
-    //           />
-    //         </Colbox>
-    //         <Badge source={badgePng} />
-    //       </Rowbox>
-    //       <Colbox width={'240px'}>
-    //         <Gagebar persentage={0.4} />
-    //       </Colbox>
-    //     </SectionWrapper>
-    //   </HideScrollbarWrapper>
-    // </BackgroundContainer>
     <CollapsibleNavBarScrollView
-      headerMinHeight={10}
-      headerMaxHeight={'auto'}
+      headerMinHeight={100}
+      headerMaxHeight={Layout.height / 2.5}
       header={
-        !stickyView ? (
-          <BackgroundContainer>
-            <SectionWrapper marginTop={Layout.height / 12}>
-              <Rowbox>
-                <Colbox>
+        <BackgroundContainer>
+          <StickyHeader>
+            <SectionWrapper>
+              <Colbox>
+                <Rowbox
+                  width="44px"
+                  height="6px"
+                  bgColor={LIGHT_DARK}
+                  borderRadius="20px"
+                />
+                <Sidebox>
                   <Text
-                    fontSize={'38px'}
-                    text="유머쪼랩ㅋ"
-                    fontWeight={800}
+                    text="A"
+                    fontSize="18px"
+                    fontWeight={700}
                     color={WHITE}
                   />
                   <Text
-                    fontSize={'38px'}
-                    text="분발하자^^"
-                    fontWeight={100}
+                    text="B"
+                    fontSize="18px"
+                    fontWeight={700}
                     color={WHITE}
                   />
-                </Colbox>
-                <Badge source={badgePng} />
-              </Rowbox>
-              <Colbox width={'240px'}>
-                <Gagebar persentage={0.4} />
+                </Sidebox>
               </Colbox>
             </SectionWrapper>
-          </BackgroundContainer>
-        ) : (
-          <BackgroundContainer>
-            <SectionWrapper marginTop={Layout.height / 12}>
-              <Colbox width={'240px'}>
-                <Gagebar persentage={0.4} />
+          </StickyHeader>
+          <SectionWrapper>
+            {/* 
+            <Rowbox>
+              <Colbox>
+                <Text
+                  fontSize={'38px'}
+                  text="유머쪼랩ㅋ"
+                  fontWeight={800}
+                  color={WHITE}
+                />
+                <Text
+                  fontSize={'38px'}
+                  text="분발하자^^"
+                  fontWeight={100}
+                  color={WHITE}
+                />
               </Colbox>
-            </SectionWrapper>
-          </BackgroundContainer>
-        )
+              <Badge source={badgePng} />
+            </Rowbox>
+            <Colbox>
+              <Gagebar persentage={0.4} />
+            </Colbox> */}
+          </SectionWrapper>
+          {/* <StickyHeader>
+            <Colbox>
+              <Rowbox
+                width="44px"
+                height="6px"
+                bgColor={LIGHT_DARK}
+                borderRadius="20px"
+              />
+              <Sidebox>
+                <Text text="A" fontSize="18px" fontWeight={700} color={WHITE} />
+                <Text text="B" fontSize="18px" fontWeight={700} color={WHITE} />
+              </Sidebox>
+            </Colbox>
+          </StickyHeader> */}
+        </BackgroundContainer>
       }
       useNativeDriver={true}
       initialState={CollapsibleNavBarState.open}

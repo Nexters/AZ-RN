@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 
 import { MarginStyleProps, PaddingStyleProps } from '@types';
 import { marginStyles, paddingStyles } from '~/styles/mixin';
+import { DARK_GREY } from '~/constants/Colors';
 
 const Container = styled.View<StyleProps>`
   flex-direction: row;
@@ -11,20 +12,24 @@ const Container = styled.View<StyleProps>`
   align-items: ${({ align }) => align ?? 'center'};
   justify-content: ${({ justifyContent }) => justifyContent ?? 'flex-start'};
   width: ${({ width }) => width ?? '100%'};
+  height: ${({ height }) => height ?? 'auto'};
+  background-color: ${({ bgColor }) => bgColor ?? `${DARK_GREY}`};
   border: ${({ border }) => border ?? 'none'};
-  border-radius: ${({ borderRadius }) => borderRadius ?? '0'};
+  border-radius: ${({ borderRadius }) => borderRadius ?? '0px'};
 `;
 
 interface StyleProps extends MarginStyleProps, PaddingStyleProps {
   width?: string;
+  height?: string;
+  bgColor?: string;
   align?: 'center' | 'flex-start' | 'flex-end';
   justifyContent?: 'space-around' | 'space-between' | 'center';
   border?: string;
-  borderRadius?: number;
+  borderRadius?: string;
 }
 
 interface RowboxProps extends StyleProps {
-  children: React.ReactChild | React.ReactChild[];
+  children?: React.ReactChild | React.ReactChild[];
 }
 
 const Rowbox = ({
@@ -42,6 +47,8 @@ const Rowbox = ({
   borderRadius,
   justifyContent,
   children,
+  height,
+  bgColor,
 }: RowboxProps) => {
   return (
     <Container
@@ -57,7 +64,9 @@ const Rowbox = ({
       width={width}
       border={border}
       borderRadius={borderRadius}
-      justifyContent={justifyContent}>
+      justifyContent={justifyContent}
+      height={height}
+      bgColor={bgColor}>
       {children}
     </Container>
   );
