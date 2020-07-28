@@ -22,19 +22,16 @@ const Badge = styled.Image`
 const StickyHeader = styled.View`
   flex: 1;
   width: 100%;
-  margin-top: ${`${Layout.height / 20}px`};
+  margin-top: 100px;
   padding-top: 15px;
   align-items: center;
-  background-color: ${GREY_DARK};
+  /* background-color: ${GREY_DARK}; */
+  background-color:blue;
   height: 100px;
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
-`;
-const Sidebox = styled.View`
-  width: 100%;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: blue;
+  padding-left: ${`${Layout.width / 20}px`};
+  padding-right: ${`${Layout.width / 20}px`};
 `;
 
 interface HomeProps {
@@ -42,82 +39,114 @@ interface HomeProps {
 }
 
 const Home = ({ navigation }: HomeProps) => {
-  const [stickyView, setStickyView] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
     <CollapsibleNavBarScrollView
-      headerMinHeight={100}
+      headerMinHeight={300}
       headerMaxHeight={Layout.height / 2.5}
       header={
-        <BackgroundContainer>
-          <StickyHeader>
+        isOpen ? (
+          <BackgroundContainer>
             <SectionWrapper>
+              <Rowbox>
+                <Colbox>
+                  <Text
+                    fontSize={'38px'}
+                    text="유머쪼랩ㅋ"
+                    fontWeight={800}
+                    color={WHITE}
+                  />
+                  <Text
+                    fontSize={'38px'}
+                    text="분발하자^^"
+                    fontWeight={100}
+                    color={WHITE}
+                  />
+                </Colbox>
+                <Badge source={badgePng} />
+              </Rowbox>
               <Colbox>
-                <Rowbox
-                  width="44px"
-                  height="6px"
-                  bgColor={LIGHT_DARK}
-                  borderRadius="20px"
-                />
-                <Sidebox>
-                  <Text
-                    text="A"
-                    fontSize="18px"
-                    fontWeight={700}
-                    color={WHITE}
-                  />
-                  <Text
-                    text="B"
-                    fontSize="18px"
-                    fontWeight={700}
-                    color={WHITE}
-                  />
-                </Sidebox>
+                <Gagebar persentage={0.4} />
               </Colbox>
             </SectionWrapper>
-          </StickyHeader>
-          <SectionWrapper>
-            {/* 
-            <Rowbox>
-              <Colbox>
-                <Text
-                  fontSize={'38px'}
-                  text="유머쪼랩ㅋ"
-                  fontWeight={800}
-                  color={WHITE}
-                />
-                <Text
-                  fontSize={'38px'}
-                  text="분발하자^^"
-                  fontWeight={100}
-                  color={WHITE}
-                />
-              </Colbox>
-              <Badge source={badgePng} />
-            </Rowbox>
-            <Colbox>
-              <Gagebar persentage={0.4} />
-            </Colbox> */}
-          </SectionWrapper>
-          {/* <StickyHeader>
-            <Colbox>
+            <StickyHeader>
               <Rowbox
                 width="44px"
                 height="6px"
                 bgColor={LIGHT_DARK}
                 borderRadius="20px"
+                marginBottom="18px"
               />
-              <Sidebox>
-                <Text text="A" fontSize="18px" fontWeight={700} color={WHITE} />
-                <Text text="B" fontSize="18px" fontWeight={700} color={WHITE} />
-              </Sidebox>
-            </Colbox>
-          </StickyHeader> */}
-        </BackgroundContainer>
+              <Rowbox
+                width="100%"
+                justifyContent="space-between"
+                bgColor="transparent">
+                <Text
+                  text="개그 목록"
+                  fontSize="18px"
+                  fontWeight={700}
+                  color={WHITE}
+                />
+                <Rowbox
+                  borderRadius="25px"
+                  border="1px solid #ffffff"
+                  width="110px"
+                  height="44px"
+                  bgColor="transparent"
+                  justifyContent="center">
+                  <Text
+                    text="명예의 전당"
+                    fontSize="13px"
+                    fontWeight={200}
+                    color={WHITE}
+                  />
+                </Rowbox>
+              </Rowbox>
+            </StickyHeader>
+          </BackgroundContainer>
+        ) : (
+          <BackgroundContainer>
+            <StickyHeader>
+              <Rowbox
+                width="44px"
+                height="6px"
+                bgColor={LIGHT_DARK}
+                borderRadius="20px"
+                marginBottom="18px"
+              />
+              <Rowbox
+                width="100%"
+                justifyContent="space-between"
+                bgColor="transparent">
+                <Text
+                  text="개그 목록"
+                  fontSize="18px"
+                  fontWeight={700}
+                  color={WHITE}
+                />
+                <Rowbox
+                  borderRadius="25px"
+                  border="1px solid #ffffff"
+                  width="110px"
+                  height="44px"
+                  bgColor="transparent"
+                  justifyContent="center">
+                  <Text
+                    text="명예의 전당"
+                    fontSize="13px"
+                    fontWeight={200}
+                    color={WHITE}
+                  />
+                </Rowbox>
+              </Rowbox>
+            </StickyHeader>
+          </BackgroundContainer>
+        )
       }
       useNativeDriver={true}
       initialState={CollapsibleNavBarState.open}
       onChangeState={(state) => {
-        console.log(state);
+        setIsOpen(state !== 'open' ? false : true);
       }}></CollapsibleNavBarScrollView>
   );
 };
