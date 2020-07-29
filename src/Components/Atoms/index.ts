@@ -6,6 +6,7 @@ import Rowbox from './Rowbox';
 import Colbox from './Colbox';
 import RadiusButton from './RadiusButton';
 import BorderInput from './BorderInput';
+import FloatingButton from './FloatingButton';
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   Colbox,
   RadiusButton,
   BorderInput,
+  FloatingButton,
 };
