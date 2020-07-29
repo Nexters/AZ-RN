@@ -10,7 +10,11 @@ type KeyboardAvoidingViewerProps = {
   children: React.ReactChild | React.ReactChild;
 };
 const KeyboardAvoidingViewer = ({ children }: KeyboardAvoidingViewerProps) => {
-  return <Conatiner behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>{children}</Conatiner>;
+  return (
+    <Conatiner behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+      {children}
+    </Conatiner>
+  );
 };
 
 export default KeyboardAvoidingViewer;

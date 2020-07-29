@@ -7,8 +7,8 @@ const Container = styled.View<StyleProps>`
   margin-left: ${`${Layout.width / 20}px`};
   margin-right: ${`${Layout.width / 20}px`};
   justify-content: space-between;
-  ${({ marginTop }) => (marginTop ? marginTop : '0')};
-  ${({ marginBottom }) => (marginBottom ? marginBottom : '0')};
+  ${({ marginTop }) => marginTop ?? '0'};
+  ${({ marginBottom }) => marginBottom ?? '0'};
 `;
 
 interface StyleProps {

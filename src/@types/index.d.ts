@@ -1,11 +1,20 @@
 import { TextInputTextInputEventData } from 'react-native';
 import { PayloadAction } from 'typesafe-actions';
 
-// Root Stack Navigator Param types
-export type RootStackParams = {
+// NonLogin Stack navigator types
+export type NonLoginStackTypes = 'Login' | 'CreateAccount';
+// NonLogin Stack Navigator Param types
+export type NonLoginStackParams = {
+  Login: undefined;
+  CreateAccount: undefined;
+};
+
+// Login Stack navigator types
+export type LoginStackTypes = 'Home' | 'Detail';
+// Login Stack Navigator Param types
+export type LoginStackParams = {
   Home: undefined;
   Detail: undefined;
-  Login: undefined;
 };
 
 // margin

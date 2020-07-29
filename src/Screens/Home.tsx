@@ -1,55 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { RootStackParams } from '@types';
-import { Rowbox, Colbox, Text } from '~/Components/Atoms';
-import { Gagebar } from '~/Components/Molcules';
-import {
-  SectionWrapper,
-  BackgroundContainer,
-  HideScrollbarWrapper,
-} from '~/Components/Templates';
-import { WHITE } from '~/constants/Colors';
+import { LoginStackParams } from '@types';
+import { SectionWrapper, BackgroundContainer } from '~/Components/Templates';
+import { HomeSticky, IntroSentence } from '~/Components/Molcules';
+import { WHITE, GREY_DARK } from '~/constants/Colors';
+import { FloatingButton } from '~/Components/Atoms';
 import Layout from '~/constants/Layout';
-import badgePng from '@png/level_one_badge.png';
-
-const Badge = styled.Image`
-  position: relative;
-  left: ${`${Layout.width / 7}px`};
-`;
 
 interface HomeProps {
-  navigation: StackNavigationProp<RootStackParams, 'Home'>;
+  navigation: StackNavigationProp<LoginStackParams, 'Home'>;
 }
 
+const StickScrollView = styled.ScrollView``;
+const PostWrapper = styled.View`
+  background-color: ${GREY_DARK};
+  padding-left: ${`${Layout.width / 20}px`};
+  padding-right: ${`${Layout.width / 20}px`};
+`;
+const Card = styled.View`
+  margin-top: 20px;
+  height: 316px;
+  background-color: ${WHITE};
+  border-radius: 25px;
+`;
+
 const Home = ({ navigation }: HomeProps) => {
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   return (
     <BackgroundContainer>
-      <HideScrollbarWrapper>
-        <SectionWrapper marginTop={Layout.height / 12}>
-          <Rowbox>
-            <Colbox>
-              <Text
-                fontSize={'38px'}
-                text="유머쪼랩ㅋ"
-                fontWeight={800}
-                color={WHITE}
-              />
-              <Text
-                fontSize={'38px'}
-                text="분발하자^^"
-                fontWeight={100}
-                color={WHITE}
-              />
-            </Colbox>
-            <Badge source={badgePng} />
-          </Rowbox>
-          <Colbox width={'240px'}>
-            <Gagebar persentage={0.4} />
-          </Colbox>
+      <StickScrollView
+        stickyHeaderIndices={[1]}
+        showsVerticalScrollIndicator={false}>
+        <SectionWrapper>
+          <IntroSentence />
         </SectionWrapper>
-      </HideScrollbarWrapper>
+        <HomeSticky />
+        <PostWrapper>
+          <Card></Card>
+          <Card></Card>
+          <Card></Card>
+        </PostWrapper>
+      </StickScrollView>
+      <FloatingButton />
     </BackgroundContainer>
   );
 };
