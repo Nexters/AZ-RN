@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { LoginStackParams } from '@types';
 import { SectionWrapper, BackgroundContainer } from '~/Components/Templates';
-import { HomeSticky, IntroSentence } from '~/Components/Molcules';
-import { WHITE, GREY_DARK } from '~/constants/Colors';
+import { HomeSticky, IntroSentence, PostCard } from '~/Components/Molcules';
+import { GREY_DARK } from '~/constants/Colors';
 import { FloatingButton } from '~/Components/Atoms';
 import Layout from '~/constants/Layout';
+import { getUniqueKey } from '~/lib';
 
 interface HomeProps {
   navigation: StackNavigationProp<LoginStackParams, 'Home'>;
@@ -19,15 +20,15 @@ const PostWrapper = styled.View`
   padding-left: ${`${Layout.width / 20}px`};
   padding-right: ${`${Layout.width / 20}px`};
 `;
-const Card = styled.View`
-  margin-top: 20px;
-  height: 316px;
-  background-color: ${WHITE};
-  border-radius: 25px;
-`;
 
 const Home = ({ navigation }: HomeProps) => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const sampleData = {
+    username: 'username',
+    createdAt: 'createdAt',
+    sentence: 'sentence',
+    heartCount: 45,
+    commentCount: 13,
+  };
   return (
     <BackgroundContainer>
       <StickScrollView
@@ -38,9 +39,9 @@ const Home = ({ navigation }: HomeProps) => {
         </SectionWrapper>
         <HomeSticky />
         <PostWrapper>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
+          {Array.from({ length: 5 }, (_, index) => (
+            <PostCard {...sampleData} key={getUniqueKey(index)} />
+          ))}
         </PostWrapper>
       </StickScrollView>
       <FloatingButton />

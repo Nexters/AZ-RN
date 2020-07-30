@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 
 import { MarginStyleProps, PaddingStyleProps } from '@types';
 import { marginStyles, paddingStyles } from '~/styles/mixin';
-import { DARK_GREY } from '~/constants/Colors';
 
 const Container = styled.View<StyleProps>`
   flex-direction: row;
@@ -13,7 +12,7 @@ const Container = styled.View<StyleProps>`
   justify-content: ${({ justifyContent }) => justifyContent ?? 'flex-start'};
   width: ${({ width }) => width ?? '100%'};
   height: ${({ height }) => height ?? 'auto'};
-  background-color: ${({ bgColor }) => bgColor ?? `${DARK_GREY}`};
+  background-color: ${({ bgColor }) => bgColor ?? 'transparent'};
   border: ${({ border }) => border ?? 'none'};
   border-radius: ${({ borderRadius }) => borderRadius ?? '0px'};
 `;
@@ -23,7 +22,7 @@ interface StyleProps extends MarginStyleProps, PaddingStyleProps {
   height?: string;
   bgColor?: string;
   align?: 'center' | 'flex-start' | 'flex-end';
-  justifyContent?: 'space-around' | 'space-between' | 'center';
+  justifyContent?: 'space-around' | 'space-between' | 'center' | 'flex-start';
   border?: string;
   borderRadius?: string;
 }
