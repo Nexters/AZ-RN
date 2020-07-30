@@ -31,7 +31,7 @@ const IntroSentence = () => {
         </Colbox>
         <Badge source={badgePng} />
       </Rowbox>
-      <Colbox>
+      <Colbox marginBottom={`${Layout.height / 30}px`}>
         <Gagebar persentage={0.4} />
       </Colbox>
     </>
