@@ -15,6 +15,8 @@ export type LoginStackTypes = 'Home' | 'Detail';
 export type LoginStackParams = {
   Home: undefined;
   Detail: undefined;
+  Notification: undefined;
+  Profile: undefined;
 };
 
 // margin

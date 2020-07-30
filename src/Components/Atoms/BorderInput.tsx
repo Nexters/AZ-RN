@@ -8,14 +8,13 @@ import { WHITE } from '~/constants/Colors';
 const Input = styled.TextInput<BorderInputProps>`
   width: 100%;
   height: ${({ height }) => height ?? 'auto'};
-  padding: 16px 25px 16px 25px;
+  padding: 20px 25px 20px 25px;
   color: ${WHITE};
   background-color: transparent;
   font-size: 17px;
   border: 1px solid ${WHITE};
   border-radius: 15px;
-
-  ${marginStyles}
+  ${marginStyles};
 `;
 
 interface BorderInputProps extends MarginStyleProps {
