@@ -49,7 +49,7 @@ const NotiCard = ({
       <Notification>
         <LeftArea>
           <Type>
-            <Text text={type} color={WHITE} fontSize="12px" fontWeight={600} />
+            <Text text={type} color={WHITE} fontSize="12px" fontWeight={800} />
           </Type>
         </LeftArea>
         <RightArea>
@@ -57,7 +57,7 @@ const NotiCard = ({
             <Text
               fontSize="16px"
               text={content}
-              fontWeight={600}
+              fontWeight={800}
               color={WHITE}
             />
             <Text
