@@ -10,12 +10,15 @@ const Container = styled.View<StyleProps>`
   width: ${({ width }) => width ?? '100%'};
   border: ${({ border }) => border ?? 'none'};
   border-radius: ${({ borderRadius }) => borderRadius ?? '0'};
+  align-items: ${({ align }) => align ?? 'flex-start'};
 `;
 
 interface StyleProps extends MarginStyleProps, PaddingStyleProps {
   width?: string;
   border?: string;
   borderRadius?: number;
+  align?: 'center' | 'flex-start' | 'flex-end';
+  justifyContent?: 'space-around' | 'space-between' | 'center' | 'flex-start';
 }
 
 interface ColboxProps extends StyleProps {
@@ -34,6 +37,7 @@ const Colbox = ({
   borderRadius,
   border,
   width,
+  align,
   children,
 }: ColboxProps) => {
   return (
@@ -48,7 +52,8 @@ const Colbox = ({
       paddingRight={paddingRight}
       borderRadius={borderRadius}
       border={border}
-      width={width}>
+      width={width}
+      align={align}>
       {children}
     </Container>
   );
