@@ -14,8 +14,8 @@ const StickyHeader = styled.View`
   background-color: ${GREY_DARK};
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
-  padding-left: ${`${Layout.width / 20}px`};
-  padding-right: ${`${Layout.width / 20}px`};
+  padding-left: ${`${Layout.width / 18}px`};
+  padding-right: ${`${Layout.width / 18}px`};
   padding-bottom: 10px;
 `;
 

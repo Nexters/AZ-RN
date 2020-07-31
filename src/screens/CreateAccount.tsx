@@ -12,8 +12,8 @@ import { WHITE, PURPLE } from '~/constants/Colors';
 
 const Wrapper = styled.View`
   flex: 1;
-  margin-left: ${`${Layout.width / 20}px`};
-  margin-right: ${`${Layout.width / 20}px`};
+  margin-left: ${`${Layout.width / 18}px`};
+  margin-right: ${`${Layout.width / 18}px`};
   justify-content: space-around;
 `;
 
