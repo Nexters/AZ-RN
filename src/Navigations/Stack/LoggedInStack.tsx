@@ -13,6 +13,7 @@ import { HeaderWrapper } from '~/Components/Templates';
 import Notification from '~/screens/Notification';
 import { BackNaviate } from '~/Components/Molcules';
 import Profile from '~/screens/Login/Profile';
+import { WHITE } from '~/constants/Colors';
 
 const CreateStack = createStackNavigator<LoginStackParams>();
 
@@ -63,6 +64,11 @@ const LoggedInStack = () => (
           ),
           headerTitle: '알림',
           headerStyle: NotiHeaderStyle,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 16,
+            color: WHITE,
+          },
         };
       }}
     />

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import { MarginStyleProps } from '@types';
-import { ImageSourcePropType, TouchableHighlight } from 'react-native';
+import { ImageSourcePropType, TouchableOpacity } from 'react-native';
 import { marginStyles } from '~/styles/mixin';
 
 const Image = styled.Image<MarginStyleProps>`
@@ -23,7 +23,7 @@ const ImageViewer = ({
   onPress,
 }: ImageProps) => {
   return onPress ? (
-    <TouchableHighlight onPress={onPress}>
+    <TouchableOpacity onPress={onPress}>
       <Image
         resizeMode="contain"
         source={imgSrc}
@@ -32,7 +32,7 @@ const ImageViewer = ({
         marginBottom={marginBottom}
         marginRight={marginRight}
       />
-    </TouchableHighlight>
+    </TouchableOpacity>
   ) : (
     <Image
       resizeMode="contain"

@@ -5,7 +5,7 @@ import { NonLoginStackParams } from '@types';
 import Login from '~/screens/Login';
 import logo_png from '@png/logo.png';
 import { Image } from '~/Components/Atoms';
-import { screenOptions, HomeHeaderStyle } from './stackNaviOptions';
+import { HomeHeaderStyle } from './stackNaviOptions';
 
 import { HeaderWrapper } from '~/Components/Templates';
 import CreateAccount from '~/screens/CreateAccount';
