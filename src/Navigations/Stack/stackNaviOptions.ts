@@ -10,7 +10,7 @@ export const screenOptions = {
   },
   headerShown: true,
   cardOverlayEnabled: false,
-  cardStyleInterpolator: ({ current: { progress } }: c) => ({
+  cardStyleInterpolator: ({ current: { progress } }) => ({
     cardStyle: {
       opacity: progress.interpolate({
         inputRange: [0, 0.5, 0.9, 1],
@@ -20,9 +20,17 @@ export const screenOptions = {
   }),
 };
 
-export const headerStyle = {
+export const HomeHeaderStyle = {
   backgroundColor: DARK_GREY,
   height: 100,
+  shadowRadius: 0,
+  shadowOffset: {
+    height: 0,
+  },
+};
+
+export const NotiHeaderStyle = {
+  backgroundColor: DARK_GREY,
   shadowRadius: 0,
   shadowOffset: {
     height: 0,
