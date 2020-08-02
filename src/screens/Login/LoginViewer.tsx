@@ -43,7 +43,7 @@ const LoginViewer = ({ handleLogin, handleNavigate }: LoginProps) => {
           <Wrapper>
             <Image
               imgSrc={section_png}
-              marginTop={ifIphoneX(`${Layout.height / 12}px`)}
+              marginTop={ifIphoneX(`${Layout.height / 12}px`, '0')}
             />
             <MiddleBox>
               <BottomLineInput
