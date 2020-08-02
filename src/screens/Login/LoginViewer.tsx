@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { PURPLE, WHITE } from '~/constants/Colors';
 import {
@@ -40,7 +41,10 @@ const LoginViewer = ({ handleLogin, handleNavigate }: LoginProps) => {
       <KeyboardAvoidingViewer>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Wrapper>
-            <Image imgSrc={section_png} marginTop={`${Layout.height / 12}px`} />
+            <Image
+              imgSrc={section_png}
+              marginTop={ifIphoneX(`${Layout.height / 12}px`, '0')}
+            />
             <MiddleBox>
               <BottomLineInput
                 marginBottom={'30px'}
