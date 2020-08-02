@@ -17,8 +17,8 @@ interface HomeProps {
 const StickScrollView = styled.ScrollView``;
 const PostWrapper = styled.View`
   background-color: ${GREY_DARK};
-  padding-left: ${`${Layout.width / 20}px`};
-  padding-right: ${`${Layout.width / 20}px`};
+  padding-left: ${`${Layout.width / 18}px`};
+  padding-right: ${`${Layout.width / 18}px`};
 `;
 
 const Home = ({ navigation }: HomeProps) => {

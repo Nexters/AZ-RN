@@ -4,8 +4,8 @@ import Layout from '~/constants/Layout';
 
 const Container = styled.View<StyleProps>`
   flex: 1;
-  margin-left: ${`${Layout.width / 20}px`};
-  margin-right: ${`${Layout.width / 20}px`};
+  margin-left: ${`${Layout.width / 18}px`};
+  margin-right: ${`${Layout.width / 18}px`};
   justify-content: space-between;
   ${({ marginTop }) => marginTop ?? '0'};
   ${({ marginBottom }) => marginBottom ?? '0'};
