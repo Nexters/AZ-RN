@@ -19,7 +19,7 @@ const StickyHeader = styled.View`
   padding-bottom: 10px;
 `;
 
-const HomeSticky = () => {
+const DeviceHeaderSticky = () => {
   return (
     <Container>
       <StickyHeader>
@@ -56,4 +56,4 @@ const HomeSticky = () => {
   );
 };
 
-export default HomeSticky;
+export default DeviceHeaderSticky;

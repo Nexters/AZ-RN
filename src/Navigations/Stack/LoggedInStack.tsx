@@ -5,7 +5,7 @@ import { LoginStackParams } from '@types';
 import Home from '~/screens/Home';
 import Detail from '~/screens/Detail';
 import { Image } from '~/Components/Atoms';
-import { headerStyle } from './stackNaviOptions';
+import { HomeHeaderStyle, NotiHeaderStyle } from './stackNaviOptions';
 import logo_png from '@png/logo.png';
 import bell_png from '@png/bell_notification.png';
 import level_one_profile_png from '@png/level_one_profile.png';
@@ -46,7 +46,7 @@ const LoggedInStack = () => (
             </HeaderWrapper>
           ),
           headerTitle: '',
-          headerStyle,
+          headerStyle: HomeHeaderStyle,
         };
       }}
     />
@@ -58,11 +58,11 @@ const LoggedInStack = () => (
         return {
           headerLeft: () => (
             <HeaderWrapper>
-              <BackNaviate title="알림" navigation={navigation} />
+              <BackNaviate title="" navigation={navigation} />
             </HeaderWrapper>
           ),
-          headerTitle: '',
-          headerStyle,
+          headerTitle: '알림',
+          headerStyle: NotiHeaderStyle,
         };
       }}
     />
@@ -73,11 +73,11 @@ const LoggedInStack = () => (
         return {
           headerLeft: () => (
             <HeaderWrapper>
-              <BackNaviate title="마이페이지" navigation={navigation} />
+              <BackNaviate title="" navigation={navigation} />
             </HeaderWrapper>
           ),
-          headerTitle: '',
-          headerStyle,
+          headerTitle: '마이페이지',
+          headerStyle: HomeHeaderStyle,
         };
       }}
     />

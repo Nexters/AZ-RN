@@ -4,7 +4,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { LoginStackParams } from '@types';
 import { SectionWrapper, BackgroundContainer } from '~/Components/Templates';
-import { HomeSticky, IntroSentence, PostCard } from '~/Components/Molcules';
+import {
+  DeviceHeaderSticky,
+  IntroSentence,
+  PostCard,
+} from '~/Components/Molcules';
 import { GREY_DARK } from '~/constants/Colors';
 import { FloatingButton } from '~/Components/Atoms';
 import Layout from '~/constants/Layout';
@@ -37,7 +41,7 @@ const Home = ({ navigation }: HomeProps) => {
         <SectionWrapper>
           <IntroSentence />
         </SectionWrapper>
-        <HomeSticky />
+        <DeviceHeaderSticky />
         <PostWrapper>
           {Array.from({ length: 5 }, (_, index) => (
             <PostCard {...sampleData} key={getUniqueKey(index)} />

@@ -1,7 +1,7 @@
 import Gagebar from './Gagebar';
 import BackNaviate from './BackNaviate';
 import IntroSentence from './IntroSentence';
-import HomeSticky from './HomeSticky';
+import DeviceHeaderSticky from './DeviceHeaderSticky';
 import IconMsg from './IconMsg';
 import PostCard from './PostCard';
 import NotiCard from './NotiCard';
@@ -10,7 +10,7 @@ export {
   Gagebar,
   BackNaviate,
   IntroSentence,
-  HomeSticky,
+  DeviceHeaderSticky,
   IconMsg,
   PostCard,
   NotiCard,

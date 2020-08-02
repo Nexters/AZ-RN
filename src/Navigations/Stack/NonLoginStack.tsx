@@ -5,7 +5,7 @@ import { NonLoginStackParams } from '@types';
 import Login from '~/screens/Login';
 import logo_png from '@png/logo.png';
 import { Image } from '~/Components/Atoms';
-import { screenOptions, headerStyle } from './stackNaviOptions';
+import { screenOptions, HomeHeaderStyle } from './stackNaviOptions';
 
 import { HeaderWrapper } from '~/Components/Templates';
 import CreateAccount from '~/screens/CreateAccount';
@@ -25,7 +25,7 @@ const NonLoginStack = () => (
           </HeaderWrapper>
         ),
         headerTitle: '',
-        headerStyle,
+        headerStyle: HomeHeaderStyle,
       }}
     />
     <CreateStack.Screen
@@ -35,11 +35,11 @@ const NonLoginStack = () => (
         return {
           headerLeft: () => (
             <HeaderWrapper>
-              <BackNaviate title="회원가입" navigation={navigation} />
+              <BackNaviate title="" navigation={navigation} />
             </HeaderWrapper>
           ),
-          headerTitle: '',
-          headerStyle,
+          headerTitle: '회원가입',
+          headerStyle: HomeHeaderStyle,
         };
       }}
     />
