@@ -5,6 +5,7 @@ import DeviceHeaderSticky from './DeviceHeaderSticky';
 import IconMsg from './IconMsg';
 import PostCard from './PostCard';
 import NotiCard from './NotiCard';
+import ValidationInput from './ValidationInput';
 
 export {
   Gagebar,
@@ -14,4 +15,5 @@ export {
   IconMsg,
   PostCard,
   NotiCard,
+  ValidationInput,
 };
