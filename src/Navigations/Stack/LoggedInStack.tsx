@@ -12,7 +12,7 @@ import level_one_profile_png from '@png/level_one_profile.png';
 import { HeaderWrapper } from '~/Components/Templates';
 import Notification from '~/Screens/Notification';
 import { BackNaviate } from '~/Components/Molcules';
-import Profile from '~/screens/Login/Profile';
+import Profile from '~/Screens/Login/Profile';
 import { WHITE } from '~/constants/Colors';
 
 const CreateStack = createStackNavigator<LoginStackParams>();
