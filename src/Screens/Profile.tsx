@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 
 import {
@@ -65,7 +65,6 @@ const Profile = () => {
         };
       }
     });
-
     setTabNavOptions(updateTabOptions);
   };
 

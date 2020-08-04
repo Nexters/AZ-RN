@@ -5,14 +5,14 @@ import { LoginStackParams } from '@types';
 import Home from '~/Screens/Home';
 import Detail from '~/Screens/Detail';
 import { Image } from '~/Components/Atoms';
-import { HomeHeaderStyle, NotiHeaderStyle } from './stackNaviOptions';
+import { BackNaviate } from '~/Components/Molcules';
 import logo_png from '@png/logo.png';
 import bell_png from '@png/bell_notification.png';
 import level_one_profile_png from '@png/level_one_profile.png';
+import { HomeHeaderStyle, NotiHeaderStyle } from './stackNaviOptions';
 import { HeaderWrapper } from '~/Components/Templates';
 import Notification from '~/Screens/Notification';
-import { BackNaviate } from '~/Components/Molcules';
-import Profile from '~/Screens/Login/Profile';
+import Profile from '~/Screens/Profile';
 import { WHITE } from '~/constants/Colors';
 
 const CreateStack = createStackNavigator<LoginStackParams>();
