@@ -3,7 +3,11 @@ import styled from 'styled-components/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { LoginStackParams } from '@types';
-import { SectionWrapper, BackgroundContainer } from '~/Components/Templates';
+import {
+  SectionWrapper,
+  BackgroundContainer,
+  StickyScrollView,
+} from '~/Components/Templates';
 import {
   DeviceHeaderSticky,
   IntroSentence,
@@ -18,7 +22,6 @@ interface HomeProps {
   navigation: StackNavigationProp<LoginStackParams, 'Home'>;
 }
 
-const StickScrollView = styled.ScrollView``;
 const PostWrapper = styled.View`
   background-color: ${GREY_DARK};
   padding-left: ${`${Layout.width / 18}px`};
@@ -35,9 +38,7 @@ const Home = ({ navigation }: HomeProps) => {
   };
   return (
     <BackgroundContainer>
-      <StickScrollView
-        stickyHeaderIndices={[1]}
-        showsVerticalScrollIndicator={false}>
+      <StickyScrollView stickyPosition={1}>
         <SectionWrapper>
           <IntroSentence />
         </SectionWrapper>
@@ -47,7 +48,7 @@ const Home = ({ navigation }: HomeProps) => {
             <PostCard {...sampleData} key={getUniqueKey(index)} />
           ))}
         </PostWrapper>
-      </StickScrollView>
+      </StickyScrollView>
       <FloatingButton />
     </BackgroundContainer>
   );
