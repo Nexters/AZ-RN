@@ -2,15 +2,15 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginStackParams } from '@types';
 
-import Home from '~/screens/Home';
-import Detail from '~/screens/Detail';
+import Home from '~/Screens/Home';
+import Detail from '~/Screens/Detail';
 import { Image } from '~/Components/Atoms';
 import { HomeHeaderStyle, NotiHeaderStyle } from './stackNaviOptions';
 import logo_png from '@png/logo.png';
 import bell_png from '@png/bell_notification.png';
 import level_one_profile_png from '@png/level_one_profile.png';
 import { HeaderWrapper } from '~/Components/Templates';
-import Notification from '~/screens/Notification';
+import Notification from '~/Screens/Notification';
 import { BackNaviate } from '~/Components/Molcules';
 import Profile from '~/screens/Login/Profile';
 import { WHITE } from '~/constants/Colors';

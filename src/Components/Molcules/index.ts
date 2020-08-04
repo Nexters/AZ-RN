@@ -6,6 +6,7 @@ import IconMsg from './IconMsg';
 import PostCard from './PostCard';
 import NotiCard from './NotiCard';
 import BottomLineTabNavi from './BottomLineTabNavi';
+import ValidationInput from './ValidationInput';
 
 export {
   Gagebar,
@@ -16,4 +17,5 @@ export {
   PostCard,
   NotiCard,
   BottomLineTabNavi,
+  ValidationInput,
 };
