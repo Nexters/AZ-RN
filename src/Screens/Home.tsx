@@ -22,13 +22,13 @@ import { getUniqueKey } from '~/lib';
 interface HomeProps {
   navigation: StackNavigationProp<LoginStackParams, 'Home'>;
 }
-
 const PostWrapper = styled.View`
   background-color: ${GREY_DARK};
   padding-left: ${`${Layout.width / 18}px`};
   padding-right: ${`${Layout.width / 18}px`};
 `;
 
+type Type = 'normal' | 'best';
 const Home = ({ navigation }: HomeProps) => {
   const sampleData = {
     username: 'username',
@@ -36,6 +36,7 @@ const Home = ({ navigation }: HomeProps) => {
     sentence: 'sentence',
     heartCount: 45,
     commentCount: 13,
+    type: 'best' as Type,
   };
   return (
     <BackgroundContainer>

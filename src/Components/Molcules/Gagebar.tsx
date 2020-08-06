@@ -19,7 +19,7 @@ const Gage = styled.View`
   width: 100%;
   height: 8px;
   border-radius: 30px;
-  background-color: #ffffff;
+  background-color: #3a3a3a;
 `;
 const FillGage = styled(Gage)<FillGageProps>`
   width: ${({ width }) => width ?? '0px'};
@@ -41,28 +41,33 @@ type Gagebar = {
 const Gagebar = ({ persentage, fillColor }: Gagebar) => {
   return (
     <Container>
-      <Rowbox align="flex-end" justifyContent="space-between">
-        <RadiusButton
-          text="게시글"
-          borderRadius="5px"
-          bgColor={LIGHT_PURPLE}
-          fontSize="10px"
-          color={PURPLE}
-          width="35px"
-          height="15px"
-        />
-        <Text text="14개" fontSize="20px" fontWeight={800} color={WHITE} />
-        <RadiusButton
-          text="댓글"
-          borderRadius="5px"
-          bgColor={LIGHT_PURPLE}
-          fontSize="10px"
-          color={PURPLE}
-          width="35px"
-          height="15px"
-        />
-        <Text text="4개" fontSize="20px" fontWeight={800} color={WHITE} />
-        <Text text="|" fontSize="15px" fontWeight={200} color={WHITE} />
+      <Rowbox align="flex-end">
+        <Rowbox width="auto" marginRight="12px">
+          <RadiusButton
+            text="게시글"
+            borderRadius="10px"
+            bgColor="#161616"
+            fontSize="12px"
+            color="#717171"
+            width="49px"
+            height="19px"
+            marginRight="2px"
+          />
+          <Text text="14개" fontSize="15px" fontWeight={800} color={WHITE} />
+        </Rowbox>
+        <Rowbox width="auto" marginRight="12px">
+          <RadiusButton
+            text="댓글"
+            borderRadius="10px"
+            bgColor="#161616"
+            fontSize="12px"
+            color="#717171"
+            width="49px"
+            height="19px"
+            marginRight="2px"
+          />
+          <Text text="4개" fontSize="15" fontWeight={800} color={WHITE} />
+        </Rowbox>
         <Text
           text="더 작성하면 등급 업"
           fontSize="15px"
