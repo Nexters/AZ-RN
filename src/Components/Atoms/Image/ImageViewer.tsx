@@ -5,13 +5,24 @@ import { MarginStyleProps } from '@types';
 import { ImageSourcePropType, TouchableOpacity } from 'react-native';
 import { marginStyles } from '~/styles/mixin';
 
-const Image = styled.Image<MarginStyleProps>`
+const Image = styled.Image<StyleProps>`
+  ${marginStyles};
+  width: ${({ imgWidth }) => imgWidth ?? '100%'};
+  height: ${({ imgHeight }) => imgHeight ?? '100%'};
+`;
+const AutoImage = styled.Image<StyleProps>`
   ${marginStyles};
 `;
 
-interface ImageProps extends MarginStyleProps {
+interface StyleProps extends MarginStyleProps {
+  imgWidth?: string;
+  imgHeight?: string;
+}
+interface ImageProps extends StyleProps {
   imgSrc: ImageSourcePropType;
   onPress?: () => void;
+  width?: string;
+  height?: string;
 }
 
 const ImageViewer = ({
@@ -21,19 +32,10 @@ const ImageViewer = ({
   marginBottom,
   marginRight,
   onPress,
+  width,
+  height,
 }: ImageProps) => {
-  return onPress ? (
-    <TouchableOpacity onPress={onPress}>
-      <Image
-        resizeMode="contain"
-        source={imgSrc}
-        marginLeft={marginLeft}
-        marginTop={marginTop}
-        marginBottom={marginBottom}
-        marginRight={marginRight}
-      />
-    </TouchableOpacity>
-  ) : (
+  const ImgType = width ? (
     <Image
       resizeMode="contain"
       source={imgSrc}
@@ -41,7 +43,23 @@ const ImageViewer = ({
       marginTop={marginTop}
       marginBottom={marginBottom}
       marginRight={marginRight}
+      imgWidth={width}
+      imgHeight={height}
     />
+  ) : (
+    <AutoImage
+      resizeMode="contain"
+      source={imgSrc}
+      marginLeft={marginLeft}
+      marginTop={marginTop}
+      marginBottom={marginBottom}
+      marginRight={marginRight}
+    />
+  );
+  return onPress ? (
+    <TouchableOpacity onPress={onPress}>{ImgType}</TouchableOpacity>
+  ) : (
+    ImgType
   );
 };
 

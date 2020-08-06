@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { LIGHT_DARK, WHITE, GREY_DARK, DARK_GREY } from '~/constants/Colors';
+import { LIGHT_DARK, GREY_DARK, DARK_GREY } from '~/constants/Colors';
 import Layout from '~/constants/Layout';
-import { Rowbox, Text } from '../Atoms';
+import { Rowbox } from '../Atoms';
 
 const Container = styled.View`
   background-color: ${DARK_GREY};
@@ -16,10 +16,13 @@ const StickyHeader = styled.View`
   border-top-right-radius: 50px;
   padding-left: ${`${Layout.width / 18}px`};
   padding-right: ${`${Layout.width / 18}px`};
-  padding-bottom: 10px;
 `;
 
-const DeviceHeaderSticky = () => {
+type DeviceHeaderStickyProps = {
+  children: React.ReactChild | React.ReactChild[];
+};
+
+const DeviceHeaderSticky = ({ children }: DeviceHeaderStickyProps) => {
   return (
     <Container>
       <StickyHeader>
@@ -30,27 +33,7 @@ const DeviceHeaderSticky = () => {
           borderRadius="20px"
           marginBottom="18px"
         />
-        <Rowbox width="100%" justifyContent="space-between">
-          <Text
-            text="개그 목록"
-            fontSize="18px"
-            fontWeight={700}
-            color={WHITE}
-          />
-          <Rowbox
-            borderRadius="25px"
-            border="1px solid #ffffff"
-            width="110px"
-            height="44px"
-            justifyContent="center">
-            <Text
-              text="명예의 전당"
-              fontSize="13px"
-              fontWeight={200}
-              color={WHITE}
-            />
-          </Rowbox>
-        </Rowbox>
+        {children}
       </StickyHeader>
     </Container>
   );

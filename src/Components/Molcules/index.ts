@@ -7,6 +7,7 @@ import PostCard from './PostCard';
 import NotiCard from './NotiCard';
 import BottomLineTabNavi from './BottomLineTabNavi';
 import ValidationInput from './ValidationInput';
+import HomeStickyInner from './HomeStickyInner';
 
 export {
   Gagebar,
@@ -18,4 +19,5 @@ export {
   NotiCard,
   BottomLineTabNavi,
   ValidationInput,
+  HomeStickyInner,
 };

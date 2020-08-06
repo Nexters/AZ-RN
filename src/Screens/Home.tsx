@@ -12,6 +12,7 @@ import {
   DeviceHeaderSticky,
   IntroSentence,
   PostCard,
+  HomeStickyInner,
 } from '~/Components/Molcules';
 import { GREY_DARK } from '~/constants/Colors';
 import { FloatingButton } from '~/Components/Atoms';
@@ -42,7 +43,9 @@ const Home = ({ navigation }: HomeProps) => {
         <SectionWrapper>
           <IntroSentence />
         </SectionWrapper>
-        <DeviceHeaderSticky />
+        <DeviceHeaderSticky>
+          <HomeStickyInner />
+        </DeviceHeaderSticky>
         <PostWrapper>
           {Array.from({ length: 5 }, (_, index) => (
             <PostCard {...sampleData} key={getUniqueKey(index)} />
