@@ -4,6 +4,7 @@ import HeaderWrapper from './HeaderWrapper';
 import SectionWrapper from './SectionWrapper';
 import BackgroundContainer from './BackgroundContainer';
 import HideScrollbarWrapper from './HideScrollbarWrapper';
+import StickyScrollView from './StickyScrollView';
 
 export {
   SafeAreaContainer,
@@ -12,4 +13,5 @@ export {
   SectionWrapper,
   BackgroundContainer,
   HideScrollbarWrapper,
+  StickyScrollView,
 };

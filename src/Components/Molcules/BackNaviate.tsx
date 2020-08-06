@@ -11,7 +11,9 @@ type BackNaviateProps = {
   navigation: StackNavigationProp<NonLoginStackParams, any>;
 };
 
-const Touchable = styled.TouchableOpacity``;
+const Touchable = styled.TouchableOpacity`
+  width: 100%;
+`;
 
 const BackNaviate = ({ title, navigation }: BackNaviateProps) => {
   return (

@@ -8,7 +8,7 @@ import { RadiusButton } from '~/Components/Atoms';
 import { WHITE, PURPLE } from '~/constants/Colors';
 import { ValidationInput } from '~/Components/Molcules';
 import { InputBindType } from '~/hooks/useHandleInput';
-import { getUniqueKey, arrayConditionCheck } from '~/lib';
+import { getUniqueKey } from '~/lib';
 
 const AvoidWrapper = styled.View`
   flex: 1;
