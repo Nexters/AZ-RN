@@ -14,6 +14,7 @@ const HomeStickyInner = () => {
         <Rowbox
           borderRadius="50px"
           border="1px solid #999999"
+          bgColor="#5A5A5A"
           width="90px"
           height="27px"
           justifyContent="center">
