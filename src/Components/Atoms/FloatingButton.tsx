@@ -22,7 +22,7 @@ const FloatingButton = () => {
   return (
     <Touchable>
       <Write>
-        <Image imgSrc={pencilPng} />
+        <Image imgSrc={pencilPng} width="27px" height="27px" />
       </Write>
     </Touchable>
   );

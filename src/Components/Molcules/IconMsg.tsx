@@ -18,6 +18,8 @@ interface StyleProps extends MarginStyleProps {
 interface IconMsgProps extends StyleProps {
   children: React.ReactChild;
   imgSrc: ImageSourcePropType;
+  width?: string;
+  height?: string;
 }
 
 const IconMsg = ({
@@ -28,6 +30,8 @@ const IconMsg = ({
   marginRight,
   marginTop,
   direction,
+  width,
+  height,
 }: IconMsgProps) => {
   return (
     <Container
@@ -36,7 +40,7 @@ const IconMsg = ({
       marginRight={marginRight}
       marginTop={marginTop}
       direction={direction}>
-      <Image imgSrc={imgSrc} />
+      <Image imgSrc={imgSrc} width={width} height={height} />
       {children}
     </Container>
   );
