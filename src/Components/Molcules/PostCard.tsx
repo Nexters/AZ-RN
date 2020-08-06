@@ -92,7 +92,7 @@ const PostCard = ({
           />
         </Rowbox>
         <Rowbox>
-          <IconMsg imgSrc={heartPng}>
+          <IconMsg imgSrc={heartPng} height="20px" width="20px">
             <Text
               text={`${heartCount}개`}
               fontSize="11px"
@@ -101,7 +101,11 @@ const PostCard = ({
               marginLeft="5px"
             />
           </IconMsg>
-          <IconMsg imgSrc={commentPng} marginLeft="15px">
+          <IconMsg
+            imgSrc={commentPng}
+            marginLeft="15px"
+            height="16px"
+            width="20px">
             <Text
               text={`${commentCount}개`}
               fontSize="11px"
