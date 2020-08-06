@@ -88,6 +88,11 @@ const LoggedInStack = () => (
           ),
           headerTitle: '마이페이지',
           headerStyle: HomeHeaderStyle,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 16,
+            color: WHITE,
+          },
         };
       }}
     />

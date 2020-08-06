@@ -33,6 +33,7 @@ const TextViewer = ({
 }: TextProps) => {
   return (
     <Text
+      numberOfLines={1}
       fontSize={fontSize}
       color={color}
       marginLeft={marginLeft}

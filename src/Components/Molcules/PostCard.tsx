@@ -2,10 +2,8 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { WHITE, DARK_GREY } from '~/constants/Colors';
 import { Rowbox, Text, Colbox, Image } from '../Atoms';
-import IconMsg from './IconMsg';
-import heartPng from '@png/heart.png';
-import commentPng from '@png/comment.png';
 import crownPng from '@png/crown.png';
+import HearAndComment from './HearAndComment';
 
 const Card = styled.View`
   margin-top: 14px;
@@ -91,30 +89,14 @@ const PostCard = ({
             color={DARK_GREY}
           />
         </Rowbox>
-        <Rowbox>
-          <IconMsg imgSrc={heartPng} height="20px" width="20px">
-            <Text
-              text={`${heartCount}개`}
-              fontSize="11px"
-              fontWeight={700}
-              color={DARK_GREY}
-              marginLeft="5px"
-            />
-          </IconMsg>
-          <IconMsg
-            imgSrc={commentPng}
-            marginLeft="15px"
-            height="16px"
-            width="20px">
-            <Text
-              text={`${commentCount}개`}
-              fontSize="11px"
-              fontWeight={700}
-              color={DARK_GREY}
-              marginLeft="5px"
-            />
-          </IconMsg>
-        </Rowbox>
+        <HearAndComment
+          heartCount={heartCount}
+          commentCount={commentCount}
+          heartWidth="20px"
+          heartHeight="20px"
+          commentWidth="16px"
+          commentHeight="20px"
+        />
       </Colbox>
     </Card>
   );
