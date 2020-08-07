@@ -19,7 +19,7 @@ const StickyHeader = styled.View`
 `;
 
 type DeviceHeaderStickyProps = {
-  children: React.ReactChild | React.ReactChild[];
+  children?: React.ReactChild | React.ReactChild[];
 };
 
 const DeviceHeaderSticky = ({ children }: DeviceHeaderStickyProps) => {
