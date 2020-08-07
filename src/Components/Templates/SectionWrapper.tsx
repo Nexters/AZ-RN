@@ -7,13 +7,13 @@ const Container = styled.View<StyleProps>`
   margin-left: ${`${Layout.width / 18}px`};
   margin-right: ${`${Layout.width / 18}px`};
   justify-content: space-between;
-  ${({ marginTop }) => marginTop ?? '0'};
-  ${({ marginBottom }) => marginBottom ?? '0'};
+  margin-top: ${({ marginTop }) => marginTop ?? '0'};
+  margin-bottom: ${({ marginBottom }) => marginBottom ?? '0'};
 `;
 
 interface StyleProps {
-  marginTop?: number;
-  marginBottom?: number;
+  marginTop?: string;
+  marginBottom?: string;
 }
 
 interface SectionWrapperProps extends StyleProps {

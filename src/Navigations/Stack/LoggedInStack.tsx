@@ -36,13 +36,17 @@ const LoggedInStack = () => (
                   navigation.navigate('Notification');
                 }}
                 imgSrc={bell_png}
-                marginRight={'7px'}
+                marginRight="7px"
+                width="25px"
+                height="26px"
               />
               <Image
                 onPress={() => {
                   navigation.navigate('Profile');
                 }}
                 imgSrc={level_one_profile_png}
+                width="34px"
+                height="32px"
               />
             </HeaderWrapper>
           ),
@@ -84,6 +88,11 @@ const LoggedInStack = () => (
           ),
           headerTitle: '마이페이지',
           headerStyle: HomeHeaderStyle,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 16,
+            color: WHITE,
+          },
         };
       }}
     />

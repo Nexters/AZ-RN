@@ -7,6 +7,7 @@ import {
   SectionWrapper,
   BackgroundContainer,
   StickyScrollView,
+  DeviceSection,
 } from '~/Components/Templates';
 import {
   DeviceHeaderSticky,
@@ -14,19 +15,12 @@ import {
   PostCard,
   HomeStickyInner,
 } from '~/Components/Molcules';
-import { GREY_DARK } from '~/constants/Colors';
 import { FloatingButton } from '~/Components/Atoms';
-import Layout from '~/constants/Layout';
 import { getUniqueKey } from '~/lib';
 
 interface HomeProps {
   navigation: StackNavigationProp<LoginStackParams, 'Home'>;
 }
-const PostWrapper = styled.View`
-  background-color: ${GREY_DARK};
-  padding-left: ${`${Layout.width / 18}px`};
-  padding-right: ${`${Layout.width / 18}px`};
-`;
 
 type Type = 'normal' | 'best';
 const Home = ({ navigation }: HomeProps) => {
@@ -47,11 +41,11 @@ const Home = ({ navigation }: HomeProps) => {
         <DeviceHeaderSticky>
           <HomeStickyInner />
         </DeviceHeaderSticky>
-        <PostWrapper>
+        <DeviceSection>
           {Array.from({ length: 5 }, (_, index) => (
             <PostCard {...sampleData} key={getUniqueKey(index)} />
           ))}
-        </PostWrapper>
+        </DeviceSection>
       </StickyScrollView>
       <FloatingButton />
     </BackgroundContainer>
