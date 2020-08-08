@@ -4,8 +4,7 @@ import styled from 'styled-components/native';
 import pencilPng from '@png/pencil.png';
 import Image from './Image';
 
-const Touchable = styled.TouchableOpacity``;
-const Write = styled.View`
+const Touchable = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   position: absolute;
@@ -18,12 +17,14 @@ const Write = styled.View`
   box-shadow: 0px 6px 7px rgba(0, 0, 0, 0.4);
 `;
 
-const FloatingButton = () => {
+type FloatingButtonProps = {
+  navigate: () => void;
+};
+
+const FloatingButton = ({ navigate }: FloatingButtonProps) => {
   return (
-    <Touchable>
-      <Write>
-        <Image imgSrc={pencilPng} width="27px" height="27px" />
-      </Write>
+    <Touchable onPress={navigate}>
+      <Image imgSrc={pencilPng} width="27px" height="27px" />
     </Touchable>
   );
 };
