@@ -7,6 +7,7 @@ import Colbox from './Colbox';
 import RadiusButton from './RadiusButton';
 import BorderInput from './BorderInput';
 import FloatingButton from './FloatingButton';
+import TextArea from './TextArea';
 
 export {
   Header,
@@ -18,4 +19,5 @@ export {
   RadiusButton,
   BorderInput,
   FloatingButton,
+  TextArea,
 };
