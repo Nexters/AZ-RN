@@ -17,6 +17,7 @@ export type LoginStackParams = {
   Detail: undefined;
   Notification: undefined;
   Profile: undefined;
+  PostWrite: undefined;
 };
 
 // margin
