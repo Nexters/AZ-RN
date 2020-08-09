@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Layout from '~/constants/Layout';
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 const Container = styled.View<StyleProps>`
   flex: 1;
-  margin-left: ${`${Layout.width / 18}px`};
-  margin-right: ${`${Layout.width / 18}px`};
+  padding-left: ${`${Layout.width / 18}px`};
+  padding-right: ${`${Layout.width / 18}px`};
   justify-content: space-between;
   margin-top: ${({ marginTop }) => marginTop ?? '0'};
   margin-bottom: ${({ marginBottom }) => marginBottom ?? '0'};
@@ -26,9 +27,11 @@ const SectionWrapper = ({
   marginTop,
 }: SectionWrapperProps) => {
   return (
-    <Container marginBottom={marginBottom} marginTop={marginTop}>
-      {children}
-    </Container>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <Container marginBottom={marginBottom} marginTop={marginTop}>
+        {children}
+      </Container>
+    </TouchableWithoutFeedback>
   );
 };
 
