@@ -36,11 +36,5 @@ export type PaddingStyleProps = {
   paddingRight?: string;
 };
 
-// input binder
-export type InputBinderTypes = {
-  onChange: (e: NativeSyntheticEvent<TextInputTextInputEventData>) => void;
-  value: string;
-};
-
 // redux action playload
 export type PayloadType<Action extends string, T> = PayloadAction<Action, T>;
