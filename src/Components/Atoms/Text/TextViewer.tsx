@@ -9,6 +9,7 @@ const Text = styled.Text<StyleProps>`
   font-size: ${({ fontSize }) => fontSize ?? '15px'};
   color: ${({ color }) => color ?? `${LIGHT_GREY}`};
   font-weight: ${({ fontWeight }) => fontWeight ?? 'bold'};
+  text-align: ${({ textAlign }) => textAlign ?? 'left'};
   ${marginStyles};
 `;
 
@@ -16,11 +17,13 @@ interface StyleProps extends MarginStyleProps {
   fontSize?: string;
   color?: string;
   fontWeight?: number;
+  textAlign?: string;
 }
 
 interface TextProps extends StyleProps {
   text: string;
   onPress?: () => void;
+  numberOfLines?: number;
 }
 
 const TextViewer = ({
@@ -33,30 +36,34 @@ const TextViewer = ({
   marginRight,
   fontWeight,
   onPress,
+  textAlign,
+  numberOfLines,
 }: TextProps) => {
   return onPress ? (
     <TouchableOpacity>
       <Text
-        numberOfLines={1}
+        numberOfLines={numberOfLines ?? 100}
         fontSize={fontSize}
         color={color}
         marginLeft={marginLeft}
         marginTop={marginTop}
         marginBottom={marginBottom}
         marginRight={marginRight}
+        textAlign={textAlign}
         fontWeight={fontWeight}>
         {text}
       </Text>
     </TouchableOpacity>
   ) : (
     <Text
-      numberOfLines={1}
+      numberOfLines={numberOfLines ?? 100}
       fontSize={fontSize}
       color={color}
       marginLeft={marginLeft}
       marginTop={marginTop}
       marginBottom={marginBottom}
       marginRight={marginRight}
+      textAlign={textAlign}
       fontWeight={fontWeight}>
       {text}
     </Text>
