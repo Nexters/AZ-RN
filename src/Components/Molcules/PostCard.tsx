@@ -5,9 +5,9 @@ import { Rowbox, Text, Colbox, Image } from '../Atoms';
 import crownPng from '@png/crown.png';
 import HearAndComment from './HearAndComment';
 
-const Card = styled.View`
+const Card = styled.TouchableOpacity`
   margin-top: 14px;
-  height: 300px;
+  height: 100%;
   height: 240px;
   background-color: ${WHITE};
   border-radius: 25px;
@@ -21,6 +21,7 @@ type PostCardProps = {
   heartCount: number;
   commentCount: number;
   type: 'normal' | 'best';
+  onPress?: () => void;
 };
 
 const PostCard = ({
@@ -30,9 +31,10 @@ const PostCard = ({
   heartCount,
   commentCount,
   type,
+  onPress,
 }: PostCardProps) => {
   return (
-    <Card>
+    <Card onPress={onPress}>
       <Rowbox
         justifyContent="space-between"
         bgColor={type !== 'best' ? '#DDDDDD' : '#232323'}

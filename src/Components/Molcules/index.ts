@@ -12,6 +12,7 @@ import MiniPostCard from './MiniPostCard';
 import HearAndComment from './HearAndComment';
 import ProfileSentence from './ProfileSentence';
 import CommentLog from './CommentLog';
+import PostDetailCard from './PostDetailCard';
 
 export {
   Gagebar,
