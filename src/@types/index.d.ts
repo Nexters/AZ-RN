@@ -17,6 +17,7 @@ export type LoginStackParams = {
   Detail: undefined;
   Notification: undefined;
   Profile: undefined;
+  PostWrite: undefined;
 };
 
 // margin
@@ -33,12 +34,6 @@ export type PaddingStyleProps = {
   paddingBottom?: string;
   paddingLeft?: string;
   paddingRight?: string;
-};
-
-// input binder
-export type InputBinderTypes = {
-  onChange: (e: NativeSyntheticEvent<TextInputTextInputEventData>) => void;
-  value: string;
 };
 
 // redux action playload

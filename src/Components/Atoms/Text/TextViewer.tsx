@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 import { MarginStyleProps } from '~/@types';
 import { marginStyles } from '~/styles/mixin';
 import { LIGHT_GREY } from '~/constants/Colors';
+import { TouchableOpacity } from 'react-native';
 
 const Text = styled.Text<StyleProps>`
   font-size: ${({ fontSize }) => fontSize ?? '15px'};
@@ -19,6 +20,7 @@ interface StyleProps extends MarginStyleProps {
 
 interface TextProps extends StyleProps {
   text: string;
+  onPress?: () => void;
 }
 
 const TextViewer = ({
@@ -30,8 +32,23 @@ const TextViewer = ({
   marginBottom,
   marginRight,
   fontWeight,
+  onPress,
 }: TextProps) => {
-  return (
+  return onPress ? (
+    <TouchableOpacity>
+      <Text
+        numberOfLines={1}
+        fontSize={fontSize}
+        color={color}
+        marginLeft={marginLeft}
+        marginTop={marginTop}
+        marginBottom={marginBottom}
+        marginRight={marginRight}
+        fontWeight={fontWeight}>
+        {text}
+      </Text>
+    </TouchableOpacity>
+  ) : (
     <Text
       numberOfLines={1}
       fontSize={fontSize}

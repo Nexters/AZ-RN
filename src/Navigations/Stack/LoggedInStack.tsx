@@ -14,6 +14,7 @@ import { HeaderWrapper } from '~/Components/Templates';
 import Notification from '~/Screens/Notification';
 import Profile from '~/Screens/Profile';
 import { WHITE } from '~/constants/Colors';
+import PostWrite from '~/Screens/PostWrite';
 
 const CreateStack = createStackNavigator<LoginStackParams>();
 
@@ -87,6 +88,26 @@ const LoggedInStack = () => (
             </HeaderWrapper>
           ),
           headerTitle: '마이페이지',
+          headerStyle: HomeHeaderStyle,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 16,
+            color: WHITE,
+          },
+        };
+      }}
+    />
+    <CreateStack.Screen
+      name="PostWrite"
+      component={PostWrite}
+      options={({ navigation }) => {
+        return {
+          headerLeft: () => (
+            <HeaderWrapper>
+              <BackNaviate title="" navigation={navigation} />
+            </HeaderWrapper>
+          ),
+          headerTitle: '게시글 작성',
           headerStyle: HomeHeaderStyle,
           headerTitleStyle: {
             fontWeight: 'bold',
