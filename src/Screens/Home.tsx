@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { LoginStackParams } from '@types';
@@ -16,17 +15,11 @@ import {
   HomeStickyInner,
 } from '~/Components/Molcules';
 import { FloatingButton } from '~/Components/Atoms';
-import { getUniqueKey } from '~/lib';
+import { getUniqueKey, stackNavigate } from '~/lib';
 
 interface HomeProps {
   navigation: StackNavigationProp<LoginStackParams, 'Home'>;
 }
-
-const PostWrapper = styled.View`
-  background-color: ${GREY_DARK};
-  padding-left: ${`${Layout.width / 18}px`};
-  padding-right: ${`${Layout.width / 18}px`};
-`;
 
 type Type = 'normal' | 'best';
 const Home = ({ navigation }: HomeProps) => {
@@ -37,6 +30,9 @@ const Home = ({ navigation }: HomeProps) => {
     heartCount: 45,
     commentCount: 13,
     type: 'best' as Type,
+  };
+  const handleNavigate = () => {
+    stackNavigate(navigation, 'PostWrite');
   };
   return (
     <BackgroundContainer>
@@ -53,7 +49,7 @@ const Home = ({ navigation }: HomeProps) => {
           ))}
         </DeviceSection>
       </StickyScrollView>
-      <FloatingButton />
+      <FloatingButton navigate={handleNavigate} />
     </BackgroundContainer>
   );
 };
