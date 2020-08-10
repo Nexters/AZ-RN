@@ -3,38 +3,41 @@ import { View } from 'react-native';
 
 import {
   BackgroundContainer,
-  SafeAreaContainer,
   SectionWrapper,
   StickyScrollView,
   DeviceSection,
 } from '~/Components/Templates';
-import { Rowbox, Image, Text } from '~/Components/Atoms';
-import { PURPLE, WHITE } from '~/constants/Colors';
+import { Rowbox } from '~/Components/Atoms';
+import { PURPLE } from '~/constants/Colors';
 import {
   BottomLineTabNavi,
   DeviceHeaderSticky,
   MiniPostCard,
   ProfileSentence,
+  CommentLog,
 } from '~/Components/Molcules';
 import { getUniqueKey } from '~/lib';
 import naviBookmarkGreyPng from '@png/navi_bookmark_grey.png';
 import naviBookmarkPurplePng from '@png/navi_bookmark_purple.png';
 import naviSettingGreyPng from '@png/navi_setting_grey.png';
 import naviSettingPurplePng from '@png/navi_setting_purple.png';
-import levelOneBadgePng from '@png/level_one_badge_type_one.png';
 
 const Profile = () => {
-  const sampleData = {
+  const postLog = {
     createdAt: 'createdAt',
     title: 'title',
     heartCount: 45,
     commentCount: 13,
   };
+  const commentLog = {
+    createdAt: 'createdAt',
+    comment: 'ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏkkkkkㅏㅏㅏㅏ',
+  };
   const [tabNavOptions, setTabNavOptions] = useState([
     {
       id: 1,
       isActivation: true,
-      Tab: <MiniPostCard {...sampleData} marginBottom="20px" />,
+      Tab: <MiniPostCard {...postLog} marginBottom="20px" />,
       name: '작성한 개그',
       inactivationIcon: naviSettingGreyPng,
       activationIcon: naviSettingPurplePng,
@@ -42,7 +45,7 @@ const Profile = () => {
     {
       id: 2,
       isActivation: false,
-      Tab: <View />,
+      Tab: <CommentLog {...commentLog} marginBottom="16px" />,
       name: '작성한 댓글 ',
       inactivationIcon: naviSettingGreyPng,
       activationIcon: naviSettingPurplePng,
@@ -113,7 +116,11 @@ const Profile = () => {
         <DeviceSection>
           <>
             {tabNavOptions.map(
-              ({ isActivation, Tab }, index) => isActivation && Tab,
+              ({ isActivation, Tab }, index) =>
+                isActivation &&
+                Array.from({ length: 20 }, (_, i) =>
+                  React.cloneElement(Tab, { key: getUniqueKey(i) }),
+                ),
             )}
           </>
         </DeviceSection>
