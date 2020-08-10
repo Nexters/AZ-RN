@@ -7,18 +7,22 @@ import { marginStyles, paddingStyles } from '~/styles/mixin';
 const Container = styled.View<StyleProps>`
   ${marginStyles};
   ${paddingStyles};
-  width: ${({ width }) => width ?? '100%'};
+  width: ${({ width }) => width ?? 'auto'};
+  height: ${({ height }) => height ?? 'auto'};
   border: ${({ border }) => border ?? 'none'};
   border-radius: ${({ borderRadius }) => borderRadius ?? '0'};
   align-items: ${({ align }) => align ?? 'flex-start'};
+  background-color: ${({ bgColor }) => bgColor ?? 'transparent'};
 `;
 
 interface StyleProps extends MarginStyleProps, PaddingStyleProps {
   width?: string;
+  height?: string;
   border?: string;
   borderRadius?: number;
   align?: 'center' | 'flex-start' | 'flex-end';
   justifyContent?: 'space-around' | 'space-between' | 'center' | 'flex-start';
+  bgColor?: string;
 }
 
 interface ColboxProps extends StyleProps {
@@ -36,12 +40,16 @@ const Colbox = ({
   paddingRight,
   borderRadius,
   border,
+  justifyContent,
   width,
   align,
   children,
+  height,
+  bgColor,
 }: ColboxProps) => {
   return (
     <Container
+      justifyContent={justifyContent}
       marginLeft={marginLeft}
       marginTop={marginTop}
       marginBottom={marginBottom}
@@ -53,7 +61,9 @@ const Colbox = ({
       borderRadius={borderRadius}
       border={border}
       width={width}
-      align={align}>
+      height={height}
+      align={align}
+      bgColor={bgColor}>
       {children}
     </Container>
   );

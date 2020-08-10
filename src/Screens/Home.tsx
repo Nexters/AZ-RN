@@ -31,8 +31,24 @@ const Home = ({ navigation }: HomeProps) => {
     commentCount: 13,
     type: 'best' as Type,
   };
-  const handleNavigate = () => {
-    stackNavigate(navigation, 'PostWrite');
+  const handleNavigateToPostWrite = () => {
+    navigation.navigate('PostWrite');
+  };
+  const handleNavigateSetParams = () => {
+    navigation.navigate('PostDetail', {
+      heartCount: 40,
+      commentCount: 30,
+      username: '신입 가나다',
+      createdAt: '1시간전',
+      content: '소나무가 삐지면?\n칫솔',
+      isPressLike: true,
+      comments: [
+        {
+          username: '신입 카파하',
+          comment: '룰루룰루',
+        },
+      ],
+    });
   };
   return (
     <BackgroundContainer>
@@ -45,11 +61,15 @@ const Home = ({ navigation }: HomeProps) => {
         </DeviceHeaderSticky>
         <DeviceSection>
           {Array.from({ length: 5 }, (_, index) => (
-            <PostCard {...sampleData} key={getUniqueKey(index)} />
+            <PostCard
+              {...sampleData}
+              key={getUniqueKey(index)}
+              onPress={handleNavigateSetParams}
+            />
           ))}
         </DeviceSection>
       </StickyScrollView>
-      <FloatingButton navigate={handleNavigate} />
+      <FloatingButton navigate={handleNavigateToPostWrite} />
     </BackgroundContainer>
   );
 };

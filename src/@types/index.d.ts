@@ -1,4 +1,3 @@
-import { TextInputTextInputEventData } from 'react-native';
 import { PayloadAction } from 'typesafe-actions';
 
 // NonLogin Stack navigator types
@@ -18,6 +17,20 @@ export type LoginStackParams = {
   Notification: undefined;
   Profile: undefined;
   PostWrite: undefined;
+  PostDetail: PostDetailParams;
+};
+export type PostDetailParams = {
+  heartCount: number;
+  commentCount: number;
+  username: string;
+  createdAt: string;
+  content: string;
+  isPressLike: boolean;
+  comments: Comment[];
+};
+export type Comment = {
+  username: string;
+  comment: string;
 };
 
 // margin
