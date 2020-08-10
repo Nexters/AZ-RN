@@ -7,7 +7,7 @@ const Conatiner = styled.KeyboardAvoidingView`
 `;
 
 type KeyboardAvoidingViewerProps = {
-  children: React.ReactChild | React.ReactChild;
+  children: React.ReactChild | React.ReactChild[];
 };
 const KeyboardAvoidingViewer = ({ children }: KeyboardAvoidingViewerProps) => {
   return (

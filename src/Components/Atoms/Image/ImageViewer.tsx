@@ -19,14 +19,16 @@ interface StyleProps extends MarginStyleProps {
   imgHeight?: string;
 }
 interface ImageProps extends StyleProps {
-  imgSrc: ImageSourcePropType;
+  imgSrc?: ImageSourcePropType;
   onPress?: () => void;
   width?: string;
   height?: string;
+  imgUrl?: string;
 }
 
 const ImageViewer = ({
   imgSrc,
+  imgUrl,
   marginLeft,
   marginTop,
   marginBottom,
@@ -38,7 +40,7 @@ const ImageViewer = ({
   const ImgType = width ? (
     <Image
       resizeMode="contain"
-      source={imgSrc}
+      source={imgSrc ? imgSrc : { uri: imgUrl }}
       marginLeft={marginLeft}
       marginTop={marginTop}
       marginBottom={marginBottom}
@@ -49,7 +51,7 @@ const ImageViewer = ({
   ) : (
     <AutoImage
       resizeMode="contain"
-      source={imgSrc}
+      source={imgSrc ? imgSrc : { uri: imgUrl }}
       marginLeft={marginLeft}
       marginTop={marginTop}
       marginBottom={marginBottom}

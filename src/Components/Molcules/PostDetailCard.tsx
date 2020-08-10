@@ -5,11 +5,12 @@ import { Rowbox, Colbox, Text, Image } from '../Atoms';
 import HearAndComment from './HearAndComment';
 import { PostDetailParams } from '~/@types';
 import emptyBookmark from '@png/empty_bookmark.png';
+import Layout from '~/constants/Layout';
 
 const Card = styled.View`
   width: 100%;
   height: 285px;
-  padding: 22px;
+  padding: ${`${Layout.width / 21}px`};
   justify-content: space-between;
   align-items: center;
   background-color: ${WHITE};
@@ -28,8 +29,6 @@ const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
     username,
     createdAt,
     content,
-    isPressLike,
-    comments,
   } = postDetailProps;
   return (
     <Card>
