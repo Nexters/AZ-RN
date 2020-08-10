@@ -6,6 +6,8 @@ import BackgroundContainer from './BackgroundContainer';
 import HideScrollbarWrapper from './HideScrollbarWrapper';
 import StickyScrollView from './StickyScrollView';
 import DeviceSection from './DeviceSection';
+import NoSafeArea from './NoSafeArea';
+
 export {
   SafeAreaContainer,
   KeyboardAvoidingViewer,
@@ -15,4 +17,5 @@ export {
   HideScrollbarWrapper,
   StickyScrollView,
   DeviceSection,
+  NoSafeArea,
 };
