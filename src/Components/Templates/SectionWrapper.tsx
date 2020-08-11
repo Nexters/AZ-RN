@@ -8,8 +8,9 @@ const Container = styled.View<StyleProps>`
   padding-left: ${`${Layout.width / 18}px`};
   padding-right: ${`${Layout.width / 18}px`};
   justify-content: ${({ justifyContent }) => justifyContent ?? 'space-between'};
-  margin-top: ${({ marginTop }) => marginTop ?? '0'};
-  margin-bottom: ${({ marginBottom }) => marginBottom ?? '0'};
+  margin-top: ${({ marginTop }) => marginTop ?? '0px'};
+  margin-bottom: ${({ marginBottom }) => marginBottom ?? '0px'};
+  background-color: ${({ bgColor }) => bgColor ?? 'transparent'};
 `;
 
 interface StyleProps {
@@ -21,6 +22,7 @@ interface StyleProps {
     | 'center'
     | 'flex-start'
     | 'flex-end';
+  bgColor?: string;
 }
 
 interface SectionWrapperProps extends StyleProps {
@@ -32,10 +34,12 @@ const SectionWrapper = ({
   marginBottom,
   marginTop,
   justifyContent,
+  bgColor,
 }: SectionWrapperProps) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container
+        bgColor={bgColor}
         marginBottom={marginBottom}
         marginTop={marginTop}
         justifyContent={justifyContent}>
