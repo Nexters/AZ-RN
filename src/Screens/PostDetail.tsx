@@ -1,22 +1,16 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { useKeyboard } from 'react-native-keyboard-height';
-import { KeyboardAccessoryView } from 'react-native-keyboard-accessory';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { LoginStackParams } from '~/@types';
-import {
-  SectionWrapper,
-  NoSafeArea,
-  StickyScrollView,
-} from '~/Components/Templates';
+import { SectionWrapper, NoSafeArea } from '~/Components/Templates';
 import PostDetailCard from '~/Components/Molcules/PostDetailCard';
-import { Colbox, Rowbox, Image } from '~/Components/Atoms';
+import { Colbox } from '~/Components/Atoms';
 import { Comment, StickyKeyboard } from '~/Components/Molcules';
 import { getUniqueKey } from '~/lib';
-import { WHITE } from '~/constants/Colors';
-import Layout from '~/constants/Layout';
+
 const Scroll = styled.ScrollView``;
 interface PostDetailProps {
   navigation: StackNavigationProp<LoginStackParams, 'PostDetail'>;

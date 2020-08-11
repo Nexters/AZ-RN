@@ -17,13 +17,13 @@ const IntroSentence = () => {
       <Rowbox>
         <Colbox marginBottom="25px" marginTop="15px">
           <Text
-            fontSize={'38px'}
+            fontSize="38px"
             text="유머쪼랩ㅋ"
             fontWeight={800}
             color={WHITE}
           />
           <Text
-            fontSize={'38px'}
+            fontSize="38px"
             text="분발하자^^"
             fontWeight={100}
             color={WHITE}

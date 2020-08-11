@@ -15,6 +15,7 @@ import CommentLog from './CommentLog';
 import PostDetailCard from './PostDetailCard';
 import Comment from './Comment';
 import StickyKeyboard from './StickyKeyboard';
+import UnderBarArrow from './UnderBarArrow';
 
 export {
   Gagebar,
@@ -34,4 +35,5 @@ export {
   PostDetailCard,
   Comment,
   StickyKeyboard,
+  UnderBarArrow,
 };

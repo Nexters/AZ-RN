@@ -9,6 +9,7 @@ const Hr = styled.View<StyleProps>`
   ${marginStyles};
   background-color: ${({ color }) => color ?? `${GREY}`};
   height: ${({ height }) => height ?? '1px'};
+  border: none;
 `;
 
 interface StyleProps extends MarginStyleProps {
