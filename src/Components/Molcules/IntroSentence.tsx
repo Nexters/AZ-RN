@@ -15,7 +15,7 @@ const IntroSentence = () => {
   return (
     <>
       <Rowbox>
-        <Colbox>
+        <Colbox marginBottom="25px" marginTop="15px">
           <Text
             fontSize={'38px'}
             text="유머쪼랩ㅋ"
@@ -29,7 +29,7 @@ const IntroSentence = () => {
             color={WHITE}
           />
         </Colbox>
-        <Badge source={badgePng} />
+        {/* <Badge source={badgePng} /> */}
       </Rowbox>
       <Colbox marginBottom={`${Layout.height / 30}px`}>
         <Gagebar persentage={0.4} />

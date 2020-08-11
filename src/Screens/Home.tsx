@@ -53,7 +53,7 @@ const Home = ({ navigation }: HomeProps) => {
   return (
     <BackgroundContainer>
       <StickyScrollView stickyPosition={1}>
-        <SectionWrapper>
+        <SectionWrapper marginBottom="25px">
           <IntroSentence />
         </SectionWrapper>
         <DeviceHeaderSticky>

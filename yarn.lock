@@ -5214,6 +5214,16 @@ react-native-iphone-x-helper@^1.2.1:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
   integrity sha512-/VbpIEp8tSNNHIvstuA3Swx610whci1Zpc9mqNkqn14DkMbw+ORviln2u0XyHG1kPvvwTNGZY6QpeFwxYaSdbQ==
 
+react-native-keyboard-accessory@^0.1.12:
+  version "0.1.12"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-accessory/-/react-native-keyboard-accessory-0.1.12.tgz#13ad6294292b6de9c0aba2dc159250d4b32eb9ee"
+  integrity sha512-wlOvXkuj8h7fNboap7uJdwciZFJtut0v70GbPHuqdLPZETlHpVC9PKfkE3ViqbLeRWOkr1h2dG8LWnOYCPEDkw==
+
+react-native-keyboard-height@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-keyboard-height/-/react-native-keyboard-height-1.1.2.tgz#f0d6d8b7fb857b937775df9288aac270d3d31929"
+  integrity sha512-N3tsr7X0Ql97H61xPWe8uyadOG0K7ZYvOaRPpQci5P/D3Q7mAENvHpAnF/fd26SBHVrRn+4IiPMuIZzGxaZQug==
+
 react-native-reanimated@~1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.9.0.tgz#38676c99dd585504fdc7331efb45e5f48ec7339a"

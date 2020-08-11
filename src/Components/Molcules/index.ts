@@ -13,6 +13,8 @@ import HearAndComment from './HearAndComment';
 import ProfileSentence from './ProfileSentence';
 import CommentLog from './CommentLog';
 import PostDetailCard from './PostDetailCard';
+import Comment from './Comment';
+import StickyKeyboard from './StickyKeyboard';
 
 export {
   Gagebar,
@@ -29,4 +31,7 @@ export {
   HearAndComment,
   ProfileSentence,
   CommentLog,
+  PostDetailCard,
+  Comment,
+  StickyKeyboard,
 };
