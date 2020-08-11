@@ -2,19 +2,25 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { DARK_GREY } from '~/constants/Colors';
 
-const Container = styled.View`
+const Container = styled.View<StyleProps>`
   flex: 1;
-  background-color: ${DARK_GREY};
+  background-color: ${({ bgColor }) => bgColor ?? `${DARK_GREY}`};
 `;
 const SafeAreaZone = styled.SafeAreaView`
   flex: 1;
 `;
-type BackgroundContainerProps = {
+interface StyleProps {
+  bgColor?: string;
+}
+interface BackgroundContainerProps extends StyleProps {
   children: React.ReactChild | React.ReactChild[];
-};
-const BackgroundContainer = ({ children }: BackgroundContainerProps) => {
+}
+const BackgroundContainer = ({
+  children,
+  bgColor,
+}: BackgroundContainerProps) => {
   return (
-    <Container>
+    <Container bgColor={bgColor}>
       <SafeAreaZone>{children}</SafeAreaZone>
     </Container>
   );

@@ -10,7 +10,7 @@ const Device = styled.View`
   padding-bottom: 20px;
 `;
 type DeviceSectionProps = {
-  children: React.ReactChild | React.ReactChild[];
+  children: React.ReactNode;
 };
 const DeviceSection = ({ children }: DeviceSectionProps) => {
   return <Device>{children}</Device>;
