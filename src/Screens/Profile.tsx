@@ -15,6 +15,7 @@ import {
   MiniPostCard,
   ProfileSentence,
   CommentLog,
+  UnderBarArrow,
 } from '~/Components/Molcules';
 import { getUniqueKey } from '~/lib';
 import naviBookmarkGreyPng from '@png/navi_bookmark_grey.png';
@@ -53,7 +54,7 @@ const Profile = () => {
     {
       id: 3,
       isActivation: false,
-      Tab: <View />,
+      Tab: <MiniPostCard {...postLog} marginBottom="20px" />,
       name: '북마크',
       inactivationIcon: naviBookmarkGreyPng,
       activationIcon: naviBookmarkPurplePng,
@@ -61,7 +62,7 @@ const Profile = () => {
     {
       id: 4,
       isActivation: false,
-      Tab: <View />,
+      Tab: <UnderBarArrow title="로그아웃" />,
       name: '설정',
       inactivationIcon: naviSettingGreyPng,
       activationIcon: naviSettingPurplePng,
@@ -119,7 +120,7 @@ const Profile = () => {
           {tabNavOptions.map(
             ({ isActivation, Tab }, index) =>
               isActivation &&
-              Array.from({ length: 3 }, (_, i) =>
+              Array.from({ length: 20 }, (_, i) =>
                 React.cloneElement(Tab, { key: getUniqueKey(i) }),
               ),
           )}

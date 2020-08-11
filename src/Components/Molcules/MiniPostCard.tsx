@@ -4,6 +4,7 @@ import { WHITE } from '~/constants/Colors';
 import { MarginStyleProps } from '~/@types';
 import { Rowbox, Text, Image } from '../Atoms';
 import crownPng from '@png/crown.png';
+import fillBookmarkPng from '@png/fill_bookmark.png';
 import HearAndComment from './HearAndComment';
 import { marginStyles } from '~/styles/mixin';
 
@@ -11,7 +12,7 @@ const Container = styled.View<MarginStyleProps>`
   width: 100%;
   height: 87px;
   justify-content: space-between;
-  padding: 20px 18px 20px 18px;
+  padding: 18px 18px 18px 18px;
   background: ${WHITE};
   box-shadow: 0px 30px 30px rgba(0, 0, 0, 0.3);
   border-radius: 25px;
@@ -38,7 +39,21 @@ const MiniPostCard = ({
         <Rowbox width="230px">
           <Text fontSize="16px" fontWeight={800} text={title} color="#333333" />
         </Rowbox>
-        <Image imgSrc={crownPng} marginLeft="4px" width="22px" height="18px" />
+        <Rowbox width="auto">
+          <Image
+            imgSrc={crownPng}
+            marginLeft="4px"
+            width="22px"
+            height="18px"
+            marginRight="5px"
+          />
+          <Image
+            imgSrc={fillBookmarkPng}
+            marginLeft="4px"
+            width="18px"
+            height="18px"
+          />
+        </Rowbox>
       </Rowbox>
       <Rowbox justifyContent="space-between">
         <HearAndComment
