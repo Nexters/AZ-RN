@@ -1,6 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 import { PostActions, AuthStateTypes } from './types';
-import { CREATE_ACCOUNT_SUCCESS } from './actions';
+import { CREATE_ACCOUNT_SUCCESS, CREATE_ACCOUNT_FAILURE } from './actions';
 
 const initialState: AuthStateTypes = {
   user: {
@@ -14,10 +14,18 @@ const initialState: AuthStateTypes = {
     expire: 0,
   },
   refreshToken: '',
+  error: '',
+  status: 401,
 };
 
-const postReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
+const authReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
   [CREATE_ACCOUNT_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  },
+  [CREATE_ACCOUNT_FAILURE]: (state, action) => {
     return {
       ...state,
       ...action.payload,
@@ -25,4 +33,4 @@ const postReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
   },
 });
 
-export default postReducer;
+export default authReducer;

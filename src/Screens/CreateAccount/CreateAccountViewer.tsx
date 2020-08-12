@@ -25,20 +25,21 @@ const BottomWrapper = styled.View`
 `;
 
 type CreateAccountProps = {
-  bind: InputBindType;
   availables: Array<{
     isAvailable: boolean;
     onToggle: () => void;
     placeholder: string;
     guideMsg: string;
+    bind: InputBindType;
   }>;
   isActivationSignup: boolean;
+  handleCreateAccount: () => void;
 };
 
 const CreateAccountViewer = ({
-  bind,
   availables,
   isActivationSignup,
+  handleCreateAccount,
 }: CreateAccountProps) => {
   return (
     <BackgroundContainer>
@@ -46,7 +47,10 @@ const CreateAccountViewer = ({
         <AvoidWrapper>
           <TopWrapper>
             {availables.map(
-              ({ isAvailable, onToggle, placeholder, guideMsg }, index) => (
+              (
+                { isAvailable, onToggle, placeholder, guideMsg, bind },
+                index,
+              ) => (
                 <ValidationInput
                   inputBinder={bind}
                   placeholder={placeholder}
@@ -68,6 +72,7 @@ const CreateAccountViewer = ({
                 borderRadius={'45px'}
                 fontSize={'16px'}
                 fontWeight={800}
+                onPress={handleCreateAccount}
               />
             ) : (
               <RadiusButton

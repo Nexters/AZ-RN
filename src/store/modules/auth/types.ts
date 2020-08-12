@@ -7,6 +7,8 @@ export interface AuthStateTypes {
   user: User;
   accessToken: AccessToken;
   refreshToken: string;
+  error: string;
+  status: number;
 }
 
 export interface AccessToken {

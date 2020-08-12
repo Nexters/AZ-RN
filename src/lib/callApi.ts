@@ -3,9 +3,10 @@ import makeUrlOptions from './makeUrlOptions';
 
 const callApi = async (config: any) => {
   //   const accessToken = localStorage.getItem("at");
+
   const apiOption = makeUrlOptions(config);
+  console.log('apiOption', apiOption);
   const res = await axios.request<any>({
-    baseURL: `${window.location.origin}`,
     ...apiOption,
   });
   const result = res.data;
