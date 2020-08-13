@@ -4,6 +4,7 @@ import widthPersentToPx from './widthPersentToPx';
 import stackNavigate from './stackNavigate';
 import getUniqueKey from './getUniqueKey';
 import arrayConditionCheck from './arrayConditionCheck';
+import makeUrlOptions from './makeUrlOptions';
 
 export {
   callApi,
@@ -12,4 +13,5 @@ export {
   stackNavigate,
   getUniqueKey,
   arrayConditionCheck,
+  makeUrlOptions,
 };

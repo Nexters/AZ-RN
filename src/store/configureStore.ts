@@ -17,10 +17,10 @@ const env = process.env.NODE_ENV;
 
 const middleware = [thunk];
 
-if (env === 'development') {
-  const { logger } = require('redux-logger');
-  middleware.push(logger);
-}
+// if (env === 'development') {
+//   const { logger } = require('redux-logger');
+//   middleware.push(logger);
+// }
 
 export default () => {
   const store = createStore(persistedReducer, applyMiddleware(...middleware));
