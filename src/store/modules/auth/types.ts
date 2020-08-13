@@ -9,8 +9,12 @@ export interface AuthStateTypes {
   refreshToken: string;
   error: string;
   status: number;
+  duplicateCheck: DuplicateCheck;
 }
-
+interface DuplicateCheck {
+  isIdUsed: undefined | boolean;
+  isNicknameUsed: undefined | boolean;
+}
 export interface AccessToken {
   token: string;
   expire: number;

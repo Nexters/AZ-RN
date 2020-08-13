@@ -16,9 +16,10 @@ const makeRequestUrl = <
   params: P,
   body: B,
 ) => {
-  const requestUrl = url;
+  let requestUrl = url as string;
+
   params.forEach((param) => {
-    url.replace(`:${param}`, body[param]);
+    requestUrl = requestUrl.replace(`:${param}`, body[param]);
   });
   return requestUrl;
 };
@@ -29,6 +30,8 @@ const deleteBodyParams = <P extends string[], B extends { [key: string]: any }>(
 ) => {
   const body = reqBody;
 
+  delete body['url'];
+  delete body['method'];
   params.forEach((param) => {
     if (body[param]) delete body[param];
   });
@@ -36,13 +39,14 @@ const deleteBodyParams = <P extends string[], B extends { [key: string]: any }>(
 };
 
 const makeUrlOptions = (config: { [key: string]: any }) => {
+  const method = config.method;
   const params = getUrlParams(config.url);
-  const requestUrl = makeRequestUrl(config.url, params, config);
+  const url = makeRequestUrl(config.url, params, config);
   const body = deleteBodyParams(params, config);
 
   return {
-    url: requestUrl,
-    method: config.method,
+    url,
+    method,
     ...(config.method === 'get' ? { params: body } : { data: body }),
   };
 };

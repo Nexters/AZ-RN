@@ -5,40 +5,53 @@ import { useHandleInput } from '~/hooks';
 import CreateAccountViewer from './CreateAccountViewer';
 import { useToggle } from '~/hooks';
 import { arrayConditionCheck } from '~/lib';
-import { postCreataeAccountThunk } from '~/store/modules/auth/thunks';
-import { postCreateAccount } from '~/api';
+import {
+  postCreataeAccountThunk,
+  postVerifyIdThunk,
+} from '~/store/modules/auth/thunks';
+import { postCreateAccount, postIdentificationCheck } from '~/api';
 import { RootState } from '~/store/modules';
 
 const CreateAccountContainer = () => {
   const dispatch = useDispatch();
   const {
-    auth: { status, error },
+    auth: { status, error, duplicateCheck },
+    auth,
     loading,
   } = useSelector((state: RootState) => state);
 
+  useEffect(() => {
+    console.log('auth', duplicateCheck);
+  }, [auth]);
+
   const { bind: idBinder } = useHandleInput('');
   const { bind: pwdBinder } = useHandleInput('');
-  const { bind: vertifyBinder } = useHandleInput('');
+  const { bind: verifyBinder } = useHandleInput('');
   const { bind: nicknameBinder } = useHandleInput('');
 
   const userIdDuplicateCheck = () => {
-    return true;
+    const config = {
+      ...postIdentificationCheck,
+      identification: idBinder.text,
+    };
+    dispatch(postVerifyIdThunk(config));
   };
   const passwordEqualCheck = () => {
-    return true;
+    return pwdBinder.text === verifyBinder.text ? true : false;
   };
   const usernameDuplicateCheck = () => {
     return true;
   };
 
-  const passwordHooks = useToggle(true, passwordEqualCheck);
+  const passwordHooks = useToggle(undefined, passwordEqualCheck);
 
   const availables = [
     {
-      ...useToggle(true, userIdDuplicateCheck),
       placeholder: '아이디',
       guideMsg: '아이디 중복',
       bind: idBinder,
+      onToggle: userIdDuplicateCheck,
+      isAvailable: duplicateCheck.isIdUsed,
     },
     {
       ...passwordHooks,
@@ -50,10 +63,10 @@ const CreateAccountContainer = () => {
       ...passwordHooks,
       placeholder: '비밀번호 확인',
       guideMsg: '비밀번호 틀림',
-      bind: vertifyBinder,
+      bind: verifyBinder,
     },
     {
-      ...useToggle(true, usernameDuplicateCheck),
+      ...useToggle(undefined, usernameDuplicateCheck),
       placeholder: '별명 입력',
       guideMsg: '별명 중복',
       bind: nicknameBinder,

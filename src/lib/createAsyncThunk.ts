@@ -21,9 +21,11 @@ const createAsyncThunk = <
         const result = await promiseCreator(...params);
         dispatch(success(result));
         dispatch(finishLoading(request().type));
+        return result;
       } catch ({ response: { data } }) {
         dispatch(failure(data));
         dispatch(finishLoading(request().type));
+        return data;
       }
     };
   };

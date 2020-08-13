@@ -7,7 +7,7 @@ import rootReducer from './modules';
 
 const persistConfig = {
   key: 'root',
-  blacklist: ['user'],
+  blacklist: ['user', 'auth'],
   storage,
 };
 
@@ -23,7 +23,8 @@ const middleware = [thunk];
 // }
 
 export default () => {
-  const store = createStore(persistedReducer, applyMiddleware(...middleware));
+  // const store = createStore(persistedReducer, applyMiddleware(...middleware));
+  const store = createStore(rootReducer, applyMiddleware(...middleware));
   const persistor = persistStore(store);
   return { store, persistor };
 };
