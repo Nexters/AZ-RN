@@ -34,16 +34,19 @@ const ValidationInput = ({
   isAvailable,
   guideMsg,
 }: ValidationInputProps) => {
+  const isUsed = isAvailable !== undefined && isAvailable;
+  console.log('isUsed', isUsed);
+
   return (
     <Colbox>
       <Input
         placeholder={placeholder}
         onBlur={onBlur}
-        isAvailable={isAvailable}
+        isAvailable={!isUsed}
         {...inputBinder}
       />
       <>
-        {!isAvailable && guideMsg.length > 1 && (
+        {isUsed && guideMsg.length > 1 && (
           <Text
             text={guideMsg}
             fontSize="15px"

@@ -26,7 +26,7 @@ const BottomWrapper = styled.View`
 
 type CreateAccountProps = {
   availables: Array<{
-    isAvailable: boolean;
+    isAvailable: boolean | undefined;
     onToggle: () => void;
     placeholder: string;
     guideMsg: string;
