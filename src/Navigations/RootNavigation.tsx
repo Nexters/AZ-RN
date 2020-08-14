@@ -12,9 +12,7 @@ const Container = styled.View`
 
 const RootNavigation = () => {
   const {
-    user: {
-      auth: { isAuthenticated },
-    },
+    auth: { isAuthenticated },
   } = useSelector((state: RootState) => state);
 
   return (

@@ -1,17 +1,25 @@
-import { createAsyncAction, createAction } from 'typesafe-actions';
-import { AxiosError, AxiosResponse } from 'axios';
-import { SignInAction } from './types';
+import { createAsyncAction } from 'typesafe-actions';
+import { AxiosError } from 'axios';
+import { UserStateTypes } from './types';
 
-export const SIGNIN = 'user/SIGNIN';
-export const SIGNIN_SUCCESS = 'user/SIGNIN_SUCCESS';
-export const SIGNIN_FAILURE = 'user/SIGNIN_FAILURE';
+export const VERIFY_ID = 'auth/VERIFY_ID';
+export const VERIFY_ID_SUCCESS = 'auth/VERIFY_ID_SUCCESS';
+export const VERIFY_ID_FAILURE = 'auth/VERIFY_ID_FAILURE';
+
+export const VERIFY_NICKNAME = 'auth/VERIFY_NICKNAME';
+export const VERIFY_NICKNAME_SUCCESS = 'auth/VERIFY_NICKNAME_SUCCESS';
+export const VERIFY_NICKNAME_FAILURE = 'auth/VERIFY_NICKNAME_FAILURE';
 
 export const SAMPLE_LOGIN = 'sample/SIGNIN_SUCCESS';
 
-export const postLoginRequestAsync = createAsyncAction(SIGNIN, SIGNIN_SUCCESS, SIGNIN_FAILURE)<
-  void,
-  AxiosResponse,
-  AxiosError
->();
+export const verifyIdRequestAsync = createAsyncAction(
+  VERIFY_ID,
+  VERIFY_ID_SUCCESS,
+  VERIFY_ID_FAILURE,
+)<void, UserStateTypes, AxiosError>();
 
-export const sampleLoginAction = createAction(SAMPLE_LOGIN)<SignInAction>();
+export const verifyNicknameRequestAsync = createAsyncAction(
+  VERIFY_NICKNAME,
+  VERIFY_NICKNAME_SUCCESS,
+  VERIFY_NICKNAME_FAILURE,
+)<void, UserStateTypes, AxiosError>();

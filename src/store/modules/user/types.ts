@@ -1,13 +1,14 @@
 import * as actions from './actions';
 import { ActionType } from 'typesafe-actions';
 
-export type PostActions = ActionType<typeof actions>;
+export type UserActions = ActionType<typeof actions>;
 
 export type UserStateTypes = {
-  auth: {
-    isAuthenticated: boolean;
-  };
+  error: string;
+  status: number;
+  duplicateCheck: DuplicateCheck;
 };
-export type SignInAction = {
-  isAuthenticated: boolean;
-};
+interface DuplicateCheck {
+  isIdUsed: undefined | boolean;
+  isNicknameUsed: undefined | boolean;
+}

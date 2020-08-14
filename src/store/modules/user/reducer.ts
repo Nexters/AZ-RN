@@ -1,34 +1,45 @@
 import { createReducer } from 'typesafe-actions';
-import { PostActions, UserStateTypes, SignInAction } from './types';
+import { UserActions, UserStateTypes } from './types';
 import { PayloadType } from '~/@types';
-import { SAMPLE_LOGIN } from './actions';
+import {
+  VERIFY_ID_SUCCESS,
+  VERIFY_ID_FAILURE,
+  VERIFY_NICKNAME_SUCCESS,
+  VERIFY_NICKNAME_FAILURE,
+} from './actions';
 
 const initialState: UserStateTypes = {
-  auth: {
-    isAuthenticated: false,
+  duplicateCheck: {
+    isIdUsed: undefined,
+    isNicknameUsed: undefined,
   },
+  error: '',
+  status: 401,
 };
 
-const postReducer = createReducer<UserStateTypes, PostActions>(initialState, {
-  [SAMPLE_LOGIN]: (state, action) => applySignIn(state, action),
-});
-
-const applySignIn = <
-  S extends UserStateTypes,
-  A extends PayloadType<'sample/SIGNIN_SUCCESS', SignInAction>
->(
-  state: S,
-  action: A,
-) => {
-  const {
-    payload: { isAuthenticated },
-  } = action;
-  return {
+const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
+  [VERIFY_ID_SUCCESS]: (state, action) => {
+    const { status } = action.payload;
+    return {
+      ...state,
+      duplicateCheck: {
+        ...state.duplicateCheck,
+        isIdUsed: status !== 204 ? true : false,
+      },
+    };
+  },
+  [VERIFY_ID_FAILURE]: (state, action) => ({ ...state, ...action.payload }),
+  [VERIFY_NICKNAME_SUCCESS]: (state, action) => ({
     ...state,
-    auth: {
-      isAuthenticated,
+    duplicateCheck: {
+      ...state.duplicateCheck,
+      isNicknameUsed: action.payload.status !== 204 ? true : false,
     },
-  };
-};
+  }),
+  [VERIFY_NICKNAME_FAILURE]: (state, action) => ({
+    ...state,
+    ...action.payload,
+  }),
+});
 
 export default postReducer;
