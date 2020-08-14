@@ -5,24 +5,24 @@ import { useHandleInput } from '~/hooks';
 import CreateAccountViewer from './CreateAccountViewer';
 import { useToggle } from '~/hooks';
 import { arrayConditionCheck } from '~/lib';
-import {
-  postCreataeAccountThunk,
-  postVerifyIdThunk,
-  postVerifyNicknameThunk,
-} from '~/store/modules/auth/thunks';
+import { postCreataeAccountThunk } from '~/store/modules/auth/thunks';
 import {
   postCreateAccount,
   postIdentificationCheck,
   postNicknameCheck,
 } from '~/api';
 import { RootState } from '~/store/modules';
+import {
+  postVerifyIdThunk,
+  postVerifyNicknameThunk,
+} from '~/store/modules/user/thunks';
 
 const CreateAccountContainer = () => {
   const dispatch = useDispatch();
   const {
-    auth: { status, error, duplicateCheck },
     auth,
     loading,
+    user: { duplicateCheck },
   } = useSelector((state: RootState) => state);
 
   useEffect(() => {
