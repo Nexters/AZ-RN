@@ -8,8 +8,13 @@ import { arrayConditionCheck } from '~/lib';
 import {
   postCreataeAccountThunk,
   postVerifyIdThunk,
+  postVerifyNicknameThunk,
 } from '~/store/modules/auth/thunks';
-import { postCreateAccount, postIdentificationCheck } from '~/api';
+import {
+  postCreateAccount,
+  postIdentificationCheck,
+  postNicknameCheck,
+} from '~/api';
 import { RootState } from '~/store/modules';
 
 const CreateAccountContainer = () => {
@@ -21,7 +26,7 @@ const CreateAccountContainer = () => {
   } = useSelector((state: RootState) => state);
 
   useEffect(() => {
-    console.log('auth', duplicateCheck);
+    console.log('duplicateCheck', duplicateCheck);
   }, [auth]);
 
   const { bind: idBinder } = useHandleInput('');
@@ -37,10 +42,14 @@ const CreateAccountContainer = () => {
     dispatch(postVerifyIdThunk(config));
   };
   const passwordEqualCheck = () => {
-    return pwdBinder.text === verifyBinder.text ? true : false;
+    return pwdBinder.text !== verifyBinder.text ? true : false;
   };
-  const usernameDuplicateCheck = () => {
-    return true;
+  const nicknameDuplicateCheck = () => {
+    const config = {
+      ...postNicknameCheck,
+      identification: nicknameBinder.text,
+    };
+    dispatch(postVerifyNicknameThunk(config));
   };
 
   const passwordHooks = useToggle(undefined, passwordEqualCheck);
@@ -66,10 +75,11 @@ const CreateAccountContainer = () => {
       bind: verifyBinder,
     },
     {
-      ...useToggle(undefined, usernameDuplicateCheck),
       placeholder: '별명 입력',
       guideMsg: '별명 중복',
       bind: nicknameBinder,
+      onToggle: nicknameDuplicateCheck,
+      isAvailable: duplicateCheck.isNicknameUsed,
     },
   ];
 
