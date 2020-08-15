@@ -26,6 +26,7 @@ const BottomWrapper = styled.View`
 
 type CreateAccountProps = {
   availables: Array<{
+    id: string;
     isAvailable: boolean | undefined;
     onToggle: () => void;
     placeholder: string;
@@ -48,13 +49,13 @@ const CreateAccountViewer = ({
           <TopWrapper>
             {availables.map(
               (
-                { isAvailable, onToggle, placeholder, guideMsg, bind },
+                { isAvailable, onToggle, placeholder, guideMsg, bind, id },
                 index,
               ) => (
                 <ValidationInput
                   inputBinder={bind}
                   placeholder={placeholder}
-                  onBlur={onToggle}
+                  onBlur={id !== 'password' ? onToggle : undefined}
                   isAvailable={isAvailable}
                   guideMsg={guideMsg}
                   key={getUniqueKey(index)}

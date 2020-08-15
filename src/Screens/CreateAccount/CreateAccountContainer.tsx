@@ -56,6 +56,7 @@ const CreateAccountContainer = () => {
 
   const availables = [
     {
+      id: 'id',
       placeholder: '아이디',
       guideMsg: '아이디 중복',
       bind: idBinder,
@@ -63,18 +64,21 @@ const CreateAccountContainer = () => {
       isAvailable: duplicateCheck.isIdUsed,
     },
     {
+      id: 'password',
       ...passwordHooks,
       placeholder: '비밀번호 입력',
       guideMsg: '',
       bind: pwdBinder,
     },
     {
+      id: 'password2',
       ...passwordHooks,
       placeholder: '비밀번호 확인',
       guideMsg: '비밀번호 틀림',
       bind: verifyBinder,
     },
     {
+      id: 'nickname',
       placeholder: '별명 입력',
       guideMsg: '별명 중복',
       bind: nicknameBinder,
