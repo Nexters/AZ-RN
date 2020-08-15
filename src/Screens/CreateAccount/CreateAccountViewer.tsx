@@ -6,7 +6,7 @@ import { BackgroundContainer } from '~/Components/Templates';
 import Layout from '~/constants/Layout';
 import { RadiusButton } from '~/Components/Atoms';
 import { WHITE, PURPLE } from '~/constants/Colors';
-import { ValidationInput } from '~/Components/Molcules';
+import { ValidationInput } from '~/Components/Molecules';
 import { InputBindType } from '~/hooks/useHandleInput';
 import { getUniqueKey } from '~/lib';
 
