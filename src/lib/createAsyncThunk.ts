@@ -15,19 +15,17 @@ const createAsyncThunk = <
   type Params = Parameters<F>;
   return (...params: Params) => {
     return async (dispatch: Dispatch, getState: () => RootState) => {
-      console.log('getState', getState());
-
       const { request, success, failure } = asyncActionCreator;
       dispatch(request());
-      dispatch(startLoading(request().type));
+      dispatch(startLoading(request().type + '_LOADING'));
       try {
         const result = await promiseCreator(...params);
         dispatch(success(result));
-        dispatch(finishLoading(request().type));
+        dispatch(finishLoading(request().type + '_LOADING'));
         return result;
       } catch ({ response: { data } }) {
         dispatch(failure(data));
-        dispatch(finishLoading(request().type));
+        dispatch(finishLoading(request().type + '_LOADING'));
         return data;
       }
     };

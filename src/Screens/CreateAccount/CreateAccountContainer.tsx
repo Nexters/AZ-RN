@@ -114,8 +114,6 @@ const CreateAccountContainer = () => {
   };
 
   useEffect(() => {
-    console.log('isNicknameUsed', isNicknameUsed);
-
     if (isIdUsed) {
       setIdErrorMsg({
         available: true,
