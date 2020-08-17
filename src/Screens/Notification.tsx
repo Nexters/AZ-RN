@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import { BackgroundContainer } from '~/Components/Templates';
-import { NotiCard } from '~/Components/Molcules';
+import { NotiCard } from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
 
 const ScrollView = styled.ScrollView``;

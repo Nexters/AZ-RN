@@ -8,7 +8,7 @@ import { LoginStackParams } from '@types';
 import Home from '~/Screens/Home';
 import Detail from '~/Screens/Detail';
 import { Image } from '~/Components/Atoms';
-import { BackNaviate } from '~/Components/Molcules';
+import { BackNaviate } from '~/Components/Molecules';
 import logo_png from '@png/logo.png';
 import bell_png from '@png/bell_notification.png';
 import level_one_profile_png from '@png/level_one_profile.png';

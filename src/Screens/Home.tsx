@@ -13,7 +13,7 @@ import {
   IntroSentence,
   PostCard,
   HomeStickyInner,
-} from '~/Components/Molcules';
+} from '~/Components/Molecules';
 import { FloatingButton } from '~/Components/Atoms';
 import { getUniqueKey, stackNavigate } from '~/lib';
 

@@ -15,7 +15,7 @@ import {
   ProfileSentence,
   CommentLog,
   UnderBarArrow,
-} from '~/Components/Molcules';
+} from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
 import naviBookmarkGreyPng from '@png/navi_bookmark_grey.png';
 import naviBookmarkPurplePng from '@png/navi_bookmark_purple.png';

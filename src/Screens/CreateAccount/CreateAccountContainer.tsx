@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHandleInput } from '~/hooks';
 import CreateAccountViewer from './CreateAccountViewer';
 import { useToggle } from '~/hooks';
-import { arrayConditionCheck } from '~/lib';
+import { arrayConditionCheck, textValidation } from '~/lib';
 import { postCreataeAccountThunk } from '~/store/modules/auth/thunks';
 import {
   postCreateAccount,
@@ -22,11 +22,15 @@ const CreateAccountContainer = () => {
   const {
     auth,
     loading,
-    user: { duplicateCheck },
+    user: {
+      duplicateCheck: { isIdUsed, isNicknameUsed },
+    },
   } = useSelector((state: RootState) => state);
 
+  const { onlyLowercaseAndNumberValidator, passwordValidator } = textValidation;
+
   useEffect(() => {
-    console.log('duplicateCheck', duplicateCheck);
+    //
   }, [auth]);
 
   const { bind: idBinder } = useHandleInput('');
@@ -39,10 +43,24 @@ const CreateAccountContainer = () => {
       ...postIdentificationCheck,
       identification: idBinder.text,
     };
-    dispatch(postVerifyIdThunk(config));
+    if (
+      idBinder.text.length > 1 &&
+      onlyLowercaseAndNumberValidator(idBinder.text)
+    ) {
+      dispatch(postVerifyIdThunk(config));
+    }
   };
   const passwordEqualCheck = () => {
-    return pwdBinder.text !== verifyBinder.text ? true : false;
+    if (pwdBinder.text !== verifyBinder.text) {
+      return false;
+    } else {
+      if (passwordValidator(verifyBinder.text)) {
+        return true;
+      } else {
+        //  add password validation wording
+        return false;
+      }
+    }
   };
   const nicknameDuplicateCheck = () => {
     const config = {
@@ -56,34 +74,38 @@ const CreateAccountContainer = () => {
 
   const availables = [
     {
+      id: 'id',
       placeholder: '아이디',
       guideMsg: '아이디 중복',
       bind: idBinder,
       onToggle: userIdDuplicateCheck,
-      isAvailable: duplicateCheck.isIdUsed,
+      isAvailable: isIdUsed,
     },
     {
+      id: 'password',
       ...passwordHooks,
       placeholder: '비밀번호 입력',
       guideMsg: '',
       bind: pwdBinder,
     },
     {
+      id: 'password2',
       ...passwordHooks,
       placeholder: '비밀번호 확인',
       guideMsg: '비밀번호 틀림',
       bind: verifyBinder,
     },
     {
+      id: 'nickname',
       placeholder: '별명 입력',
       guideMsg: '별명 중복',
       bind: nicknameBinder,
       onToggle: nicknameDuplicateCheck,
-      isAvailable: duplicateCheck.isNicknameUsed,
+      isAvailable: isNicknameUsed,
     },
   ];
 
-  const [isActivationSignup, setActivationSignup] = useState<boolean>(false);
+  const [isActivationSignup, setIsActivationSignup] = useState<boolean>(false);
 
   const handleCreateAccount = () => {
     const config = {
@@ -101,9 +123,9 @@ const CreateAccountContainer = () => {
       availables,
       (available) => available.isAvailable === true,
     );
-    // API 요청했는지 확인 하는 조건 추가 해야함.
-    setActivationSignup(isReady);
-  }, [...availables]);
+
+    setIsActivationSignup(isReady);
+  }, [isIdUsed, isNicknameUsed, passwordHooks.isAvailable]);
 
   return (
     <CreateAccountViewer

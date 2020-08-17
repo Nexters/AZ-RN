@@ -5,6 +5,7 @@ import stackNavigate from './stackNavigate';
 import getUniqueKey from './getUniqueKey';
 import arrayConditionCheck from './arrayConditionCheck';
 import makeUrlOptions from './makeUrlOptions';
+import textValidation from './textValidation';
 
 export {
   callApi,
@@ -14,4 +15,5 @@ export {
   getUniqueKey,
   arrayConditionCheck,
   makeUrlOptions,
+  textValidation,
 };

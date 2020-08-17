@@ -24,10 +24,14 @@ const initialState: AuthStateTypes = {
 };
 
 const authReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
-  [CREATE_ACCOUNT_SUCCESS]: (state, action) => ({
-    ...state,
-    ...action.payload,
-  }),
+  [CREATE_ACCOUNT_SUCCESS]: (state, action) => {
+    console.log('CREATE_ACCOUNT_SUCCESS', action.payload);
+
+    return {
+      ...state,
+      ...action.payload,
+    };
+  },
   [CREATE_ACCOUNT_FAILURE]: (state, action) => ({
     ...state,
     ...action.payload,

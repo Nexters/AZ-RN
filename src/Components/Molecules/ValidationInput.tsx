@@ -22,7 +22,7 @@ interface StyleProps {
 
 interface ValidationInputProps extends StyleProps {
   placeholder: string;
-  onBlur: () => void;
+  onBlur?: () => void;
   inputBinder: InputBindType;
   guideMsg: string;
 }

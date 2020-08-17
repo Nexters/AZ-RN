@@ -6,9 +6,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import { LoginStackParams } from '~/@types';
 import { SectionWrapper, NoSafeArea } from '~/Components/Templates';
-import PostDetailCard from '~/Components/Molcules/PostDetailCard';
+import PostDetailCard from '~/Components/Molecules/PostDetailCard';
 import { Colbox } from '~/Components/Atoms';
-import { Comment, StickyKeyboard } from '~/Components/Molcules';
+import { Comment, StickyKeyboard } from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
 
 const Scroll = styled.ScrollView``;

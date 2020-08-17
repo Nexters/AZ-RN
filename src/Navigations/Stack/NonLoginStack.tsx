@@ -9,7 +9,7 @@ import { HomeHeaderStyle } from './stackNaviOptions';
 
 import { HeaderWrapper } from '~/Components/Templates';
 import CreateAccount from '~/Screens/CreateAccount';
-import { BackNaviate } from '~/Components/Molcules';
+import { BackNaviate } from '~/Components/Molecules';
 
 const CreateStack = createStackNavigator<NonLoginStackParams>();
 
