@@ -1,6 +1,7 @@
 import { AsyncActionCreatorBuilder } from 'typesafe-actions';
 import { Dispatch } from 'redux';
 import { startLoading, finishLoading } from '~/store/modules/loading/actions';
+import { RootState } from '~/store/modules';
 
 type AnyAsyncActionCreator = AsyncActionCreatorBuilder<any, any, any>;
 
@@ -13,7 +14,9 @@ const createAsyncThunk = <
 ) => {
   type Params = Parameters<F>;
   return (...params: Params) => {
-    return async (dispatch: Dispatch) => {
+    return async (dispatch: Dispatch, getState: () => RootState) => {
+      console.log('getState', getState());
+
       const { request, success, failure } = asyncActionCreator;
       dispatch(request());
       dispatch(startLoading(request().type));
