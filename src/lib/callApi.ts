@@ -15,7 +15,7 @@ const callApi = async (config: any) => {
     });
     const result = {
       status: res.status,
-      data: res.data,
+      ...res.data,
     };
     return result;
   } catch ({
