@@ -32,15 +32,7 @@ interface TextAreaProps extends StyleProps {
   textAreaBinder: InputBindType;
 }
 
-const TextArea = ({
-  textAreaBinder,
-  fontSize,
-  color,
-  lineHeight,
-  fontWeight,
-}: TextAreaProps) => {
-  console.log(fontSize, lineHeight);
-
+const TextArea = ({ textAreaBinder, fontSize, color, lineHeight, fontWeight }: TextAreaProps) => {
   return (
     <Container>
       <MultilineTextInput

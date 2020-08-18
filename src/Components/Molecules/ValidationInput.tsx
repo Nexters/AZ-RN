@@ -36,8 +36,6 @@ const ValidationInput = ({
   secureTextEntry,
 }: ValidationInputProps) => {
   const isUsed = isAvailable !== undefined && isAvailable;
-  // console.log('isUsed', isUsed);
-
   return (
     <Colbox>
       <Input
