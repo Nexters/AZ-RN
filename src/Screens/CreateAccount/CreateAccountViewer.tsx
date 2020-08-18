@@ -24,47 +24,50 @@ const BottomWrapper = styled.View`
   margin-bottom: 20px;
 `;
 
+type ErrorType = {
+  available?: boolean;
+  errorMsg: string;
+};
+
 type CreateAccountProps = {
-  availables: Array<{
+  inputOptions: Array<{
     id: string;
-    isAvailable: boolean | undefined;
-    onToggle: () => void;
     placeholder: string;
-    guideMsg: string;
     bind: InputBindType;
+    onBlur?: () => void;
+    errorOption: ErrorType;
+    secureTextEntry?: boolean;
   }>;
-  isActivationSignup: boolean;
   handleCreateAccount: () => void;
+  isActivation: boolean;
 };
 
 const CreateAccountViewer = ({
-  availables,
-  isActivationSignup,
+  inputOptions,
   handleCreateAccount,
+  isActivation,
 }: CreateAccountProps) => {
   return (
     <BackgroundContainer>
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <AvoidWrapper>
           <TopWrapper>
-            {availables.map(
-              (
-                { isAvailable, onToggle, placeholder, guideMsg, bind, id },
-                index,
-              ) => (
+            {inputOptions.map(
+              ({ errorOption, onBlur, placeholder, bind, id, secureTextEntry }, index) => (
                 <ValidationInput
                   inputBinder={bind}
                   placeholder={placeholder}
-                  onBlur={id !== 'password' ? onToggle : undefined}
-                  isAvailable={isAvailable}
-                  guideMsg={guideMsg}
+                  onBlur={id !== 'password' ? onBlur : undefined}
+                  isAvailable={errorOption?.available}
+                  guideMsg={id !== 'password' ? errorOption?.errorMsg : ''}
+                  secureTextEntry={secureTextEntry}
                   key={getUniqueKey(index)}
                 />
               ),
             )}
           </TopWrapper>
           <BottomWrapper>
-            {isActivationSignup ? (
+            {isActivation ? (
               <RadiusButton
                 text="회원가입"
                 height={'49px'}

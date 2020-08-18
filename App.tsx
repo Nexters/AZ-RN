@@ -25,12 +25,12 @@ const App = (): React.ReactElement => {
 
   return isReady ? (
     <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
-      <NavigationContainer>
-        <StatusBar barStyle="light-content" />
-        <RootNavigation />
-      </NavigationContainer>
-      {/* </PersistGate> */}
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <StatusBar barStyle="light-content" />
+          <RootNavigation />
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   ) : (
     <AppLoading
