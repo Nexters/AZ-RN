@@ -1,4 +1,6 @@
 import { createReducer } from 'typesafe-actions';
+import { NavigationActions } from '@react-navigation/compat';
+
 import { PostActions, Post, RootPost } from './types';
 import {
   LOAD_POSTS_SUCCESS,

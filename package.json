@@ -12,6 +12,7 @@
     "@expo/vector-icons": "^10.0.0",
     "@react-native-community/async-storage": "^1.11.0",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/compat": "^5.2.5",
     "@react-navigation/native": "^5.7.0",
     "@react-navigation/stack": "^5.7.1",
     "@types/node": "^14.0.23",
