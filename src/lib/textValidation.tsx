@@ -4,7 +4,7 @@ const onlyLowercaseAndNumberValidator = (text: string) => {
 };
 
 const passwordValidator = (text: string) => {
-  const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  const regex = /(?=.*d)(?=.*[a-z]).{8,}/;
   return regex.test(text);
 };
 
@@ -13,8 +13,4 @@ const exceptSpecialCaractor = (text: string) => {
   return regex.test(text);
 };
 
-export default {
-  onlyLowercaseAndNumberValidator,
-  passwordValidator,
-  exceptSpecialCaractor,
-};
+export default { onlyLowercaseAndNumberValidator, passwordValidator, exceptSpecialCaractor };
