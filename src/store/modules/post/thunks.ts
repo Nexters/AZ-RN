@@ -1,5 +1,7 @@
 import createAsyncThunk from '~/lib/createAsyncThunk';
 import callApi from '~/lib/callApi';
-import { loadPostsRequestAsync } from './actions';
+import { loadPostsRequestAsync, loadPostDetailRequestAsync } from './actions';
 
 export const getPostsThunk = createAsyncThunk(loadPostsRequestAsync, callApi);
+
+export const getPostDetailThunk = createAsyncThunk(loadPostDetailRequestAsync, callApi);
