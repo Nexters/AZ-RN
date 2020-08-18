@@ -5,6 +5,7 @@ import {
   BackgroundContainer,
   StickyScrollView,
   DeviceSection,
+  SafeAreaContainer,
 } from '~/Components/Templates';
 import {
   DeviceHeaderSticky,
@@ -19,7 +20,7 @@ import { Posts } from '~/store/modules/post/types';
 interface HomeProps {
   posts: Posts[];
   handleNavigateToPostWrite: () => void;
-  handleNavigateToPostDeatil: () => void;
+  handleNavigateToPostDeatil: (postId: number) => void;
 }
 
 const HomeViewer = ({
@@ -29,33 +30,37 @@ const HomeViewer = ({
 }: HomeProps) => {
   return (
     <BackgroundContainer>
-      <StickyScrollView stickyPosition={1}>
-        <SectionWrapper marginBottom="25px">
-          <IntroSentence />
-        </SectionWrapper>
-        <DeviceHeaderSticky>
-          <HomeStickyInner />
-        </DeviceHeaderSticky>
-        <DeviceSection>
-          {posts?.map((post, index) => (
-            <PostCard
-              id={post.id}
-              nickname={post.author.nickname}
-              createdDate={post.createdDate}
-              content={post.content}
-              likes={post.likes}
-              commentCount={post.commentCount}
-              pressBookMark={post.pressBookMark}
-              pressLike={post.pressLike}
-              rating={post.author.rating}
-              type="best"
-              key={getUniqueKey(index)}
-              onPress={handleNavigateToPostDeatil}
-            />
-          ))}
-        </DeviceSection>
-      </StickyScrollView>
-      <FloatingButton navigate={handleNavigateToPostWrite} />
+      <SafeAreaContainer>
+        <StickyScrollView stickyPosition={1}>
+          <SectionWrapper marginBottom="25px">
+            <IntroSentence />
+          </SectionWrapper>
+          <DeviceHeaderSticky>
+            <HomeStickyInner />
+          </DeviceHeaderSticky>
+          <DeviceSection>
+            {posts?.map((post, index) => (
+              <PostCard
+                id={post.id}
+                nickname={post.author.nickname}
+                createdDate={post.createdDate}
+                content={post.content}
+                likes={post.likes}
+                commentCount={post.commentCount}
+                pressBookMark={post.pressBookMark}
+                pressLike={post.pressLike}
+                rating={post.author.rating}
+                type="best"
+                key={getUniqueKey(index)}
+                onPress={() => {
+                  handleNavigateToPostDeatil(post.id);
+                }}
+              />
+            ))}
+          </DeviceSection>
+        </StickyScrollView>
+        <FloatingButton navigate={handleNavigateToPostWrite} />
+      </SafeAreaContainer>
     </BackgroundContainer>
   );
 };
