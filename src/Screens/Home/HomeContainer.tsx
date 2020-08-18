@@ -4,8 +4,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import HomeViewer from './HomeViewer';
 import { LoginStackParams } from '~/@types';
-import { getPosts } from '~/api';
-import { getPostsThunk } from '~/store/modules/post/thunks';
+import { getPosts, getDetailedPost, getCommnets } from '~/api';
+import { getPostsThunk, getPostDetailThunk, getCommentsThunk } from '~/store/modules/post/thunks';
 import { RootState } from '~/store/modules';
 
 interface HomeProps {
@@ -15,27 +15,38 @@ interface HomeProps {
 const HomeContainer = ({ navigation }: HomeProps) => {
   const dispatch = useDispatch();
   const {
-    post: { posts, simplePage },
+    post: {
+      postList: { posts },
+      postDetail: {
+        post: { detailedPost },
+        comment,
+      },
+    },
+    loading: {
+      LOAD_POST_DETAIL_LOADING: isPostDetailLoading,
+      LOAD_COMMENTS_LOADING: isLoadCommentsLoading,
+    },
   } = useSelector((state: RootState) => state);
 
   const handleNavigateToPostWrite = () => {
     navigation.navigate('PostWrite');
   };
-  const handleNavigateToPostDeatil = () => {
-    navigation.navigate('PostDetail', {
-      heartCount: 40,
-      commentCount: 30,
-      username: '신입 가나다',
-      createdAt: '1시간전',
-      content: '소나무가 삐지면?\n칫솔',
-      isPressLike: true,
-      comments: [
-        {
-          username: '신입 카파하',
-          comment: '룰루룰루',
-        },
-      ],
-    });
+  const handleNavigateToPostDeatil = async (postId: number) => {
+    const config = {
+      ...getCommnets,
+      postId,
+    };
+    const option = {
+      ...getPosts,
+      postId,
+    };
+    const comments = dispatch(getCommentsThunk(config));
+    const detailedPost = dispatch(getPostDetailThunk(option));
+
+    // const selected = posts.filter((post) => post.id === postId)[0];
+    // navigation.navigate('PostDetail', {
+    //   ...selected,
+    // });
   };
 
   useEffect(() => {
@@ -46,8 +57,18 @@ const HomeContainer = ({ navigation }: HomeProps) => {
   }, []);
 
   useEffect(() => {
-    console.log('posts', posts);
-  }, [posts]);
+    if (
+      !isLoadCommentsLoading &&
+      !isPostDetailLoading &&
+      isLoadCommentsLoading !== undefined &&
+      isPostDetailLoading !== undefined
+    ) {
+      // navigation.navigate('PostDetail', {
+      //   ...selected,
+      // });
+    }
+  }, [isLoadCommentsLoading, isPostDetailLoading]);
+
   return (
     <HomeViewer
       posts={posts}
