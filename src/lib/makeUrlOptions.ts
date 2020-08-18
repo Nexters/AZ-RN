@@ -40,12 +40,18 @@ const makeUrlOptions = (config: { [key: string]: any }) => {
   const url = makeRequestUrl(config.url, params, config);
   const body = deleteBodyParams(params, config);
 
-  return {
-    url,
-    method,
-    headers,
-    ...(config.method === 'get' ? { params: body } : { data: body }),
-  };
+  return JSON.stringify(body) === '{}'
+    ? {
+        url,
+        method,
+        headers,
+      }
+    : {
+        url,
+        method,
+        headers,
+        ...(config.method === 'get' ? { params: body } : { data: body }),
+      };
 };
 
 export default makeUrlOptions;

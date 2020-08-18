@@ -46,7 +46,6 @@ const createAsyncThunk = <
           status,
         },
       }) {
-        console.log('ERROR THUNK');
         const result = {
           status,
           error,
