@@ -1,6 +1,6 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
-import { UserStateTypes } from './types';
+import { UserStateTypes, ReqError } from './types';
 
 export const VERIFY_ID = 'auth/VERIFY_ID';
 export const VERIFY_ID_SUCCESS = 'auth/VERIFY_ID_SUCCESS';
@@ -16,10 +16,10 @@ export const verifyIdRequestAsync = createAsyncAction(
   VERIFY_ID,
   VERIFY_ID_SUCCESS,
   VERIFY_ID_FAILURE,
-)<void, UserStateTypes, AxiosError>();
+)<void, UserStateTypes, ReqError>();
 
 export const verifyNicknameRequestAsync = createAsyncAction(
   VERIFY_NICKNAME,
   VERIFY_NICKNAME_SUCCESS,
   VERIFY_NICKNAME_FAILURE,
-)<void, UserStateTypes, AxiosError>();
+)<void, UserStateTypes, ReqError>();

@@ -19,12 +19,11 @@ const initialState: UserStateTypes = {
 
 const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
   [VERIFY_ID_SUCCESS]: (state, action) => {
-    const { status } = action.payload;
     return {
       ...state,
       duplicateCheck: {
         ...state.duplicateCheck,
-        isIdUsed: status !== 204 ? true : false,
+        isIdUsed: false,
       },
     };
   },
@@ -33,12 +32,24 @@ const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
     ...state,
     duplicateCheck: {
       ...state.duplicateCheck,
-      isNicknameUsed: action.payload.status !== 204 ? true : false,
+      isNicknameUsed: false,
     },
   }),
+  [VERIFY_ID_FAILURE]: (state, action) => {
+    return {
+      ...state,
+      duplicateCheck: {
+        ...state.duplicateCheck,
+        isIdUsed: true,
+      },
+    };
+  },
   [VERIFY_NICKNAME_FAILURE]: (state, action) => ({
     ...state,
-    ...action.payload,
+    duplicateCheck: {
+      ...state.duplicateCheck,
+      isNicknameUsed: true,
+    },
   }),
 });
 
