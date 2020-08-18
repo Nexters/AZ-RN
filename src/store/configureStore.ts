@@ -7,7 +7,7 @@ import rootReducer from './modules';
 
 const persistConfig = {
   key: 'root',
-  blacklist: ['user', 'loading'],
+  blacklist: ['user', 'loading', 'post'],
   storage,
 };
 

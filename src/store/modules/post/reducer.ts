@@ -1,6 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 import { PostActions, Post } from './types';
-import { LOAD_POSTS_SUCCESS } from './actions';
+import { LOAD_POSTS_SUCCESS, LOAD_POSTS_FAILURE } from './actions';
 
 const initialState: Post = {
   posts: [
@@ -31,6 +31,12 @@ const initialState: Post = {
 
 const postReducer = createReducer<Post, PostActions>(initialState, {
   [LOAD_POSTS_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  },
+  [LOAD_POSTS_FAILURE]: (state, action) => {
     return {
       ...state,
       ...action.payload,

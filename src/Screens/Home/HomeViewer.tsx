@@ -1,7 +1,5 @@
 import React from 'react';
-import { StackNavigationProp } from '@react-navigation/stack';
 
-import { LoginStackParams } from '@types';
 import {
   SectionWrapper,
   BackgroundContainer,
@@ -15,18 +13,19 @@ import {
   HomeStickyInner,
 } from '~/Components/Molecules';
 import { FloatingButton } from '~/Components/Atoms';
-import { getUniqueKey, stackNavigate } from '~/lib';
+import { getUniqueKey } from '~/lib';
+import { Posts } from '~/store/modules/post/types';
 
 interface HomeProps {
-  sampleData: any;
+  posts: Posts[];
   handleNavigateToPostWrite: () => void;
-  handleNavigateSetParams: () => void;
+  handleNavigateToPostDeatil: () => void;
 }
 
 const HomeViewer = ({
-  sampleData,
+  posts,
   handleNavigateToPostWrite,
-  handleNavigateSetParams,
+  handleNavigateToPostDeatil,
 }: HomeProps) => {
   return (
     <BackgroundContainer>
@@ -38,8 +37,21 @@ const HomeViewer = ({
           <HomeStickyInner />
         </DeviceHeaderSticky>
         <DeviceSection>
-          {Array.from({ length: 5 }, (_, index) => (
-            <PostCard {...sampleData} key={getUniqueKey(index)} onPress={handleNavigateSetParams} />
+          {posts?.map((post, index) => (
+            <PostCard
+              id={post.id}
+              nickname={post.author.nickname}
+              createdDate={post.createdDate}
+              content={post.content}
+              likes={post.likes}
+              commentCount={post.commentCount}
+              pressBookMark={post.pressBookMark}
+              pressLike={post.pressLike}
+              rating={post.author.rating}
+              type="best"
+              key={getUniqueKey(index)}
+              onPress={handleNavigateToPostDeatil}
+            />
           ))}
         </DeviceSection>
       </StickyScrollView>

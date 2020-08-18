@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import HomeViewer from './HomeViewer';
 import { LoginStackParams } from '~/@types';
 import { getPosts } from '~/api';
+import { getPostsThunk } from '~/store/modules/post/thunks';
+import { RootState } from '~/store/modules';
 
 interface HomeProps {
   navigation: StackNavigationProp<LoginStackParams, 'Home'>;
@@ -12,18 +14,14 @@ interface HomeProps {
 
 const HomeContainer = ({ navigation }: HomeProps) => {
   const dispatch = useDispatch();
-  const sampleData = {
-    username: 'username',
-    createdAt: 'createdAt',
-    sentence: 'sentence',
-    heartCount: 45,
-    commentCount: 13,
-    type: 'best' as 'normal' | 'best',
-  };
+  const {
+    post: { posts, simplePage },
+  } = useSelector((state: RootState) => state);
+
   const handleNavigateToPostWrite = () => {
     navigation.navigate('PostWrite');
   };
-  const handleNavigateSetParams = () => {
+  const handleNavigateToPostDeatil = () => {
     navigation.navigate('PostDetail', {
       heartCount: 40,
       commentCount: 30,
@@ -42,14 +40,19 @@ const HomeContainer = ({ navigation }: HomeProps) => {
 
   useEffect(() => {
     const config = {
-      getPosts,
+      ...getPosts,
     };
+    dispatch(getPostsThunk(config));
   }, []);
+
+  useEffect(() => {
+    console.log('posts', posts);
+  }, [posts]);
   return (
     <HomeViewer
-      sampleData={sampleData}
+      posts={posts}
       handleNavigateToPostWrite={handleNavigateToPostWrite}
-      handleNavigateSetParams={handleNavigateSetParams}
+      handleNavigateToPostDeatil={handleNavigateToPostDeatil}
     />
   );
 };

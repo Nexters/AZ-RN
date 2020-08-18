@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import styled from 'styled-components/native';
 import { WHITE, DARK_GREY } from '~/constants/Colors';
 import { Rowbox, Text, Colbox, Image } from '../Atoms';
@@ -15,24 +15,55 @@ const Card = styled.TouchableOpacity`
 `;
 
 type PostCardProps = {
-  username: string;
-  createdAt: string;
-  sentence: string;
-  heartCount: number;
+  nickname: string;
+  createdDate: string;
+  content: string;
+  likes: number;
   commentCount: number;
+  pressBookMark: boolean;
+  pressLike: boolean;
+  rating: string;
   type: 'normal' | 'best';
+  id: number;
   onPress?: () => void;
 };
 
 const PostCard = ({
-  username,
-  createdAt,
-  sentence,
-  heartCount,
+  nickname,
+  createdDate,
+  content,
+  likes,
   commentCount,
+  pressBookMark,
+  pressLike,
+  rating,
   type,
+  id,
   onPress,
 }: PostCardProps) => {
+  const [fontStyle, setFontStyle] = useState({
+    fontSize: '35px',
+    lineHeight: '40px',
+  });
+
+  useLayoutEffect(() => {
+    if (content.length < 13) {
+      setFontStyle({
+        fontSize: '35px',
+        lineHeight: '40px',
+      });
+    } else if (content.length < 51) {
+      setFontStyle({
+        fontSize: '22px',
+        lineHeight: '27px',
+      });
+    } else {
+      setFontStyle({
+        fontSize: '16px',
+        lineHeight: '21px',
+      });
+    }
+  }, []);
   return (
     <Card onPress={onPress}>
       <Rowbox
@@ -53,24 +84,19 @@ const PostCard = ({
             <Text text="Level" fontSize="12px" fontWeight={700} color={WHITE} />
           </Rowbox>
           <Text
-            text={username}
+            text={nickname}
             fontSize="16px"
             fontWeight={800}
             color={type !== 'best' ? DARK_GREY : WHITE}
           />
           <>
             {type !== 'normal' && (
-              <Image
-                imgSrc={crownPng}
-                marginLeft="4px"
-                width="12px"
-                height="9px"
-              />
+              <Image imgSrc={crownPng} marginLeft="4px" width="12px" height="9px" />
             )}
           </>
         </Rowbox>
         <Text
-          text={createdAt}
+          text={createdDate}
           fontSize="12px"
           fontWeight={600}
           marginLeft="10px"
@@ -84,15 +110,10 @@ const PostCard = ({
           width="100%"
           height="147px"
           marginBottom="9px">
-          <Text
-            text={sentence}
-            fontSize="43px"
-            fontWeight={800}
-            color={DARK_GREY}
-          />
+          <Text text={content} {...fontStyle} color={DARK_GREY} />
         </Rowbox>
         <HearAndComment
-          heartCount={heartCount}
+          heartCount={likes}
           commentCount={commentCount}
           heartWidth="20px"
           heartHeight="20px"
