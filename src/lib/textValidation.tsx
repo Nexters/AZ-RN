@@ -4,7 +4,7 @@ const onlyLowercaseAndNumberValidator = (text: string) => {
 };
 
 const passwordValidator = (text: string) => {
-  const regex = /(?=.*d)(?=.*[a-z]).{8,}/;
+  const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   return regex.test(text);
 };
 
