@@ -5,7 +5,10 @@ export type PostActions = ActionType<typeof actions>;
 
 export interface RootPost {
   postList: Post;
-  postDetail: PostDetail;
+  postDetail: {
+    post: PostDetail;
+    comment: Comment;
+  };
 }
 export interface Post {
   posts: Posts[];
@@ -44,23 +47,33 @@ export interface SimplePage {
 
 // PostDetail load
 export interface PostDetail {
-  detailedPost: DetailedPost;
+  detailedPost: Posts;
 }
-export interface DetailedPost {
-  author: Author;
-  bookMarkCount: number;
-  commentCount: number;
+
+// comments
+export interface Comment {
+  commentList: CommentList[];
+  simplePage: SimplePage;
+}
+
+export interface CommentList {
   content: string;
   createdDate: string;
   id: number;
-  likes: number;
   modifiedDate: string;
-  pressBookMark: boolean;
-  pressLike: boolean;
+  postId: number;
+  writer: Writer;
 }
-export interface Author {
+
+export interface Writer {
   id: number;
   identification: string;
   nickname: string;
   rating: string;
+}
+
+export interface SimplePage {
+  currentPage: number;
+  totalElements: number;
+  totalPages: number;
 }

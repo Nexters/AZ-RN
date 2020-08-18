@@ -20,3 +20,11 @@ export const getPosts = {
   url: `${url}/v1/api/posts`,
   method: 'get',
 };
+export const getDetailedPost = {
+  url: `${url}/v1/api/posts/:postId`,
+  method: 'get',
+};
+export const getCommnets = {
+  url: `${url}/v1/api/posts/:postId/comments`,
+  method: 'get',
+};

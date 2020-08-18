@@ -10,6 +10,10 @@ export const LOAD_POST_DETAIL = 'post/LOAD_POST_DETAIL';
 export const LOAD_POST_DETAIL_SUCCESS = 'post/LOAD_POST_DETAIL_SUCCESS';
 export const LOAD_POST_DETAIL_FAILURE = 'post/LOAD_POST_DETAIL_FAILURE';
 
+export const LOAD_COMMENTS = 'post/LOAD_COMMENTS';
+export const LOAD_COMMENTS_SUCCESS = 'post/LOAD_COMMENTS_SUCCESS';
+export const LOAD_COMMENTS_FAILURE = 'post/LOAD_COMMENTS_FAILURE';
+
 export const loadPostsRequestAsync = createAsyncAction(
   LOAD_POSTS,
   LOAD_POSTS_SUCCESS,
@@ -20,4 +24,10 @@ export const loadPostDetailRequestAsync = createAsyncAction(
   LOAD_POST_DETAIL,
   LOAD_POST_DETAIL_SUCCESS,
   LOAD_POST_DETAIL_FAILURE,
+)<void, PostDetail, AxiosError>();
+
+export const loadCommentsRequestAsync = createAsyncAction(
+  LOAD_COMMENTS,
+  LOAD_COMMENTS_SUCCESS,
+  LOAD_COMMENTS_FAILURE,
 )<void, PostDetail, AxiosError>();

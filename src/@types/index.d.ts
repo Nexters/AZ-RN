@@ -1,4 +1,5 @@
 import { PayloadAction } from 'typesafe-actions';
+import { Posts } from '~/store/modules/post/types';
 
 // NonLogin Stack navigator types
 export type NonLoginStackTypes = 'Login' | 'CreateAccount';
@@ -19,15 +20,7 @@ export type LoginStackParams = {
   PostWrite: undefined;
   PostDetail: PostDetailParams;
 };
-export type PostDetailParams = {
-  heartCount: number;
-  commentCount: number;
-  username: string;
-  createdAt: string;
-  content: string;
-  isPressLike: boolean;
-  comments: Comment[];
-};
+export type PostDetailParams = Posts;
 export type Comment = {
   username: string;
   comment: string;

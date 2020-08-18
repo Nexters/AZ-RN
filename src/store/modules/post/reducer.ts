@@ -5,61 +5,21 @@ import {
   LOAD_POSTS_FAILURE,
   LOAD_POST_DETAIL_SUCCESS,
   LOAD_POST_DETAIL_FAILURE,
+  LOAD_COMMENTS_FAILURE,
+  LOAD_COMMENTS_SUCCESS,
 } from './actions';
+import init from './initialState';
 
-const initialState: RootPost = {
-  postList: {
-    posts: [
-      {
-        id: 0,
-        author: {
-          id: 0,
-          identification: '',
-          nickname: '',
-          rating: '',
-        },
-        content: '',
-        likes: 0,
-        bookMarkCount: 0,
-        commentCount: 0,
-        pressLike: false,
-        pressBookMark: false,
-        createdDate: '',
-        modifiedDate: '',
-      },
-    ],
-    simplePage: {
-      currentPage: 0,
-      totalPages: 0,
-      totalElements: 0,
-    },
-  },
-  postDetail: {
-    detailedPost: {
-      author: {
-        id: 0,
-        identification: '',
-        nickname: '',
-        rating: '',
-      },
-      bookMarkCount: 0,
-      commentCount: 0,
-      content: '',
-      createdDate: '',
-      id: 0,
-      likes: 0,
-      modifiedDate: '',
-      pressBookMark: false,
-      pressLike: false,
-    },
-  },
-};
+const initialState: RootPost = init;
 
 const postReducer = createReducer<RootPost, PostActions>(initialState, {
   [LOAD_POSTS_SUCCESS]: (state, action) => {
     return {
       ...state,
-      ...action.payload.posts,
+      postList: {
+        ...state.postList,
+        ...action.payload,
+      },
     };
   },
   [LOAD_POSTS_FAILURE]: (state, action) => {
@@ -71,10 +31,49 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
   [LOAD_POST_DETAIL_SUCCESS]: (state, action) => {
     return {
       ...state,
-      ...action.payload.detailedPost,
+      postDetail: {
+        ...state.postDetail,
+        ...action.payload,
+      },
     };
   },
   [LOAD_POST_DETAIL_FAILURE]: (state, action) => {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  },
+  [LOAD_POST_DETAIL_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      postDetail: {
+        ...state.postDetail,
+        post: {
+          ...state.postDetail.post,
+          ...action.payload,
+        },
+      },
+    };
+  },
+  [LOAD_POST_DETAIL_FAILURE]: (state, action) => {
+    return {
+      ...state,
+      ...action.payload,
+    };
+  },
+  [LOAD_COMMENTS_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      postDetail: {
+        ...state.postDetail,
+        comment: {
+          ...state.postDetail.comment,
+          ...action.payload,
+        },
+      },
+    };
+  },
+  [LOAD_COMMENTS_FAILURE]: (state, action) => {
     return {
       ...state,
       ...action.payload,
