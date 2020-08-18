@@ -1,14 +1,13 @@
-import { createAsyncAction, createAction } from 'typesafe-actions';
-import { AxiosError, AxiosResponse } from 'axios';
+import { createAsyncAction } from 'typesafe-actions';
+import { AxiosError } from 'axios';
+import { Post } from './types';
 
-export const LOAD_LIST = 'post/LOAD_LIST';
-export const LOAD_LIST_SUCCESS = 'post/LOAD_LIST_SUCCESS';
-export const LOAD_LIST_FAILURE = 'post/LOAD_LIST_FAILURE';
+export const LOAD_POSTS = 'post/LOAD_POSTS';
+export const LOAD_POSTS_SUCCESS = 'post/LOAD_POSTS_SUCCESS';
+export const LOAD_POSTS_FAILURE = 'post/LOAD_POSTS_FAILURE';
 
-export const loadPostListRequestAsync = createAsyncAction(
-  LOAD_LIST,
-  LOAD_LIST_SUCCESS,
-  LOAD_LIST_FAILURE,
-)<void, AxiosResponse, AxiosError>();
-
-export const reduxSampleAction = createAction('SAMPLE');
+export const loadPostsRequestAsync = createAsyncAction(
+  LOAD_POSTS,
+  LOAD_POSTS_SUCCESS,
+  LOAD_POSTS_FAILURE,
+)<void, Post, AxiosError>();

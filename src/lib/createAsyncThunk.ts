@@ -16,10 +16,17 @@ const createAsyncThunk = <
   return (...params: Params) => {
     return async (dispatch: Dispatch, getState: () => RootState) => {
       const { request, success, failure } = asyncActionCreator;
+      const {
+        auth: {
+          accessToken: { token },
+        },
+      } = getState();
       dispatch(request());
       dispatch(startLoading(request().type + '_LOADING'));
       try {
-        const result = await promiseCreator(...params);
+        const result = await promiseCreator(
+          ...(token.length < 1 ? params : [{ ...params[0], headers: token }]),
+        );
         dispatch(success(result));
         dispatch(finishLoading(request().type + '_LOADING'));
         return result;
