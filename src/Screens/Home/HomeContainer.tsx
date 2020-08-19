@@ -43,7 +43,7 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     };
 
     navigation.navigate('PostDetail', {
-      detailedPost,
+      ...detailedPost,
     });
   };
 

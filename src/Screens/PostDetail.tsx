@@ -19,7 +19,10 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ navigation, route }: PostDetailProps) => {
-  const { post, comment } = route.params as DetailedPost;
+  const {
+    post,
+    comment: { commentList },
+  } = route.params as DetailedPost;
 
   const [keyboardHeigth] = useKeyboard();
 
@@ -32,8 +35,8 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
         <SectionWrapper justifyContent="flex-start">
           <PostDetailCard postDetailProps={post} />
           <Colbox marginTop="15px">
-            {comment.commentList.map(
-              ({ id, content, createdDate, modifiedDate, postId, writer }) => (
+            {commentList.length > 0 &&
+              commentList.map(({ id, content, createdDate, modifiedDate, postId, writer }) => (
                 <Comment
                   key={getUniqueKey(id)}
                   content={content}
@@ -43,8 +46,7 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
                   postId={postId}
                   writer={writer}
                 />
-              ),
-            )}
+              ))}
           </Colbox>
         </SectionWrapper>
       </Scroll>
