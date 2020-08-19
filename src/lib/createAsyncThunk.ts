@@ -22,6 +22,7 @@ const createAsyncThunk = <
           accessToken: { token: accessToken },
         },
       } = getState();
+
       dispatch(request());
       dispatch(startLoading(request().type + '_LOADING'));
       try {
@@ -40,7 +41,10 @@ const createAsyncThunk = <
         dispatch(success(result));
         dispatch(finishLoading(request().type + '_LOADING'));
         return result;
-      } catch ({ response: { data, status } }) {
+      } catch (e) {
+        const {
+          response: { status },
+        } = e;
         const result = {
           status,
         };

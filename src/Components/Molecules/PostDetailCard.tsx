@@ -5,7 +5,7 @@ import { Rowbox, Colbox, Text, Image } from '../Atoms';
 import HearAndComment from './HearAndComment';
 import emptyBookmark from '@png/empty_bookmark.png';
 import Layout from '~/constants/Layout';
-import { Posts } from '~/store/modules/post/types';
+import { PostDetail } from '~/store/modules/post/types';
 
 const Card = styled.View`
   width: 100%;
@@ -19,7 +19,7 @@ const Card = styled.View`
 `;
 
 interface PostDetailCard {
-  postDetailProps: Posts;
+  postDetailProps: PostDetail;
 }
 
 const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
@@ -34,7 +34,7 @@ const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
     pressBookMark,
     createdDate,
     modifiedDate,
-  } = postDetailProps;
+  } = postDetailProps.detailedPost;
   return (
     <Card>
       <Rowbox justifyContent="flex-end">

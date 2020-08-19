@@ -1,5 +1,5 @@
 import { PayloadAction } from 'typesafe-actions';
-import { Posts } from '~/store/modules/post/types';
+import { DetailedPost } from '~/store/modules/post/types';
 
 // NonLogin Stack navigator types
 export type NonLoginStackTypes = 'Login' | 'CreateAccount';
@@ -18,9 +18,9 @@ export type LoginStackParams = {
   Notification: undefined;
   Profile: undefined;
   PostWrite: undefined;
-  PostDetail: PostDetailParams;
+  PostDetail: any;
 };
-export type PostDetailParams = Posts;
+export type PostDetailParams = DetailedPost;
 export type Comment = {
   username: string;
   comment: string;

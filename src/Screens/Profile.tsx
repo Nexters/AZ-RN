@@ -93,10 +93,7 @@ const Profile = () => {
             <ProfileSentence />
             <Rowbox justifyContent="space-between">
               {tabNavOptions.map(
-                (
-                  { isActivation, name, activationIcon, inactivationIcon, id },
-                  index,
-                ) => (
+                ({ isActivation, name, activationIcon, inactivationIcon, id }, index) => (
                   <BottomLineTabNavi
                     text={name}
                     fontWeight={500}

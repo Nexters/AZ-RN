@@ -66,14 +66,9 @@ const Gagebar = ({ persentage, fillColor }: Gagebar) => {
             height="19px"
             marginRight="2px"
           />
-          <Text text="4개" fontSize="15" fontWeight={800} color={WHITE} />
+          <Text text="4개" fontSize="15px" fontWeight={800} color={WHITE} />
         </Rowbox>
-        <Text
-          text="더 작성하면 등급 업"
-          fontSize="15px"
-          fontWeight={200}
-          color={WHITE}
-        />
+        <Text text="더 작성하면 등급 업" fontSize="15px" fontWeight={200} color={WHITE} />
       </Rowbox>
       <Rowbox marginTop="10px">
         <Gage />
