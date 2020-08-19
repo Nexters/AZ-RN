@@ -41,12 +41,7 @@ const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
         <Image imgSrc={emptyBookmark} width="16px" height="17px" />
       </Rowbox>
       <Colbox>
-        <Rowbox
-          justifyContent="center"
-          align="center"
-          width="100%"
-          height="182px"
-          marginBottom="9px">
+        <Rowbox align="center" width="100%" height="182px" marginBottom="9px">
           <Text
             text={content}
             fontSize="43px"
