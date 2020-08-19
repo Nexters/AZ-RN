@@ -15,3 +15,16 @@ export const postNicknameCheck = {
   url: `${url}/v1/api/users/nicknames/:nickname/existence`,
   method: 'post',
 };
+export const getPosts = {
+  // 게시글 조회
+  url: `${url}/v1/api/posts`,
+  method: 'get',
+};
+export const getDetailedPost = {
+  url: `${url}/v1/api/posts/:postId`,
+  method: 'get',
+};
+export const getCommnets = {
+  url: `${url}/v1/api/posts/:postId/comments`,
+  method: 'get',
+};

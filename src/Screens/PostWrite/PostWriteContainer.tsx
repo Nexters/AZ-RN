@@ -22,12 +22,6 @@ const PostWriteContainer = ({ navigation }: PostWriteProps) => {
     lineHeight: '40px',
   });
 
-  const { bind } = useHandleInput('');
-
-  const handlePostSubmit = () => {
-    console.log('SUCC');
-  };
-
   const handleFlexableFontSize = () => {
     const { text } = bind;
     if (text.length < 13) {
@@ -46,6 +40,12 @@ const PostWriteContainer = ({ navigation }: PostWriteProps) => {
         lineHeight: '21px',
       });
     }
+  };
+
+  const { bind } = useHandleInput('');
+
+  const handlePostSubmit = () => {
+    console.log('SUCC');
   };
 
   useLayoutEffect(() => {

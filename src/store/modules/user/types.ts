@@ -8,6 +8,10 @@ export type UserStateTypes = {
   status: number;
   duplicateCheck: DuplicateCheck;
 };
+export type ReqError = {
+  status: number;
+  error: string;
+};
 interface DuplicateCheck {
   isIdUsed: undefined | boolean;
   isNicknameUsed: undefined | boolean;

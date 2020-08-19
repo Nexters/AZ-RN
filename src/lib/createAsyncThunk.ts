@@ -16,17 +16,38 @@ const createAsyncThunk = <
   return (...params: Params) => {
     return async (dispatch: Dispatch, getState: () => RootState) => {
       const { request, success, failure } = asyncActionCreator;
+
+      const {
+        auth: {
+          accessToken: { token: accessToken },
+        },
+      } = getState();
       dispatch(request());
       dispatch(startLoading(request().type + '_LOADING'));
       try {
-        const result = await promiseCreator(...params);
+        const result = await promiseCreator(
+          ...(accessToken.length < 1
+            ? params
+            : [
+                {
+                  ...params[0],
+                  headers: {
+                    accessToken,
+                  },
+                },
+              ]),
+        );
         dispatch(success(result));
         dispatch(finishLoading(request().type + '_LOADING'));
         return result;
-      } catch ({ response: { data } }) {
-        dispatch(failure(data));
+      } catch ({ response: { data, status } }) {
+        const result = {
+          status,
+        };
+
+        dispatch(failure(result));
         dispatch(finishLoading(request().type + '_LOADING'));
-        return data;
+        return result;
       }
     };
   };

@@ -13,8 +13,4 @@ const exceptSpecialCaractor = (text: string) => {
   return regex.test(text);
 };
 
-export default {
-  onlyLowercaseAndNumberValidator,
-  passwordValidator,
-  exceptSpecialCaractor,
-};
+export default { onlyLowercaseAndNumberValidator, passwordValidator, exceptSpecialCaractor };

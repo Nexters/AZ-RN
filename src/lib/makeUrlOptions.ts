@@ -2,16 +2,10 @@ const getUrlParams = (url?: string) => {
   const regexp = /(?::)(\D\w+)/gim;
   const params = url?.match(regexp);
 
-  return params && params.length > 0
-    ? params.map((match) => match.replace(':', ''))
-    : [];
+  return params && params.length > 0 ? params.map((match) => match.replace(':', '')) : [];
 };
 
-const makeRequestUrl = <
-  U extends string,
-  P extends string[],
-  B extends { [key: string]: any }
->(
+const makeRequestUrl = <U extends string, P extends string[], B extends { [key: string]: any }>(
   url: U,
   params: P,
   body: B,
@@ -32,6 +26,7 @@ const deleteBodyParams = <P extends string[], B extends { [key: string]: any }>(
 
   delete body['url'];
   delete body['method'];
+  delete body['headers'];
   params.forEach((param) => {
     if (body[param]) delete body[param];
   });
@@ -40,15 +35,23 @@ const deleteBodyParams = <P extends string[], B extends { [key: string]: any }>(
 
 const makeUrlOptions = (config: { [key: string]: any }) => {
   const method = config.method;
+  const headers = config.headers;
   const params = getUrlParams(config.url);
   const url = makeRequestUrl(config.url, params, config);
   const body = deleteBodyParams(params, config);
 
-  return {
-    url,
-    method,
-    ...(config.method === 'get' ? { params: body } : { data: body }),
-  };
+  return JSON.stringify(body) === '{}'
+    ? {
+        url,
+        method,
+        headers,
+      }
+    : {
+        url,
+        method,
+        headers,
+        ...(config.method === 'get' ? { params: body } : { data: body }),
+      };
 };
 
 export default makeUrlOptions;

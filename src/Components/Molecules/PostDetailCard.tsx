@@ -3,9 +3,9 @@ import styled from 'styled-components/native';
 import { WHITE, DARK_GREY } from '~/constants/Colors';
 import { Rowbox, Colbox, Text, Image } from '../Atoms';
 import HearAndComment from './HearAndComment';
-import { PostDetailParams } from '~/@types';
 import emptyBookmark from '@png/empty_bookmark.png';
 import Layout from '~/constants/Layout';
+import { Posts } from '~/store/modules/post/types';
 
 const Card = styled.View`
   width: 100%;
@@ -19,16 +19,21 @@ const Card = styled.View`
 `;
 
 interface PostDetailCard {
-  postDetailProps: PostDetailParams;
+  postDetailProps: Posts;
 }
 
 const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
   const {
-    heartCount,
-    commentCount,
-    username,
-    createdAt,
+    id,
+    author,
     content,
+    likes,
+    bookMarkCount,
+    commentCount,
+    pressLike,
+    pressBookMark,
+    createdDate,
+    modifiedDate,
   } = postDetailProps;
   return (
     <Card>
@@ -54,7 +59,7 @@ const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
       <Rowbox width="100%" justifyContent="space-between">
         <Rowbox width="auto">
           <HearAndComment
-            heartCount={heartCount}
+            heartCount={likes}
             commentCount={commentCount}
             heartWidth="20px"
             heartHeight="20px"
@@ -63,18 +68,8 @@ const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
           />
         </Rowbox>
         <Colbox align="flex-end">
-          <Text
-            text={username}
-            fontSize="14px"
-            fontWeight={800}
-            color={DARK_GREY}
-          />
-          <Text
-            text={createdAt}
-            fontSize="12px"
-            fontWeight={300}
-            color={DARK_GREY}
-          />
+          <Text text={author.nickname} fontSize="14px" fontWeight={800} color={DARK_GREY} />
+          <Text text={createdDate} fontSize="12px" fontWeight={300} color={DARK_GREY} />
         </Colbox>
       </Rowbox>
     </Card>

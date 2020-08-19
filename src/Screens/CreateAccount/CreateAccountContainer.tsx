@@ -12,8 +12,6 @@ import { postCreataeAccountThunk } from '~/store/modules/auth/thunks';
 const CreateAccountContainer = () => {
   const dispatch = useDispatch();
   const {
-    auth,
-    loading,
     user: {
       duplicateCheck: { isIdUsed, isNicknameUsed },
     },
