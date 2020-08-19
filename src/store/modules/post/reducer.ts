@@ -10,6 +10,8 @@ import {
   LOAD_COMMENTS_SUCCESS,
   CREATE_POST_SUCCESS,
   CREATE_POST_FAILURE,
+  POST_COMMENT_SUCCESS,
+  POST_COMMENT_FAILURE,
 } from './actions';
 import init from './initialState';
 
@@ -73,6 +75,18 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
     };
   },
   [CREATE_POST_FAILURE]: (state, action) => {
+    return {
+      ...state,
+    };
+  },
+  [POST_COMMENT_SUCCESS]: (state, action) => {
+    console.log('POST_COMMENT_SUCCESS');
+    return {
+      ...state,
+    };
+  },
+  [POST_COMMENT_FAILURE]: (state, action) => {
+    console.log('POST_COMMENT_FAILURE');
     return {
       ...state,
     };
