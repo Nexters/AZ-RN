@@ -26,7 +26,7 @@ interface StyleProps extends MarginStyleProps, PaddingStyleProps {
 }
 
 interface ColboxProps extends StyleProps {
-  children: React.ReactChild | React.ReactChild[];
+  children: React.ReactNode;
 }
 
 const Colbox = ({
