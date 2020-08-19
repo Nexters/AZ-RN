@@ -5,8 +5,9 @@ interface ToastProps {
   visible: boolean;
   animation: boolean;
   hideOnPress: boolean;
+  message: string;
 }
-const Toast = ({ visible, animation, hideOnPress }: ToastProps) => {
+const Toast = ({ message, visible, animation, hideOnPress }: ToastProps) => {
   return (
     <ToastMsg
       visible={visible}
@@ -14,7 +15,7 @@ const Toast = ({ visible, animation, hideOnPress }: ToastProps) => {
       shadow={false}
       animation={animation}
       hideOnPress={hideOnPress}>
-      This is a message
+      {message}
     </ToastMsg>
   );
 };
