@@ -40,7 +40,7 @@ const TextViewer = ({
   numberOfLines,
 }: TextProps) => {
   return onPress ? (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <Text
         numberOfLines={numberOfLines ?? 100}
         fontSize={fontSize}

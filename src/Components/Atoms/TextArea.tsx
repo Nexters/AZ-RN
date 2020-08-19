@@ -45,17 +45,6 @@ const TextArea = ({ textAreaBinder, fontSize, color, lineHeight, fontWeight }: T
         color={color}
         fontWeight={fontWeight}
         lineHeight={lineHeight}
-        style={
-          textAreaBinder.text.length === 0
-            ? {
-                fontSize: 35,
-                fontWeight: '200',
-                textAlign: 'center',
-              }
-            : {
-                textAlign: 'center',
-              }
-        }
         {...textAreaBinder}
       />
     </Container>
