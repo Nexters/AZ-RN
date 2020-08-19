@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -18,7 +18,11 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     post: {
       postList: { posts },
     },
+    loading: { 'post/CREATE_POST_LOADING': createPostIsLoading },
+    loading,
   } = useSelector((state: RootState) => state);
+
+  const [showCreatePostToast, setShowCreatePostToast] = useState(false);
 
   const handleNavigateToPostWrite = () => {
     navigation.navigate('PostWrite');
@@ -54,11 +58,23 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     dispatch(getPostsThunk(config));
   }, []);
 
+  useEffect(() => {
+    if (createPostIsLoading) {
+      setTimeout(() => {
+        setShowCreatePostToast(true);
+      }, 500);
+      setTimeout(() => {
+        setShowCreatePostToast(false);
+      }, 3000);
+    }
+  }, [createPostIsLoading]);
+
   return (
     <HomeViewer
       posts={posts}
       handleNavigateToPostWrite={handleNavigateToPostWrite}
       handleNavigateToPostDeatil={handleNavigateToPostDeatil}
+      showCreatePostToast={showCreatePostToast}
     />
   );
 };

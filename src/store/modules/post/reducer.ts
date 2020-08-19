@@ -8,6 +8,8 @@ import {
   LOAD_POST_DETAIL_FAILURE,
   LOAD_COMMENTS_FAILURE,
   LOAD_COMMENTS_SUCCESS,
+  CREATE_POST_SUCCESS,
+  CREATE_POST_FAILURE,
 } from './actions';
 import init from './initialState';
 
@@ -63,6 +65,16 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
     return {
       ...state,
       ...action.payload,
+    };
+  },
+  [CREATE_POST_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+    };
+  },
+  [CREATE_POST_FAILURE]: (state, action) => {
+    return {
+      ...state,
     };
   },
 });

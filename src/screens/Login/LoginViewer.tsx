@@ -4,17 +4,8 @@ import { Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { PURPLE, WHITE } from '~/constants/Colors';
-import {
-  Image,
-  BottomLineInput,
-  Text,
-  RadiusButton,
-  Colbox,
-} from '~/Components/Atoms';
-import {
-  KeyboardAvoidingViewer,
-  BackgroundContainer,
-} from '~/Components/Templates';
+import { Image, BottomLineInput, Text, RadiusButton, Colbox } from '~/Components/Atoms';
+import { KeyboardAvoidingViewer, BackgroundContainer } from '~/Components/Templates';
 import Layout from '~/constants/Layout';
 import section_png from '@png/section.png';
 import { NonLoginStackTypes } from '~/@types';
@@ -41,10 +32,7 @@ const LoginViewer = ({ handleLogin, handleNavigate }: LoginProps) => {
       <KeyboardAvoidingViewer>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <Wrapper>
-            <Image
-              imgSrc={section_png}
-              marginTop={ifIphoneX(`${Layout.height / 12}px`, '0')}
-            />
+            <Image imgSrc={section_png} marginTop={ifIphoneX(`${Layout.height / 12}px`, '0')} />
             <MiddleBox>
               <BottomLineInput
                 marginBottom={'30px'}
