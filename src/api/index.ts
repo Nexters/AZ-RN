@@ -20,11 +20,18 @@ export const getPosts = {
   url: `${url}/v1/api/posts`,
   method: 'get',
 };
+// 게시글 상세보기
 export const getDetailedPost = {
   url: `${url}/v1/api/posts/:postId`,
   method: 'get',
 };
+// 게시글에 달린 댓글
 export const getCommnets = {
   url: `${url}/v1/api/posts/:postId/comments`,
   method: 'get',
+};
+// 게시글 작성
+export const postCreateContent = {
+  url: `${url}/v1/api/posts/post`,
+  method: 'post',
 };
