@@ -16,7 +16,7 @@ const Input = styled.TextInput`
 `;
 const Action = styled.View`
   position: absolute;
-  right: 25;
+  right: 25px;
 `;
 
 const StickyKeyboard = () => {

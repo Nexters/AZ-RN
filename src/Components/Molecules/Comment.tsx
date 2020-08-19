@@ -8,11 +8,11 @@ import { CommentList } from '~/store/modules/post/types';
 
 const Comment = ({ content, createdDate, id, modifiedDate, postId, writer }: CommentList) => {
   return (
-    <Rowbox marginBottom="20px">
-      <Colbox marginRight="9px">
-        <Image imgUrl={defaultProfileImg} height="26px" width="27px" />
+    <Rowbox marginBottom="20px" width="100%">
+      <Colbox marginRight="9px" width="auto">
+        <Image imgSrc={defaultProfileImg} height="26px" width="27px" />
       </Colbox>
-      <Colbox>
+      <Colbox width="88%">
         <Text
           text={writer.nickname}
           fontSize="15px"
@@ -20,7 +20,10 @@ const Comment = ({ content, createdDate, id, modifiedDate, postId, writer }: Com
           color={WHITE}
           marginBottom="3px"
         />
-        <Text text={content} fontSize="15px" fontWeight={300} color={WHITE} />
+        <Rowbox justifyContent="space-between">
+          <Text text={content} fontSize="15px" fontWeight={300} color={WHITE} />
+          <Text text={createdDate} fontSize="15px" fontWeight={300} color={WHITE} />
+        </Rowbox>
       </Colbox>
     </Rowbox>
   );
