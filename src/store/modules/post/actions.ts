@@ -18,9 +18,9 @@ export const CREATE_POST = 'post/CREATE_POST';
 export const CREATE_POST_SUCCESS = 'post/CREATE_POST_SUCCESS';
 export const CREATE_POST_FAILURE = 'post/CREATE_POST_FAILURE';
 
-export const POST_COMMENT = 'post/POST_COMMENTS';
-export const POST_COMMENT_SUCCESS = 'post/POST_COMMENTS_SUCCESS';
-export const POST_COMMENT_FAILURE = 'post/POST_COMMENTS_FAILURE';
+export const POST_COMMENT = 'post/POST_COMMENT';
+export const POST_COMMENT_SUCCESS = 'post/POST_COMMENT_SUCCESS';
+export const POST_COMMENT_FAILURE = 'post/POST_COMMENT_FAILURE';
 
 export const createPostRequestAsync = createAsyncAction(
   CREATE_POST,

@@ -4,8 +4,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import HomeViewer from './HomeViewer';
 import { LoginStackParams } from '~/@types';
-import { getPosts, getDetailedPost, getCommnets } from '~/api';
-import { getPostsThunk, getPostDetailThunk, getCommentsThunk } from '~/store/modules/post/thunks';
+import { getPosts, getDetailedPost, getCommnets, postComment } from '~/api';
+import {
+  getPostsThunk,
+  getPostDetailThunk,
+  getCommentsThunk,
+  postCommentThunk,
+} from '~/store/modules/post/thunks';
 import { RootState } from '~/store/modules';
 
 interface HomeProps {
@@ -19,7 +24,6 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       postList: { posts },
     },
     loading: { 'post/CREATE_POST_LOADING': createPostIsLoading },
-    loading,
   } = useSelector((state: RootState) => state);
 
   const [showCreatePostToast, setShowCreatePostToast] = useState(false);
@@ -37,17 +41,25 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       ...getDetailedPost,
       postId,
     };
-
     const comment = await dispatch(getCommentsThunk(config));
     const post = await dispatch(getPostDetailThunk(option));
-
     const detailedPost = {
       post,
       comment,
     };
 
+    const handlePostCommnet = (postId: number, comment: string) => {
+      const config = {
+        ...postComment,
+        comment,
+        postId,
+      };
+      dispatch(postCommentThunk(config));
+    };
+
     navigation.navigate('PostDetail', {
       ...detailedPost,
+      handlePostCommnet,
     });
   };
 
@@ -62,7 +74,7 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     if (createPostIsLoading) {
       setTimeout(() => {
         setShowCreatePostToast(true);
-      }, 500);
+      }, 200);
       setTimeout(() => {
         setShowCreatePostToast(false);
       }, 3000);
