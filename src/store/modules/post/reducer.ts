@@ -1,7 +1,6 @@
 import { createReducer } from 'typesafe-actions';
-import { NavigationActions } from '@react-navigation/compat';
 
-import { PostActions, Post, RootPost } from './types';
+import { PostActions, RootPost } from './types';
 import {
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_FAILURE,
@@ -25,21 +24,6 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
     };
   },
   [LOAD_POSTS_FAILURE]: (state, action) => {
-    return {
-      ...state,
-      ...action.payload,
-    };
-  },
-  [LOAD_POST_DETAIL_SUCCESS]: (state, action) => {
-    return {
-      ...state,
-      postDetail: {
-        ...state.postDetail,
-        ...action.payload,
-      },
-    };
-  },
-  [LOAD_POST_DETAIL_FAILURE]: (state, action) => {
     return {
       ...state,
       ...action.payload,

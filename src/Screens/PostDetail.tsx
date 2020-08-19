@@ -10,6 +10,7 @@ import PostDetailCard from '~/Components/Molecules/PostDetailCard';
 import { Colbox } from '~/Components/Atoms';
 import { Comment, StickyKeyboard } from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
+import { DetailedPost } from '~/store/modules/post/types';
 
 const Scroll = styled.ScrollView``;
 interface PostDetailProps {
@@ -18,7 +19,7 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ navigation, route }: PostDetailProps) => {
-  const postDetailProps = route.params;
+  const { post, comment } = route.params as DetailedPost;
 
   const [keyboardHeigth] = useKeyboard();
 
@@ -29,16 +30,21 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
           marginBottom: keyboardHeigth,
         }}>
         <SectionWrapper justifyContent="flex-start">
-          <PostDetailCard postDetailProps={postDetailProps} />
+          <PostDetailCard postDetailProps={post} />
           <Colbox marginTop="15px">
-            {Array.from({ length: 10 }, (_, index) => (
-              <Comment
-                key={getUniqueKey(index)}
-                username="고나은"
-                comment="나는 오늘도 눈물을 흘린다.."
-                thumbnail="https://images.seoulstore.com/c8b8519076dc1bc46c55065cf7c3b95e.png"
-              />
-            ))}
+            {comment.commentList.map(
+              ({ id, content, createdDate, modifiedDate, postId, writer }) => (
+                <Comment
+                  key={getUniqueKey(id)}
+                  content={content}
+                  createdDate={createdDate}
+                  id={id}
+                  modifiedDate={modifiedDate}
+                  postId={postId}
+                  writer={writer}
+                />
+              ),
+            )}
           </Colbox>
         </SectionWrapper>
       </Scroll>

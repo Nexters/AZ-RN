@@ -16,6 +16,7 @@ import {
 import { FloatingButton } from '~/Components/Atoms';
 import { getUniqueKey } from '~/lib';
 import { Posts } from '~/store/modules/post/types';
+import { GREY_DARK, DARK_GREY } from '~/constants/Colors';
 
 interface HomeProps {
   posts: Posts[];
@@ -29,12 +30,14 @@ const HomeViewer = ({
   handleNavigateToPostDeatil,
 }: HomeProps) => {
   return (
-    <BackgroundContainer>
+    <BackgroundContainer bgColor={GREY_DARK}>
       <SafeAreaContainer>
         <StickyScrollView stickyPosition={1}>
-          <SectionWrapper marginBottom="25px">
-            <IntroSentence />
-          </SectionWrapper>
+          <BackgroundContainer bgColor={DARK_GREY}>
+            <SectionWrapper marginBottom="25px">
+              <IntroSentence />
+            </SectionWrapper>
+          </BackgroundContainer>
           <DeviceHeaderSticky>
             <HomeStickyInner />
           </DeviceHeaderSticky>

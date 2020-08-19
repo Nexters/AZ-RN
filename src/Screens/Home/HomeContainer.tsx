@@ -17,36 +17,34 @@ const HomeContainer = ({ navigation }: HomeProps) => {
   const {
     post: {
       postList: { posts },
-      postDetail: {
-        post: { detailedPost },
-        comment,
-      },
-    },
-    loading: {
-      LOAD_POST_DETAIL_LOADING: isPostDetailLoading,
-      LOAD_COMMENTS_LOADING: isLoadCommentsLoading,
     },
   } = useSelector((state: RootState) => state);
 
   const handleNavigateToPostWrite = () => {
     navigation.navigate('PostWrite');
   };
+
   const handleNavigateToPostDeatil = async (postId: number) => {
     const config = {
       ...getCommnets,
       postId,
     };
     const option = {
-      ...getPosts,
+      ...getDetailedPost,
       postId,
     };
-    const comments = dispatch(getCommentsThunk(config));
-    const detailedPost = dispatch(getPostDetailThunk(option));
 
-    // const selected = posts.filter((post) => post.id === postId)[0];
-    // navigation.navigate('PostDetail', {
-    //   ...selected,
-    // });
+    const comment = await dispatch(getCommentsThunk(config));
+    const post = await dispatch(getPostDetailThunk(option));
+
+    const detailedPost = {
+      post,
+      comment,
+    };
+
+    navigation.navigate('PostDetail', {
+      detailedPost,
+    });
   };
 
   useEffect(() => {
@@ -55,19 +53,6 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     };
     dispatch(getPostsThunk(config));
   }, []);
-
-  useEffect(() => {
-    if (
-      !isLoadCommentsLoading &&
-      !isPostDetailLoading &&
-      isLoadCommentsLoading !== undefined &&
-      isPostDetailLoading !== undefined
-    ) {
-      // navigation.navigate('PostDetail', {
-      //   ...selected,
-      // });
-    }
-  }, [isLoadCommentsLoading, isPostDetailLoading]);
 
   return (
     <HomeViewer

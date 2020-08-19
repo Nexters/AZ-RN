@@ -5,10 +5,11 @@ export type PostActions = ActionType<typeof actions>;
 
 export interface RootPost {
   postList: Post;
-  postDetail: {
-    post: PostDetail;
-    comment: Comment;
-  };
+  postDetail: DetailedPost;
+}
+export interface DetailedPost {
+  post: PostDetail;
+  comment: Comment;
 }
 export interface Post {
   posts: Posts[];
