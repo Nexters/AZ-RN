@@ -1,11 +1,12 @@
 import { createReducer } from 'typesafe-actions';
 import { UserActions, UserStateTypes } from './types';
-import { PayloadType } from '~/@types';
 import {
   VERIFY_ID_SUCCESS,
   VERIFY_ID_FAILURE,
   VERIFY_NICKNAME_SUCCESS,
   VERIFY_NICKNAME_FAILURE,
+  LOAD_MY_COMMENTS_SUCCESS,
+  LOAD_MY_POSTS_SUCCESS,
 } from './actions';
 
 const initialState: UserStateTypes = {
@@ -51,6 +52,16 @@ const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
       isNicknameUsed: true,
     },
   }),
+  [LOAD_MY_COMMENTS_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+    };
+  },
+  [LOAD_MY_POSTS_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+    };
+  },
 });
 
 export default postReducer;
