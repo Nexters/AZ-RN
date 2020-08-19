@@ -70,8 +70,14 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
     };
   },
   [CREATE_POST_SUCCESS]: (state, action) => {
+    const { simplePage, posts } = state.postList;
+    const appendPost = [action.payload.detailedPost, ...posts];
     return {
       ...state,
+      postList: {
+        posts: appendPost,
+        simplePage,
+      },
     };
   },
   [CREATE_POST_FAILURE]: (state, action) => {
@@ -80,13 +86,23 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
     };
   },
   [POST_COMMENT_SUCCESS]: (state, action) => {
-    console.log('POST_COMMENT_SUCCESS');
+    const {
+      comment: { commentList, simplePage },
+      post,
+    } = state.postDetail;
+    const appendComment = [...commentList, action.payload.detailedComment];
     return {
       ...state,
+      postDetail: {
+        post,
+        comment: {
+          commentList: appendComment,
+          simplePage,
+        },
+      },
     };
   },
   [POST_COMMENT_FAILURE]: (state, action) => {
-    console.log('POST_COMMENT_FAILURE');
     return {
       ...state,
     };

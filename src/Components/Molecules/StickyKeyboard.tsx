@@ -8,6 +8,7 @@ import commentPush from '@png/comment_push.png';
 import { Rowbox, Image } from '../Atoms';
 import Layout from '~/constants/Layout';
 import { InputBindType } from '~/hooks/useHandleInput';
+import { TextInput } from 'react-native';
 
 const Input = styled.TextInput`
   height: 50px;
@@ -23,13 +24,19 @@ const Action = styled.View`
 interface StickyKeyboardProps {
   inputBinder: InputBindType;
   onPress: () => void;
+  inputRef: React.MutableRefObject<TextInput | undefined>;
 }
 
-const StickyKeyboard = ({ inputBinder, onPress }: StickyKeyboardProps) => {
+const StickyKeyboard = ({ inputRef, inputBinder, onPress }: StickyKeyboardProps) => {
   return (
     <KeyboardAccessoryView alwaysVisible={true}>
       <Rowbox height="56px" bgColor={WHITE}>
-        <Input placeholder="댓글달기" placeholderTextColor="#999999" {...inputBinder} />
+        <Input
+          ref={inputRef}
+          placeholder="댓글달기"
+          placeholderTextColor="#999999"
+          {...inputBinder}
+        />
         <Action>
           <Image imgSrc={commentPush} width="28px" height="28px" onPress={onPress} />
         </Action>
