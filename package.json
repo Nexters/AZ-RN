@@ -34,6 +34,7 @@
     "react-native-keyboard-accessory": "^0.1.12",
     "react-native-keyboard-height": "^1.1.2",
     "react-native-reanimated": "~1.9.0",
+    "react-native-root-toast": "^3.2.1",
     "react-native-safe-area-context": "~3.0.7",
     "react-native-screens": "~2.9.0",
     "react-native-status-bar-height": "^2.5.0",

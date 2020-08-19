@@ -8,7 +8,7 @@ import RadiusButton from './RadiusButton';
 import BorderInput from './BorderInput';
 import FloatingButton from './FloatingButton';
 import TextArea from './TextArea';
-
+import Toast from './Toast';
 export {
   Header,
   Image,
@@ -20,4 +20,5 @@ export {
   BorderInput,
   FloatingButton,
   TextArea,
+  Toast,
 };
