@@ -6,7 +6,7 @@ export const CREATE_ACCOUNT = 'auth/CREATE_ACCOUNT';
 export const CREATE_ACCOUNT_SUCCESS = 'auth/CREATE_ACCOUNT_SUCCESS';
 export const CREATE_ACCOUNT_FAILURE = 'auth/CREATE_ACCOUNT_FAILURE';
 
-export const SAMPLE_LOGIN = 'sample/CREATE_ACCOUNT_SUCCESS';
+export const LOGOUT = 'auth/LOGOUT';
 
 export const createAccountRequestAsync = createAsyncAction(
   CREATE_ACCOUNT,
@@ -14,4 +14,4 @@ export const createAccountRequestAsync = createAsyncAction(
   CREATE_ACCOUNT_FAILURE,
 )<void, AuthStateTypes, AxiosError>();
 
-export const sampleLoginAction = createAction(SAMPLE_LOGIN)<void>();
+export const logout = createAction(LOGOUT)<void>();

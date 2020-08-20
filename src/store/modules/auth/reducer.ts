@@ -1,6 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 import { PostActions, AuthStateTypes } from './types';
-import { CREATE_ACCOUNT_SUCCESS, CREATE_ACCOUNT_FAILURE, SAMPLE_LOGIN } from './actions';
+import { CREATE_ACCOUNT_SUCCESS, CREATE_ACCOUNT_FAILURE, LOGOUT } from './actions';
 
 // public enum Rating {
 //   NEW_RECRUIT("신입사원", "어이신입ㅋ\n유머 좁 하나?", 0, 0),
@@ -37,9 +37,8 @@ const authReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
     ...state,
     ...action.payload,
   }),
-  [SAMPLE_LOGIN]: (state, action) => ({
-    ...state,
-    isAuthenticated: true,
+  [LOGOUT]: () => ({
+    ...initialState,
   }),
 });
 

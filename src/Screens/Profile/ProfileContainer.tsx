@@ -26,6 +26,7 @@ import {
   getPostDetailThunk,
   postCommentThunk,
 } from '~/store/modules/post/thunks';
+import { logout } from '~/store/modules/auth/actions';
 
 interface ProfileProps {
   navigation: StackNavigationProp<LoginStackParams, 'Profile'>;
@@ -68,6 +69,9 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
       ...detailedPost,
       handlePostCommnet,
     });
+  };
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   const [tabNavOptions, setTabNavOptions] = useState([
@@ -116,7 +120,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     {
       id: 4,
       isActivation: false,
-      Tab: <UnderBarArrow title="로그아웃" />,
+      Tab: <UnderBarArrow title="로그아웃" handleLogout={handleLogout} />,
       name: '설정',
       inactivationIcon: naviSettingGreyPng,
       activationIcon: naviSettingPurplePng,
