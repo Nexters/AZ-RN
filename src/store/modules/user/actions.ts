@@ -1,6 +1,5 @@
 import { createAsyncAction } from 'typesafe-actions';
-import { AxiosError } from 'axios';
-import { UserStateTypes, ReqError } from './types';
+import { UserStateTypes, ReqError, Notification } from './types';
 import { Post, Comment } from '../post/types';
 
 export const VERIFY_ID = 'auth/VERIFY_ID';
@@ -26,6 +25,10 @@ export const LOAD_MY_BOOKMARK_POSTS_FAILURE = 'user/LOAD_MY_BOOKMARK_POSTS_FAILU
 export const LOAD_RATING = 'user/LOAD_RATING';
 export const LOAD_RATING_SUCCESS = 'user/LOAD_RATING_SUCCESS';
 export const LOAD_RATING_FAILURE = 'user/LOAD_RATING_FAILURE';
+
+export const LOAD_NOTIFICATION = 'user/LOAD_NOTIFICATION';
+export const LOAD_NOTIFICATION_SUCCESS = 'user/LOAD_NOTIFICATION_SUCCESS';
+export const LOAD_NOTIFICATION_FAILURE = 'user/LOAD_NOTIFICATION_FAILURE';
 
 export const verifyIdRequestAsync = createAsyncAction(
   VERIFY_ID,
@@ -62,3 +65,9 @@ export const loadMyRatingRequestAsync = createAsyncAction(
   LOAD_RATING_SUCCESS,
   LOAD_RATING_FAILURE,
 )<void, Post, ReqError>();
+
+export const loadNotificationsRequestAsync = createAsyncAction(
+  LOAD_NOTIFICATION,
+  LOAD_NOTIFICATION_SUCCESS,
+  LOAD_NOTIFICATION_FAILURE,
+)<void, Notification, ReqError>();

@@ -5,8 +5,10 @@ import { Rowbox, Colbox, Text, Image } from '../Atoms';
 import HearAndComment from './HearAndComment';
 import emptyBookmark from '@png/empty_bookmark.png';
 import fillBookmark from '@png/fill_bookmark.png';
+import ellipseSetting from '@png/ellipse_setting.png';
 import Layout from '~/constants/Layout';
 import { PostDetail } from '~/store/modules/post/types';
+import { Alert } from 'react-native';
 
 const Card = styled.View`
   width: 100%;
@@ -49,6 +51,21 @@ const PostDetailCard = ({
     handlePressLike(id);
   };
 
+  const createAlert = () =>
+    Alert.alert(
+      '신고하기',
+      '신고는 취소 할 수 없습니다. 신고하시겠습니까?',
+      [
+        {
+          text: '취소',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: '신고', onPress: () => console.log('OK Pressed') },
+      ],
+      { cancelable: false },
+    );
+
   return (
     <Card>
       <Rowbox justifyContent="flex-end">
@@ -71,6 +88,15 @@ const PostDetailCard = ({
             }}
           />
         )}
+        <Image
+          marginLeft="5px"
+          imgSrc={ellipseSetting}
+          width="16px"
+          height="17px"
+          onPress={() => {
+            createAlert();
+          }}
+        />
       </Rowbox>
       <Colbox>
         <Rowbox align="center" width="100%" height="182px" marginBottom="9px">

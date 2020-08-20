@@ -76,3 +76,8 @@ export const getRatingStatus = {
   url: `${url}/v1/api/users/:userId/rating`,
   method: 'get',
 };
+export const getNotifications = {
+  // 알림 리스트
+  url: `${url}/v1/api/users/:userId/notices`,
+  method: 'get',
+};

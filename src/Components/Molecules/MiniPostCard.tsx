@@ -27,6 +27,7 @@ interface MiniPostCard extends MarginStyleProps {
 }
 const MiniPostCard = ({ marginBottom, postOption, handleNavigateToPostDeatil }: MiniPostCard) => {
   const { posts } = postOption;
+
   return (
     <>
       {posts.length > 0 ? (
