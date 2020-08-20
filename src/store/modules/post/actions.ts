@@ -1,6 +1,6 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
-import { Post, PostDetail } from './types';
+import { Post, PostDetail, DetailedComment } from './types';
 
 export const LOAD_POSTS = 'post/LOAD_POSTS';
 export const LOAD_POSTS_SUCCESS = 'post/LOAD_POSTS_SUCCESS';
@@ -50,4 +50,4 @@ export const postCommentRequestAsync = createAsyncAction(
   POST_COMMENT,
   POST_COMMENT_SUCCESS,
   POST_COMMENT_FAILURE,
-)<void, PostDetail, AxiosError>();
+)<void, DetailedComment, AxiosError>();

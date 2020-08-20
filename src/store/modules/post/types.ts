@@ -78,3 +78,6 @@ export interface SimplePage {
   totalElements: number;
   totalPages: number;
 }
+export interface DetailedComment {
+  detailedComment: CommentList;
+}

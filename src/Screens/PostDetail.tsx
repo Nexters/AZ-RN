@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components/native';
 import { useKeyboard } from 'react-native-keyboard-height';
 import { RouteProp } from '@react-navigation/native';
@@ -13,6 +13,7 @@ import { getUniqueKey } from '~/lib';
 import { useHandleInput } from '~/hooks';
 import { RootState } from '~/store/modules';
 import { useSelector } from 'react-redux';
+import { TextInput, Platform } from 'react-native';
 
 const Scroll = styled.ScrollView``;
 interface PostDetailProps {
@@ -21,15 +22,15 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ navigation, route }: PostDetailProps) => {
+  const { post, handlePostCommnet } = route.params as PostDetailParams;
   const {
-    post,
-    comment: { commentList },
-    handlePostCommnet,
-  } = route.params as PostDetailParams;
-
-  const { 'post/POST_COMMENT_LOADING': postCommentIsLoading } = useSelector(
-    (state: RootState) => state.loading,
-  );
+    loading: { 'post/POST_COMMENT_LOADING': postCommentIsLoading },
+    post: {
+      postDetail: {
+        comment: { commentList },
+      },
+    },
+  } = useSelector((state: RootState) => state);
 
   const [keyboardHeigth] = useKeyboard();
 
@@ -37,8 +38,12 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
 
   const [showPostCommentToast, setShowPostCommentToast] = useState(false);
 
+  const inputRef = useRef<TextInput>();
+
   const handleOnPress = () => {
     handlePostCommnet(post.detailedPost.id, commentBinder.text);
+    if (Platform.OS === 'ios') inputRef.current?.setNativeProps({ text: '' });
+    else inputRef.current?.clear();
   };
 
   useEffect(() => {
@@ -82,7 +87,7 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
           </Colbox>
         </SectionWrapper>
       </Scroll>
-      <StickyKeyboard inputBinder={commentBinder} onPress={handleOnPress} />
+      <StickyKeyboard inputRef={inputRef} inputBinder={commentBinder} onPress={handleOnPress} />
     </NoSafeArea>
   );
 };
