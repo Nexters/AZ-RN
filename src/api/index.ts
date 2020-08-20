@@ -35,3 +35,8 @@ export const postCreateContent = {
   url: `${url}/v1/api/posts/post`,
   method: 'post',
 };
+// 댓글 작성
+export const postComment = {
+  url: `${url}/v1/api/posts/:postId/comments/comment`,
+  method: 'post',
+};

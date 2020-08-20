@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { useKeyboard } from 'react-native-keyboard-height';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-import { LoginStackParams } from '~/@types';
+import { LoginStackParams, PostDetailParams } from '~/@types';
 import { SectionWrapper, NoSafeArea } from '~/Components/Templates';
 import PostDetailCard from '~/Components/Molecules/PostDetailCard';
-import { Colbox } from '~/Components/Atoms';
+import { Colbox, Toast } from '~/Components/Atoms';
 import { Comment, StickyKeyboard } from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
-import { DetailedPost } from '~/store/modules/post/types';
+import { useHandleInput } from '~/hooks';
+import { RootState } from '~/store/modules';
+import { useSelector } from 'react-redux';
 
 const Scroll = styled.ScrollView``;
 interface PostDetailProps {
@@ -22,12 +24,42 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
   const {
     post,
     comment: { commentList },
-  } = route.params as DetailedPost;
+    handlePostCommnet,
+  } = route.params as PostDetailParams;
+
+  const { 'post/POST_COMMENT_LOADING': postCommentIsLoading } = useSelector(
+    (state: RootState) => state.loading,
+  );
 
   const [keyboardHeigth] = useKeyboard();
 
+  const { bind: commentBinder } = useHandleInput('');
+
+  const [showPostCommentToast, setShowPostCommentToast] = useState(false);
+
+  const handleOnPress = () => {
+    handlePostCommnet(post.detailedPost.id, commentBinder.text);
+  };
+
+  useEffect(() => {
+    if (postCommentIsLoading) {
+      setTimeout(() => {
+        setShowPostCommentToast(true);
+      }, 200);
+      setTimeout(() => {
+        setShowPostCommentToast(false);
+      }, 3000);
+    }
+  }, [postCommentIsLoading]);
+
   return (
     <NoSafeArea>
+      <Toast
+        visible={showPostCommentToast}
+        animation={true}
+        hideOnPress={true}
+        message="댓글 작성 완료"
+      />
       <Scroll
         style={{
           marginBottom: keyboardHeigth,
@@ -50,7 +82,7 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
           </Colbox>
         </SectionWrapper>
       </Scroll>
-      <StickyKeyboard />
+      <StickyKeyboard inputBinder={commentBinder} onPress={handleOnPress} />
     </NoSafeArea>
   );
 };

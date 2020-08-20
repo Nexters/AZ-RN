@@ -18,6 +18,10 @@ export const CREATE_POST = 'post/CREATE_POST';
 export const CREATE_POST_SUCCESS = 'post/CREATE_POST_SUCCESS';
 export const CREATE_POST_FAILURE = 'post/CREATE_POST_FAILURE';
 
+export const POST_COMMENT = 'post/POST_COMMENT';
+export const POST_COMMENT_SUCCESS = 'post/POST_COMMENT_SUCCESS';
+export const POST_COMMENT_FAILURE = 'post/POST_COMMENT_FAILURE';
+
 export const createPostRequestAsync = createAsyncAction(
   CREATE_POST,
   CREATE_POST_SUCCESS,
@@ -40,4 +44,10 @@ export const loadCommentsRequestAsync = createAsyncAction(
   LOAD_COMMENTS,
   LOAD_COMMENTS_SUCCESS,
   LOAD_COMMENTS_FAILURE,
+)<void, PostDetail, AxiosError>();
+
+export const postCommentRequestAsync = createAsyncAction(
+  POST_COMMENT,
+  POST_COMMENT_SUCCESS,
+  POST_COMMENT_FAILURE,
 )<void, PostDetail, AxiosError>();

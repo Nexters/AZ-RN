@@ -7,6 +7,7 @@ import commentPush from '@png/comment_push.png';
 
 import { Rowbox, Image } from '../Atoms';
 import Layout from '~/constants/Layout';
+import { InputBindType } from '~/hooks/useHandleInput';
 
 const Input = styled.TextInput`
   height: 50px;
@@ -19,20 +20,18 @@ const Action = styled.View`
   right: 25px;
 `;
 
-const StickyKeyboard = () => {
+interface StickyKeyboardProps {
+  inputBinder: InputBindType;
+  onPress: () => void;
+}
+
+const StickyKeyboard = ({ inputBinder, onPress }: StickyKeyboardProps) => {
   return (
     <KeyboardAccessoryView alwaysVisible={true}>
       <Rowbox height="56px" bgColor={WHITE}>
-        <Input placeholder="댓글달기" placeholderTextColor="#999999" />
+        <Input placeholder="댓글달기" placeholderTextColor="#999999" {...inputBinder} />
         <Action>
-          <Image
-            imgSrc={commentPush}
-            width="28px"
-            height="28px"
-            onPress={() => {
-              //
-            }}
-          />
+          <Image imgSrc={commentPush} width="28px" height="28px" onPress={onPress} />
         </Action>
       </Rowbox>
     </KeyboardAccessoryView>

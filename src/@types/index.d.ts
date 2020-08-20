@@ -20,7 +20,12 @@ export type LoginStackParams = {
   PostWrite: undefined;
   PostDetail: any;
 };
-export type PostDetailParams = DetailedPost;
+
+type PostDetail = {
+  handlePostCommnet: (postId: number, comment: string) => void;
+  showPostCommentToast: boolean;
+};
+export interface PostDetailParams extends DetailedPost, PostDetail {}
 export type Comment = {
   username: string;
   comment: string;

@@ -5,6 +5,7 @@ import {
   loadPostDetailRequestAsync,
   loadCommentsRequestAsync,
   createPostRequestAsync,
+  postCommentRequestAsync,
 } from './actions';
 
 export const getPostsThunk = createAsyncThunk(loadPostsRequestAsync, callApi);
@@ -14,3 +15,5 @@ export const getPostDetailThunk = createAsyncThunk(loadPostDetailRequestAsync, c
 export const getCommentsThunk = createAsyncThunk(loadCommentsRequestAsync, callApi);
 
 export const postCreateContentThunk = createAsyncThunk(createPostRequestAsync, callApi);
+
+export const postCommentThunk = createAsyncThunk(postCommentRequestAsync, callApi);
