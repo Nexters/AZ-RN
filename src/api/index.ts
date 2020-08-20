@@ -51,3 +51,8 @@ export const getMyPosts = {
   url: `${url}/v1/api/users/:userId/posts`,
   method: 'get',
 };
+export const getMyBookmarkPosts = {
+  // 내가 북마크 한 글
+  url: `${url}/v1/api/users/:userId/bookmark/posts`,
+  method: 'get',
+};

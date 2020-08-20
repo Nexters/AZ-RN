@@ -10,6 +10,7 @@ export type UserStateTypes = {
   duplicateCheck: DuplicateCheck;
   myComment: Comment;
   myPost: Post;
+  myBookmark: Post;
 };
 export type ReqError = {
   status: number;

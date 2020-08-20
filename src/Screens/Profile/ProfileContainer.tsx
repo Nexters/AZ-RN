@@ -8,7 +8,14 @@ import naviSettingGreyPng from '@png/navi_setting_grey.png';
 import naviSettingPurplePng from '@png/navi_setting_purple.png';
 import naviPencilGreyPng from '@png/navi_pencil_grey.png';
 import naviPencilPurplePng from '@png/navi_pencil_purple.png';
-import { getMyPosts, getMyComments, getCommnets, getDetailedPost, postComment } from '~/api';
+import {
+  getMyPosts,
+  getMyComments,
+  getCommnets,
+  getDetailedPost,
+  postComment,
+  getMyBookmarkPosts,
+} from '~/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '~/store/modules';
 import { getMyCommentsThunk, getMyPostsThunk } from '~/store/modules/user/thunks';
@@ -29,7 +36,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     auth: {
       user: { id: userId },
     },
-    user: { myComment, myPost },
+    user: { myComment, myPost, myBookmark },
   } = useSelector((state: RootState) => state);
 
   const handleNavigateToPostDeatil = async (postId: number) => {
@@ -97,7 +104,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
       isActivation: false,
       Tab: (
         <MiniPostCard
-          postOption={myPost}
+          postOption={myBookmark}
           handleNavigateToPostDeatil={handleNavigateToPostDeatil}
           marginBottom="20px"
         />
@@ -142,8 +149,13 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
       ...getMyComments,
       userId,
     };
+    const bookmarkConfig = {
+      ...getMyBookmarkPosts,
+      userId,
+    };
     dispatch(getMyCommentsThunk(commentsConfig));
     dispatch(getMyPostsThunk(postsConfig));
+    dispatch(getMyCommentsThunk(bookmarkConfig));
   }, []);
 
   return <ProfileViewer handleNavigation={handleNavigation} tabNavOptions={tabNavOptions} />;
