@@ -26,10 +26,6 @@ type PostDetail = {
   showPostCommentToast: boolean;
 };
 export interface PostDetailParams extends DetailedPost, PostDetail {}
-export type Comment = {
-  username: string;
-  comment: string;
-};
 
 // margin
 export type MarginStyleProps = {

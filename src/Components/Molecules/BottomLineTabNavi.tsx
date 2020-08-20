@@ -42,7 +42,7 @@ const BottomLineTabNavi = ({
       isActivation={isActivation}
       activationColor={activationColor}
       onPress={onPress}>
-      <IconMsg imgSrc={imgSrc} direction="column">
+      <IconMsg imgSrc={imgSrc} direction="column" height="20px" width="20px">
         <Text
           text={text}
           fontWeight={fontWeight}

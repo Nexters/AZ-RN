@@ -13,17 +13,15 @@ const Container = styled.View`
 
 interface UnderBarArrow {
   title: string;
+  handleLogout: () => void;
 }
 
-const UnderBarArrow = ({ title }: UnderBarArrow) => {
+const UnderBarArrow = ({ title, handleLogout }: UnderBarArrow) => {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={handleLogout}>
       <Container>
         <Colbox>
-          <Rowbox
-            width="100%"
-            justifyContent="space-between"
-            marginBottom="16px">
+          <Rowbox width="100%" justifyContent="space-between" marginBottom="16px">
             <Text text={title} fontSize="16px" fontWeight={800} color={WHITE} />
             <Image imgSrc={rightArrowPng} width="8px" height="16px" />
           </Rowbox>
