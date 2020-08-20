@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProfileViewer from './ProfileViewer';
 
 import { MiniPostCard, CommentLog, UnderBarArrow } from '~/Components/Molecules';
@@ -6,31 +6,88 @@ import naviBookmarkGreyPng from '@png/navi_bookmark_grey.png';
 import naviBookmarkPurplePng from '@png/navi_bookmark_purple.png';
 import naviSettingGreyPng from '@png/navi_setting_grey.png';
 import naviSettingPurplePng from '@png/navi_setting_purple.png';
+import naviPencilGreyPng from '@png/navi_pencil_grey.png';
+import naviPencilPurplePng from '@png/navi_pencil_purple.png';
+import { getMyPosts, getMyComments, getCommnets, getDetailedPost, postComment } from '~/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '~/store/modules';
+import { getMyCommentsThunk, getMyPostsThunk } from '~/store/modules/user/thunks';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { LoginStackParams } from '~/@types';
+import {
+  getCommentsThunk,
+  getPostDetailThunk,
+  postCommentThunk,
+} from '~/store/modules/post/thunks';
 
-const ProfileContainer = () => {
-  const postLog = {
-    createdAt: 'createdAt',
-    title: 'title',
-    heartCount: 45,
-    commentCount: 13,
+interface ProfileProps {
+  navigation: StackNavigationProp<LoginStackParams, 'Profile'>;
+}
+const ProfileContainer = ({ navigation }: ProfileProps) => {
+  const dispatch = useDispatch();
+  const {
+    auth: {
+      user: { id: userId },
+    },
+    user: { myComment, myPost },
+  } = useSelector((state: RootState) => state);
+
+  const handleNavigateToPostDeatil = async (postId: number) => {
+    const config = {
+      ...getCommnets,
+      postId,
+    };
+    const option = {
+      ...getDetailedPost,
+      postId,
+    };
+    const comment = await dispatch(getCommentsThunk(config));
+    const post = await dispatch(getPostDetailThunk(option));
+    const detailedPost = {
+      post,
+      comment,
+    };
+
+    const handlePostCommnet = (postId: number, comment: string) => {
+      const config = {
+        ...postComment,
+        comment,
+        postId,
+      };
+      dispatch(postCommentThunk(config));
+    };
+
+    navigation.navigate('PostDetail', {
+      ...detailedPost,
+      handlePostCommnet,
+    });
   };
-  const commentLog = {
-    createdAt: 'createdAt',
-    comment: 'ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏkkkkkㅏㅏㅏㅏ',
-  };
+
   const [tabNavOptions, setTabNavOptions] = useState([
     {
       id: 1,
       isActivation: true,
-      Tab: <MiniPostCard {...postLog} marginBottom="20px" />,
+      Tab: (
+        <MiniPostCard
+          postOption={myPost}
+          handleNavigateToPostDeatil={handleNavigateToPostDeatil}
+          marginBottom="20px"
+        />
+      ),
       name: '작성한 개그',
-      inactivationIcon: naviSettingGreyPng,
-      activationIcon: naviSettingPurplePng,
+      inactivationIcon: naviPencilGreyPng,
+      activationIcon: naviPencilPurplePng,
     },
     {
       id: 2,
       isActivation: false,
-      Tab: <CommentLog {...commentLog} marginBottom="16px" />,
+      Tab: (
+        <CommentLog
+          commentOption={myComment}
+          handleNavigateToPostDeatil={handleNavigateToPostDeatil}
+          marginBottom="16px"
+        />
+      ),
       name: '작성한 댓글 ',
       inactivationIcon: naviSettingGreyPng,
       activationIcon: naviSettingPurplePng,
@@ -38,7 +95,13 @@ const ProfileContainer = () => {
     {
       id: 3,
       isActivation: false,
-      Tab: <MiniPostCard {...postLog} marginBottom="20px" />,
+      Tab: (
+        <MiniPostCard
+          postOption={myPost}
+          handleNavigateToPostDeatil={handleNavigateToPostDeatil}
+          marginBottom="20px"
+        />
+      ),
       name: '북마크',
       inactivationIcon: naviBookmarkGreyPng,
       activationIcon: naviBookmarkPurplePng,
@@ -69,6 +132,19 @@ const ProfileContainer = () => {
     });
     setTabNavOptions(updateTabOptions);
   };
+
+  useEffect(() => {
+    const postsConfig = {
+      ...getMyPosts,
+      userId,
+    };
+    const commentsConfig = {
+      ...getMyComments,
+      userId,
+    };
+    dispatch(getMyCommentsThunk(commentsConfig));
+    dispatch(getMyPostsThunk(postsConfig));
+  }, []);
 
   return <ProfileViewer handleNavigation={handleNavigation} tabNavOptions={tabNavOptions} />;
 };

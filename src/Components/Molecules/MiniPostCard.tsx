@@ -7,8 +7,11 @@ import crownPng from '@png/crown.png';
 import fillBookmarkPng from '@png/fill_bookmark.png';
 import HearAndComment from './HearAndComment';
 import { marginStyles } from '~/styles/mixin';
+import { Post } from '~/store/modules/post/types';
+import { getUniqueKey } from '~/lib';
+import { View } from 'react-native';
 
-const Container = styled.View<MarginStyleProps>`
+const Container = styled.TouchableOpacity<MarginStyleProps>`
   width: 100%;
   height: 87px;
   justify-content: space-between;
@@ -20,53 +23,53 @@ const Container = styled.View<MarginStyleProps>`
 `;
 
 interface MiniPostCard extends MarginStyleProps {
-  createdAt: string;
-  title: string;
-  heartCount: number;
-  commentCount: number;
-  marginBottom?: string;
+  postOption: Post;
+  handleNavigateToPostDeatil: (postId: number) => Promise<void>;
 }
-const MiniPostCard = ({
-  createdAt,
-  title,
-  heartCount,
-  commentCount,
-  marginBottom,
-}: MiniPostCard) => {
+const MiniPostCard = ({ marginBottom, postOption, handleNavigateToPostDeatil }: MiniPostCard) => {
+  const { posts } = postOption;
   return (
-    <Container marginBottom={marginBottom}>
-      <Rowbox justifyContent="space-between">
-        <Rowbox width="230px">
-          <Text fontSize="16px" fontWeight={800} text={title} color="#333333" />
-        </Rowbox>
-        <Rowbox width="auto">
-          <Image
-            imgSrc={crownPng}
-            marginLeft="4px"
-            width="22px"
-            height="18px"
-            marginRight="5px"
-          />
-          <Image
-            imgSrc={fillBookmarkPng}
-            marginLeft="4px"
-            width="18px"
-            height="18px"
-          />
-        </Rowbox>
-      </Rowbox>
-      <Rowbox justifyContent="space-between">
-        <HearAndComment
-          heartCount={heartCount}
-          commentCount={commentCount}
-          heartWidth="20px"
-          heartHeight="20px"
-          commentWidth="16px"
-          commentHeight="16px"
-        />
-        <Text fontSize="12px" fontWeight={300} text={createdAt} />
-      </Rowbox>
-    </Container>
+    <>
+      {posts.length > 0 ? (
+        posts.map((post) => (
+          <Container
+            marginBottom={marginBottom}
+            key={getUniqueKey(post.id)}
+            onPress={() => {
+              handleNavigateToPostDeatil(post.id);
+            }}>
+            <Rowbox justifyContent="space-between">
+              <Rowbox width="230px">
+                <Text fontSize="16px" fontWeight={800} text={post.content} color="#333333" />
+              </Rowbox>
+              <Rowbox width="auto">
+                <Image
+                  imgSrc={crownPng}
+                  marginLeft="4px"
+                  width="22px"
+                  height="18px"
+                  marginRight="5px"
+                />
+                <Image imgSrc={fillBookmarkPng} marginLeft="4px" width="18px" height="18px" />
+              </Rowbox>
+            </Rowbox>
+            <Rowbox justifyContent="space-between">
+              <HearAndComment
+                heartCount={post.likes}
+                commentCount={post.commentCount}
+                heartWidth="20px"
+                heartHeight="20px"
+                commentWidth="16px"
+                commentHeight="16px"
+              />
+              <Text fontSize="12px" fontWeight={300} text={post.createdDate} />
+            </Rowbox>
+          </Container>
+        ))
+      ) : (
+        <></>
+      )}
+    </>
   );
 };
 
