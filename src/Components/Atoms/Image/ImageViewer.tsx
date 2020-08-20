@@ -9,6 +9,7 @@ const Image = styled.Image<StyleProps>`
   ${marginStyles};
   width: ${({ imgWidth }) => imgWidth ?? '100%'};
   height: ${({ imgHeight }) => imgHeight ?? '100%'};
+  left: ${({ left }) => left ?? '0px'};
 `;
 const AutoImage = styled.Image<StyleProps>`
   ${marginStyles};
@@ -17,6 +18,7 @@ const AutoImage = styled.Image<StyleProps>`
 interface StyleProps extends MarginStyleProps {
   imgWidth?: string;
   imgHeight?: string;
+  left?: string;
 }
 interface ImageProps extends StyleProps {
   imgSrc?: ImageSourcePropType;
@@ -36,6 +38,7 @@ const ImageViewer = ({
   onPress,
   width,
   height,
+  left,
 }: ImageProps) => {
   const ImgType = width ? (
     <Image
@@ -47,6 +50,7 @@ const ImageViewer = ({
       marginRight={marginRight}
       imgWidth={width}
       imgHeight={height}
+      left={left}
     />
   ) : (
     <AutoImage
@@ -56,6 +60,7 @@ const ImageViewer = ({
       marginTop={marginTop}
       marginBottom={marginBottom}
       marginRight={marginRight}
+      left={left}
     />
   );
   return onPress ? <TouchableOpacity onPress={onPress}>{ImgType}</TouchableOpacity> : ImgType;

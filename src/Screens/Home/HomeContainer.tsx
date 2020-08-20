@@ -12,6 +12,7 @@ import {
   getMyPosts,
   getMyComments,
   getMyBookmarkPosts,
+  getRatingStatus,
 } from '~/api';
 import {
   getPostsThunk,
@@ -24,6 +25,7 @@ import {
   getMyCommentsThunk,
   getMyPostsThunk,
   getMyBookmarkPostsThunk,
+  getMyRatingThunk,
 } from '~/store/modules/user/thunks';
 
 interface HomeProps {
@@ -38,7 +40,11 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     },
     post: {
       postList: { posts },
+      postDetail: {
+        comment: { commentList },
+      },
     },
+    user: { ratingForPromotion },
     loading: { 'post/CREATE_POST_LOADING': createPostIsLoading },
   } = useSelector((state: RootState) => state);
 
@@ -94,6 +100,11 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       ...getMyBookmarkPosts,
       userId,
     };
+    const ratingConfig = {
+      ...getRatingStatus,
+      userId,
+    };
+    dispatch(getMyRatingThunk(ratingConfig));
     dispatch(getMyCommentsThunk(commentsConfig));
     dispatch(getMyPostsThunk(postsConfig));
     dispatch(getMyBookmarkPostsThunk(bookmarkConfig));
@@ -110,6 +121,13 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       }, 3000);
     }
   }, [createPostIsLoading]);
+  useEffect(() => {
+    const ratingConfig = {
+      ...getRatingStatus,
+      userId,
+    };
+    dispatch(getMyRatingThunk(ratingConfig));
+  }, [posts, commentList]);
 
   return (
     <HomeViewer
@@ -117,6 +135,7 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       handleNavigateToPostWrite={handleNavigateToPostWrite}
       handleNavigateToPostDeatil={handleNavigateToPostDeatil}
       showCreatePostToast={showCreatePostToast}
+      ratingForPromotion={ratingForPromotion}
     />
   );
 };

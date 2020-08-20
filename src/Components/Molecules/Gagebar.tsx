@@ -36,9 +36,16 @@ type Gagebar = {
   // range 0~1
   persentage: number;
   fillColor?: string;
+  postCountForPromotion: number;
+  commentCountForPromotion: number;
 };
 
-const Gagebar = ({ persentage, fillColor }: Gagebar) => {
+const Gagebar = ({
+  persentage,
+  fillColor,
+  postCountForPromotion,
+  commentCountForPromotion,
+}: Gagebar) => {
   return (
     <Container>
       <Rowbox align="flex-end">
@@ -53,7 +60,7 @@ const Gagebar = ({ persentage, fillColor }: Gagebar) => {
             height="19px"
             marginRight="2px"
           />
-          <Text text="14개" fontSize="15px" fontWeight={800} color={WHITE} />
+          <Text text={`${postCountForPromotion}`} fontSize="15px" fontWeight={800} color={WHITE} />
         </Rowbox>
         <Rowbox width="auto" marginRight="12px">
           <RadiusButton
@@ -66,7 +73,12 @@ const Gagebar = ({ persentage, fillColor }: Gagebar) => {
             height="19px"
             marginRight="2px"
           />
-          <Text text="4개" fontSize="15px" fontWeight={800} color={WHITE} />
+          <Text
+            text={`${commentCountForPromotion}`}
+            fontSize="15px"
+            fontWeight={800}
+            color={WHITE}
+          />
         </Rowbox>
         <Text text="더 작성하면 등급 업" fontSize="15px" fontWeight={200} color={WHITE} />
       </Rowbox>

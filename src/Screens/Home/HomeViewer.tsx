@@ -17,12 +17,14 @@ import { FloatingButton, Toast } from '~/Components/Atoms';
 import { getUniqueKey } from '~/lib';
 import { Posts } from '~/store/modules/post/types';
 import { GREY_DARK, DARK_GREY } from '~/constants/Colors';
+import { RatingForPromotion } from '~/store/modules/user/types';
 
 interface HomeProps {
   posts: Posts[];
   handleNavigateToPostWrite: () => void;
   handleNavigateToPostDeatil: (postId: number) => void;
   showCreatePostToast: boolean;
+  ratingForPromotion: RatingForPromotion;
 }
 
 const HomeViewer = ({
@@ -30,6 +32,7 @@ const HomeViewer = ({
   handleNavigateToPostWrite,
   handleNavigateToPostDeatil,
   showCreatePostToast,
+  ratingForPromotion,
 }: HomeProps) => {
   return (
     <>
@@ -44,7 +47,7 @@ const HomeViewer = ({
           <StickyScrollView stickyPosition={1}>
             <BackgroundContainer bgColor={DARK_GREY}>
               <SectionWrapper marginBottom="25px">
-                <IntroSentence />
+                <IntroSentence ratingForPromotion={ratingForPromotion} />
               </SectionWrapper>
             </BackgroundContainer>
             <DeviceHeaderSticky>

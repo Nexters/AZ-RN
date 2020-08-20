@@ -23,6 +23,10 @@ export const LOAD_MY_BOOKMARK_POSTS = 'user/LOAD_MY_BOOKMARK_POSTS';
 export const LOAD_MY_BOOKMARK_POSTS_SUCCESS = 'user/LOAD_MY_BOOKMARK_POSTS_SUCCESS';
 export const LOAD_MY_BOOKMARK_POSTS_FAILURE = 'user/LOAD_MY_BOOKMARK_POSTS_FAILURE';
 
+export const LOAD_RATING = 'user/LOAD_RATING';
+export const LOAD_RATING_SUCCESS = 'user/LOAD_RATING_SUCCESS';
+export const LOAD_RATING_FAILURE = 'user/LOAD_RATING_FAILURE';
+
 export const verifyIdRequestAsync = createAsyncAction(
   VERIFY_ID,
   VERIFY_ID_SUCCESS,
@@ -51,4 +55,10 @@ export const loadMyBookmarkPostsRequestAsync = createAsyncAction(
   LOAD_MY_BOOKMARK_POSTS,
   LOAD_MY_BOOKMARK_POSTS_SUCCESS,
   LOAD_MY_BOOKMARK_POSTS_FAILURE,
+)<void, Post, ReqError>();
+
+export const loadMyRatingRequestAsync = createAsyncAction(
+  LOAD_RATING,
+  LOAD_RATING_SUCCESS,
+  LOAD_RATING_FAILURE,
 )<void, Post, ReqError>();

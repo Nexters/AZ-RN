@@ -4,6 +4,8 @@ import { WHITE, DARK_GREY } from '~/constants/Colors';
 import { Rowbox, Text, Colbox, Image } from '../Atoms';
 import crownPng from '@png/crown.png';
 import HearAndComment from './HearAndComment';
+import { getLevelType } from '~/lib';
+import { Rating } from '~/store/modules/auth/types';
 
 const Card = styled.TouchableOpacity`
   margin-top: 14px;
@@ -22,7 +24,7 @@ type PostCardProps = {
   commentCount: number;
   pressBookMark: boolean;
   pressLike: boolean;
-  rating: string;
+  rating: Rating;
   type: 'normal' | 'best';
   id: number;
   onPress?: () => void;
@@ -81,7 +83,7 @@ const PostCard = ({
             marginRight="6px"
             borderRadius="15px"
             bgColor="#DF84FF">
-            <Text text="Level" fontSize="12px" fontWeight={700} color={WHITE} />
+            <Text text={getLevelType(rating)} fontSize="12px" fontWeight={700} color={WHITE} />
           </Rowbox>
           <Text
             text={nickname}
