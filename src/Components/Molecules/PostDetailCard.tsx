@@ -22,9 +22,16 @@ const Card = styled.View`
 interface PostDetailCard {
   postDetailProps: PostDetail;
   handlePressLike: (postId: number) => void;
+  handlePressBookmark: (postId: number) => void;
+  handlePressDeleteBookmark: (postId: number) => void;
 }
 
-const PostDetailCard = ({ postDetailProps, handlePressLike }: PostDetailCard) => {
+const PostDetailCard = ({
+  postDetailProps,
+  handlePressLike,
+  handlePressBookmark,
+  handlePressDeleteBookmark,
+}: PostDetailCard) => {
   const {
     id,
     author,
@@ -46,14 +53,21 @@ const PostDetailCard = ({ postDetailProps, handlePressLike }: PostDetailCard) =>
     <Card>
       <Rowbox justifyContent="flex-end">
         {pressBookMark ? (
-          <Image imgSrc={fillBookmark} width="16px" height="17px" />
+          <Image
+            imgSrc={fillBookmark}
+            width="16px"
+            height="17px"
+            onPress={() => {
+              handlePressDeleteBookmark(id);
+            }}
+          />
         ) : (
           <Image
             imgSrc={emptyBookmark}
             width="16px"
             height="17px"
             onPress={() => {
-              //
+              handlePressBookmark(id);
             }}
           />
         )}

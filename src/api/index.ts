@@ -17,7 +17,7 @@ export const postNicknameCheck = {
 };
 export const getPosts = {
   // 게시글 조회
-  url: `${url}/v1/api/posts`,
+  url: `${url}/v1/api/posts?currentPage=:currentPage&size=:size`,
   method: 'get',
 };
 export const getDetailedPost = {
@@ -27,7 +27,7 @@ export const getDetailedPost = {
 };
 export const getCommnets = {
   // 게시글에 달린 댓글
-  url: `${url}/v1/api/posts/:postId/comments`,
+  url: `${url}/v1/api/posts/:postId/comments?currentPage=:currentPage&size=:size`,
   method: 'get',
 };
 export const postCreateContent = {
@@ -56,13 +56,18 @@ export const getMyBookmarkPosts = {
   url: `${url}/v1/api/users/:userId/bookmark/posts`,
   method: 'get',
 };
-export const postCreateLike = {
+export const postLike = {
   // 게시글 좋아요
   url: `${url}/v1/api/posts/:postId/likes`,
   method: 'post',
 };
-export const postCreateBookmark = {
+export const postBookmark = {
   // 게시글 북마크
   url: `${url}/v1/api/users/bookmark/posts/:postId`,
   method: 'post',
+};
+export const deleteBookmark = {
+  // 게시글 북마크 취소
+  url: `${url}/v1/api/users/bookmark/posts/:postId`,
+  method: 'delete',
 };

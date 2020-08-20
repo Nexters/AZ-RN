@@ -11,11 +11,12 @@ import { Rowbox } from '~/Components/Atoms';
 import { PURPLE, GREY_DARK, DARK_GREY } from '~/constants/Colors';
 import { BottomLineTabNavi, DeviceHeaderSticky, ProfileSentence } from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
+import { Comment, Post } from '~/store/modules/post/types';
 
 type TabNavi = {
   id: number;
   isActivation: boolean;
-  Tab: React.ReactNode;
+  tab: React.ReactNode;
   name: string;
   inactivationIcon: any;
   activationIcon: any;
@@ -52,7 +53,7 @@ const ProfileViewer = ({ handleNavigation, tabNavOptions }: ProfileProps) => {
           </SectionWrapper>
           <DeviceHeaderSticky />
           <DeviceSection>
-            {tabNavOptions.map(({ isActivation, Tab }) => isActivation && Tab)}
+            {tabNavOptions.map(({ isActivation, tab }) => isActivation && tab)}
           </DeviceSection>
         </StickyScrollView>
       </SafeAreaContainer>

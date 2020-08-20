@@ -62,7 +62,7 @@ const HomeViewer = ({
                   pressBookMark={post.pressBookMark}
                   pressLike={post.pressLike}
                   rating={post.author.rating}
-                  type="best"
+                  type="normal"
                   key={getUniqueKey(index)}
                   onPress={() => {
                     handleNavigateToPostDeatil(post.id);

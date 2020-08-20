@@ -4,7 +4,15 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 import HomeViewer from './HomeViewer';
 import { LoginStackParams } from '~/@types';
-import { getPosts, getDetailedPost, getCommnets, postComment } from '~/api';
+import {
+  getPosts,
+  getDetailedPost,
+  getCommnets,
+  postComment,
+  getMyPosts,
+  getMyComments,
+  getMyBookmarkPosts,
+} from '~/api';
 import {
   getPostsThunk,
   getPostDetailThunk,
@@ -12,6 +20,11 @@ import {
   postCommentThunk,
 } from '~/store/modules/post/thunks';
 import { RootState } from '~/store/modules';
+import {
+  getMyCommentsThunk,
+  getMyPostsThunk,
+  getMyBookmarkPostsThunk,
+} from '~/store/modules/user/thunks';
 
 interface HomeProps {
   navigation: StackNavigationProp<LoginStackParams, 'Home'>;
@@ -20,6 +33,9 @@ interface HomeProps {
 const HomeContainer = ({ navigation }: HomeProps) => {
   const dispatch = useDispatch();
   const {
+    auth: {
+      user: { id: userId },
+    },
     post: {
       postList: { posts },
     },
@@ -36,17 +52,15 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     const config = {
       ...getCommnets,
       postId,
+      currentPage: 1,
+      size: 200,
     };
     const option = {
       ...getDetailedPost,
       postId,
     };
-    const comment = await dispatch(getCommentsThunk(config));
-    const post = await dispatch(getPostDetailThunk(option));
-    const detailedPost = {
-      post,
-      comment,
-    };
+    await dispatch(getCommentsThunk(config));
+    await dispatch(getPostDetailThunk(option));
 
     const handlePostCommnet = (postId: number, comment: string) => {
       const config = {
@@ -58,7 +72,6 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     };
 
     navigation.navigate('PostDetail', {
-      ...detailedPost,
       handlePostCommnet,
     });
   };
@@ -66,7 +79,24 @@ const HomeContainer = ({ navigation }: HomeProps) => {
   useEffect(() => {
     const config = {
       ...getPosts,
+      currentPage: 1,
+      size: 200,
     };
+    const postsConfig = {
+      ...getMyPosts,
+      userId,
+    };
+    const commentsConfig = {
+      ...getMyComments,
+      userId,
+    };
+    const bookmarkConfig = {
+      ...getMyBookmarkPosts,
+      userId,
+    };
+    dispatch(getMyCommentsThunk(commentsConfig));
+    dispatch(getMyPostsThunk(postsConfig));
+    dispatch(getMyBookmarkPostsThunk(bookmarkConfig));
     dispatch(getPostsThunk(config));
   }, []);
 

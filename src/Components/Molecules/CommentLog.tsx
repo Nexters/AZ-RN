@@ -22,7 +22,7 @@ const CommentLog = ({ commentOption, marginBottom, handleNavigateToPostDeatil }:
   const { commentList } = commentOption;
   return (
     <>
-      {commentList.length > 0 ? (
+      {commentList?.length > 0 ? (
         commentList.map((comment) => (
           <Container
             marginBottom={marginBottom}
@@ -32,7 +32,7 @@ const CommentLog = ({ commentOption, marginBottom, handleNavigateToPostDeatil }:
             key={getUniqueKey(comment.id)}>
             <Rowbox justifyContent="space-between">
               <Rowbox width="80%">
-                <Text fontWeight={600} fontSize="16px" text={comment.content} />
+                <Text fontWeight={600} fontSize="16px" text={comment.content} color={WHITE} />
               </Rowbox>
               <Text fontWeight={300} fontSize="11px" text={comment.createdDate} />
             </Rowbox>

@@ -42,6 +42,8 @@ const createAsyncThunk = <
         dispatch(finishLoading(request().type + '_LOADING'));
         return result;
       } catch (e) {
+        console.log('eRROR', e);
+
         const {
           response: { status },
         } = e;

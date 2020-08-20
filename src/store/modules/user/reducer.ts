@@ -90,12 +90,6 @@ const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
       myPost: action.payload,
     };
   },
-  [LOAD_MY_POSTS_FAILURE]: (state, action) => {
-    return {
-      ...state,
-      ...action.payload,
-    };
-  },
   [LOAD_MY_BOOKMARK_POSTS_SUCCESS]: (state, action) => {
     return {
       ...state,

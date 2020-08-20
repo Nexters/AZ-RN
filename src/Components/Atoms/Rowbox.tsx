@@ -22,18 +22,13 @@ interface StyleProps extends MarginStyleProps, PaddingStyleProps {
   height?: string;
   bgColor?: string;
   align?: 'center' | 'flex-start' | 'flex-end';
-  justifyContent?:
-    | 'space-around'
-    | 'space-between'
-    | 'center'
-    | 'flex-start'
-    | 'flex-end';
+  justifyContent?: 'space-around' | 'space-between' | 'center' | 'flex-start' | 'flex-end';
   border?: string;
   borderRadius?: string;
 }
 
 interface RowboxProps extends StyleProps {
-  children?: React.ReactChild | React.ReactChild[];
+  children?: React.ReactNode;
 }
 
 const Rowbox = ({

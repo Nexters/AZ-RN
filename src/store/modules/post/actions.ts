@@ -26,6 +26,10 @@ export const POST_LIKE = 'post/POST_LIKE';
 export const POST_LIKE_SUCCESS = 'post/POST_LIKE_SUCCESS';
 export const POST_LIKE_FAILURE = 'post/POST_LIKE_FAILURE';
 
+export const POST_BOOKMARK = 'post/POST_BOOKMARK';
+export const POST_BOOKMARK_SUCCESS = 'post/POST_BOOKMARK_SUCCESS';
+export const POST_BOOKMARK_FAILURE = 'post/POST_BOOKMARK_FAILURE';
+
 export const createPostRequestAsync = createAsyncAction(
   CREATE_POST,
   CREATE_POST_SUCCESS,
@@ -56,8 +60,14 @@ export const postCommentRequestAsync = createAsyncAction(
   POST_COMMENT_FAILURE,
 )<void, DetailedComment, AxiosError>();
 
-export const postCreateLikeRequestAsync = createAsyncAction(
+export const postLikeRequestAsync = createAsyncAction(
   POST_LIKE,
   POST_LIKE_SUCCESS,
   POST_LIKE_FAILURE,
+)<void, PostDetail, AxiosError>();
+
+export const postBookmarkRequestAsync = createAsyncAction(
+  POST_BOOKMARK,
+  POST_BOOKMARK_SUCCESS,
+  POST_BOOKMARK_FAILURE,
 )<void, PostDetail, AxiosError>();

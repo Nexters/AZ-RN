@@ -13,7 +13,7 @@ import {
   POST_COMMENT_SUCCESS,
   POST_COMMENT_FAILURE,
   POST_LIKE_SUCCESS,
-  POST_LIKE_FAILURE,
+  POST_BOOKMARK_SUCCESS,
 } from './actions';
 import init from './initialState';
 
@@ -131,10 +131,26 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
       },
     };
   },
-  [POST_LIKE_FAILURE]: (state) => {
-    console.log('POST_LIKE_FAILURE');
+  [POST_BOOKMARK_SUCCESS]: (state, action) => {
+    const {
+      postList: { posts, simplePage },
+      postDetail: { comment },
+    } = state;
+    const { detailedPost } = action.payload;
+    const updatePosts = posts.map((post) => (post.id === detailedPost.id ? detailedPost : post));
+
     return {
       ...state,
+      postList: {
+        posts: updatePosts,
+        simplePage,
+      },
+      postDetail: {
+        post: {
+          detailedPost,
+        },
+        comment,
+      },
     };
   },
 });
