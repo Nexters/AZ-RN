@@ -9,7 +9,6 @@ import HearAndComment from './HearAndComment';
 import { marginStyles } from '~/styles/mixin';
 import { Post } from '~/store/modules/post/types';
 import { getUniqueKey } from '~/lib';
-import { View } from 'react-native';
 
 const Container = styled.TouchableOpacity<MarginStyleProps>`
   width: 100%;
@@ -50,11 +49,14 @@ const MiniPostCard = ({ marginBottom, postOption, handleNavigateToPostDeatil }: 
                   height="18px"
                   marginRight="5px"
                 />
-                <Image imgSrc={fillBookmarkPng} marginLeft="4px" width="18px" height="18px" />
+                {post.pressBookMark && (
+                  <Image imgSrc={fillBookmarkPng} marginLeft="4px" width="18px" height="18px" />
+                )}
               </Rowbox>
             </Rowbox>
             <Rowbox justifyContent="space-between">
               <HearAndComment
+                pressLike={post.pressLike}
                 heartCount={post.likes}
                 commentCount={post.commentCount}
                 heartWidth="20px"

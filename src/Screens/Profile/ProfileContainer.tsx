@@ -18,7 +18,11 @@ import {
 } from '~/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '~/store/modules';
-import { getMyCommentsThunk, getMyPostsThunk } from '~/store/modules/user/thunks';
+import {
+  getMyCommentsThunk,
+  getMyPostsThunk,
+  getMyBookmarkPostsThunk,
+} from '~/store/modules/user/thunks';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LoginStackParams } from '~/@types';
 import {
@@ -74,11 +78,32 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     dispatch(logout());
   };
 
-  const [tabNavOptions, setTabNavOptions] = useState([
+  const ReactElements = [
+    <MiniPostCard
+      key="0"
+      postOption={myPost}
+      handleNavigateToPostDeatil={handleNavigateToPostDeatil}
+      marginBottom="20px"
+    />,
+    <CommentLog
+      key="1"
+      commentOption={myComment}
+      handleNavigateToPostDeatil={handleNavigateToPostDeatil}
+      marginBottom="16px"
+    />,
+    <MiniPostCard
+      key="2"
+      postOption={myBookmark}
+      handleNavigateToPostDeatil={handleNavigateToPostDeatil}
+      marginBottom="20px"
+    />,
+  ];
+
+  const [tabNavOptions, setTabNaviOptions] = useState([
     {
       id: 1,
       isActivation: true,
-      Tab: (
+      tab: (
         <MiniPostCard
           postOption={myPost}
           handleNavigateToPostDeatil={handleNavigateToPostDeatil}
@@ -92,7 +117,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     {
       id: 2,
       isActivation: false,
-      Tab: (
+      tab: (
         <CommentLog
           commentOption={myComment}
           handleNavigateToPostDeatil={handleNavigateToPostDeatil}
@@ -106,7 +131,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     {
       id: 3,
       isActivation: false,
-      Tab: (
+      tab: (
         <MiniPostCard
           postOption={myBookmark}
           handleNavigateToPostDeatil={handleNavigateToPostDeatil}
@@ -120,7 +145,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     {
       id: 4,
       isActivation: false,
-      Tab: <UnderBarArrow title="로그아웃" handleLogout={handleLogout} />,
+      tab: <UnderBarArrow title="로그아웃" handleLogout={handleLogout} />,
       name: '설정',
       inactivationIcon: naviSettingGreyPng,
       activationIcon: naviSettingPurplePng,
@@ -141,26 +166,16 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
         };
       }
     });
-    setTabNavOptions(updateTabOptions);
+    setTabNaviOptions(updateTabOptions);
   };
 
   useEffect(() => {
-    const postsConfig = {
-      ...getMyPosts,
-      userId,
-    };
-    const commentsConfig = {
-      ...getMyComments,
-      userId,
-    };
-    const bookmarkConfig = {
-      ...getMyBookmarkPosts,
-      userId,
-    };
-    dispatch(getMyCommentsThunk(commentsConfig));
-    dispatch(getMyPostsThunk(postsConfig));
-    dispatch(getMyCommentsThunk(bookmarkConfig));
-  }, []);
+    const update = tabNavOptions.map((option, index) => ({
+      ...option,
+      tab: ReactElements[index],
+    }));
+    setTabNaviOptions(update);
+  }, [myComment, myPost, myBookmark]);
 
   return <ProfileViewer handleNavigation={handleNavigation} tabNavOptions={tabNavOptions} />;
 };

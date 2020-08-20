@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from '../Atoms';
-import { ImageSourcePropType } from 'react-native';
+import { ImageSourcePropType, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
 import { MarginStyleProps } from '~/@types';
 import { marginStyles } from '~/styles/mixin';
@@ -20,6 +20,7 @@ interface IconMsgProps extends StyleProps {
   imgSrc: ImageSourcePropType;
   width?: string;
   height?: string;
+  onPress?: () => void;
 }
 
 const IconMsg = ({
@@ -32,6 +33,7 @@ const IconMsg = ({
   direction,
   width,
   height,
+  onPress,
 }: IconMsgProps) => {
   return (
     <Container
@@ -40,7 +42,7 @@ const IconMsg = ({
       marginRight={marginRight}
       marginTop={marginTop}
       direction={direction}>
-      <Image imgSrc={imgSrc} width={width} height={height} />
+      <Image imgSrc={imgSrc} width={width} height={height} onPress={onPress} />
       {children}
     </Container>
   );

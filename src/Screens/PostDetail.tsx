@@ -9,11 +9,13 @@ import { SectionWrapper, NoSafeArea } from '~/Components/Templates';
 import PostDetailCard from '~/Components/Molecules/PostDetailCard';
 import { Colbox, Toast } from '~/Components/Atoms';
 import { Comment, StickyKeyboard } from '~/Components/Molecules';
-import { getUniqueKey } from '~/lib';
+import { getUniqueKey, callApi } from '~/lib';
 import { useHandleInput } from '~/hooks';
 import { RootState } from '~/store/modules';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { TextInput, Platform } from 'react-native';
+import { postLike, postBookmark, deleteBookmark, getDetailedPost } from '~/api';
+import { postLikeThunk, postBookmarkThunk, getPostDetailThunk } from '~/store/modules/post/thunks';
 
 const Scroll = styled.ScrollView``;
 interface PostDetailProps {
@@ -22,13 +24,18 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ navigation, route }: PostDetailProps) => {
-  const { post, handlePostCommnet } = route.params as PostDetailParams;
+  const { handlePostCommnet } = route.params as PostDetailParams;
+  const dispatch = useDispatch();
   const {
     loading: { 'post/POST_COMMENT_LOADING': postCommentIsLoading },
     post: {
       postDetail: {
         comment: { commentList },
+        post,
       },
+    },
+    auth: {
+      accessToken: { token: accessToken },
     },
   } = useSelector((state: RootState) => state);
 
@@ -44,6 +51,37 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
     handlePostCommnet(post.detailedPost.id, commentBinder.text);
     if (Platform.OS === 'ios') inputRef.current?.setNativeProps({ text: '' });
     else inputRef.current?.clear();
+  };
+
+  const handlePressLike = (postId: number) => {
+    const config = {
+      ...postLike,
+      postId,
+    };
+    dispatch(postLikeThunk(config));
+  };
+
+  const handlePressBookmark = (postId: number) => {
+    const config = {
+      ...postBookmark,
+      postId,
+    };
+    dispatch(postBookmarkThunk(config));
+  };
+  const handlePressDeleteBookmark = async (postId: number) => {
+    const config = {
+      ...deleteBookmark,
+      postId,
+      headers: {
+        accessToken,
+      },
+    };
+    const option = {
+      ...getDetailedPost,
+      postId,
+    };
+    await callApi(config);
+    dispatch(getPostDetailThunk(option));
   };
 
   useEffect(() => {
@@ -70,7 +108,12 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
           marginBottom: keyboardHeigth,
         }}>
         <SectionWrapper justifyContent="flex-start">
-          <PostDetailCard postDetailProps={post} />
+          <PostDetailCard
+            postDetailProps={post}
+            handlePressLike={handlePressLike}
+            handlePressBookmark={handlePressBookmark}
+            handlePressDeleteBookmark={handlePressDeleteBookmark}
+          />
           <Colbox marginTop="15px">
             {commentList.length > 0 &&
               commentList.map(({ id, content, createdDate, modifiedDate, postId, writer }) => (
