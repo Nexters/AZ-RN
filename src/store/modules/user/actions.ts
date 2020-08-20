@@ -1,6 +1,7 @@
 import { createAsyncAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
 import { UserStateTypes, ReqError } from './types';
+import { Post, Comment } from '../post/types';
 
 export const VERIFY_ID = 'auth/VERIFY_ID';
 export const VERIFY_ID_SUCCESS = 'auth/VERIFY_ID_SUCCESS';
@@ -34,10 +35,10 @@ export const LoadMyPostsRequestAsync = createAsyncAction(
   LOAD_MY_POSTS,
   LOAD_MY_POSTS_SUCCESS,
   LOAD_MY_POSTS_FAILURE,
-)<void, UserStateTypes, ReqError>();
+)<void, Post, ReqError>();
 
 export const LoadMyCommentsRequestAsync = createAsyncAction(
   LOAD_MY_COMMENTS,
   LOAD_MY_COMMENTS_SUCCESS,
   LOAD_MY_COMMENTS_FAILURE,
-)<void, UserStateTypes, ReqError>();
+)<void, Comment, ReqError>();

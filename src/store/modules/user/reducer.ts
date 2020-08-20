@@ -7,12 +7,29 @@ import {
   VERIFY_NICKNAME_FAILURE,
   LOAD_MY_COMMENTS_SUCCESS,
   LOAD_MY_POSTS_SUCCESS,
+  LOAD_MY_POSTS_FAILURE,
 } from './actions';
 
 const initialState: UserStateTypes = {
   duplicateCheck: {
     isIdUsed: undefined,
     isNicknameUsed: undefined,
+  },
+  myComment: {
+    commentList: [],
+    simplePage: {
+      currentPage: 0,
+      totalElements: 0,
+      totalPages: 0,
+    },
+  },
+  myPost: {
+    posts: [],
+    simplePage: {
+      currentPage: 0,
+      totalPages: 0,
+      totalElements: 0,
+    },
   },
   error: '',
   status: 401,
@@ -55,11 +72,19 @@ const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
   [LOAD_MY_COMMENTS_SUCCESS]: (state, action) => {
     return {
       ...state,
+      myComment: action.payload,
     };
   },
   [LOAD_MY_POSTS_SUCCESS]: (state, action) => {
     return {
       ...state,
+      myPost: action.payload,
+    };
+  },
+  [LOAD_MY_POSTS_FAILURE]: (state, action) => {
+    return {
+      ...state,
+      ...action.payload,
     };
   },
 });
