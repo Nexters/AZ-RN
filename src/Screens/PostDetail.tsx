@@ -12,8 +12,10 @@ import { Comment, StickyKeyboard } from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
 import { useHandleInput } from '~/hooks';
 import { RootState } from '~/store/modules';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { TextInput, Platform } from 'react-native';
+import { postCreateLike, postCreateBookmark } from '~/api';
+import { postCreateLikeThunk } from '~/store/modules/post/thunks';
 
 const Scroll = styled.ScrollView``;
 interface PostDetailProps {
@@ -22,12 +24,14 @@ interface PostDetailProps {
 }
 
 const PostDetail = ({ navigation, route }: PostDetailProps) => {
-  const { post, handlePostCommnet } = route.params as PostDetailParams;
+  const { handlePostCommnet } = route.params as PostDetailParams;
+  const dispatch = useDispatch();
   const {
     loading: { 'post/POST_COMMENT_LOADING': postCommentIsLoading },
     post: {
       postDetail: {
         comment: { commentList },
+        post,
       },
     },
   } = useSelector((state: RootState) => state);
@@ -44,6 +48,14 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
     handlePostCommnet(post.detailedPost.id, commentBinder.text);
     if (Platform.OS === 'ios') inputRef.current?.setNativeProps({ text: '' });
     else inputRef.current?.clear();
+  };
+
+  const handlePressLike = (postId: number) => {
+    const config = {
+      ...postCreateLike,
+      postId,
+    };
+    dispatch(postCreateLikeThunk(config));
   };
 
   useEffect(() => {
@@ -70,7 +82,7 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
           marginBottom: keyboardHeigth,
         }}>
         <SectionWrapper justifyContent="flex-start">
-          <PostDetailCard postDetailProps={post} />
+          <PostDetailCard postDetailProps={post} handlePressLike={handlePressLike} />
           <Colbox marginTop="15px">
             {commentList.length > 0 &&
               commentList.map(({ id, content, createdDate, modifiedDate, postId, writer }) => (

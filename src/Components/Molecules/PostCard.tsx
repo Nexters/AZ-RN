@@ -113,6 +113,7 @@ const PostCard = ({
           <Text text={content} {...fontStyle} color={DARK_GREY} />
         </Rowbox>
         <HearAndComment
+          pressLike={pressLike}
           heartCount={likes}
           commentCount={commentCount}
           heartWidth="20px"

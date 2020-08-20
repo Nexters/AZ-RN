@@ -74,7 +74,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     dispatch(logout());
   };
 
-  const [tabNavOptions, setTabNavOptions] = useState([
+  let tabNavOptions = [
     {
       id: 1,
       isActivation: true,
@@ -125,7 +125,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
       inactivationIcon: naviSettingGreyPng,
       activationIcon: naviSettingPurplePng,
     },
-  ]);
+  ];
 
   const handleNavigation = (id: number) => {
     const updateTabOptions = tabNavOptions.map((tabOption) => {
@@ -141,7 +141,7 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
         };
       }
     });
-    setTabNavOptions(updateTabOptions);
+    tabNavOptions = updateTabOptions;
   };
 
   useEffect(() => {

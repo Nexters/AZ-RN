@@ -3,6 +3,7 @@ import { Rowbox, Text } from '../Atoms';
 import IconMsg from './IconMsg';
 import { DARK_GREY } from '~/constants/Colors';
 import heartPng from '@png/heart.png';
+import emptyHeartPng from '@png/empty_heart.png';
 import commentPng from '@png/comment.png';
 
 type HearAndCommentProps = {
@@ -12,6 +13,8 @@ type HearAndCommentProps = {
   heartHeight: string;
   commentWidth: string;
   commentHeight: string;
+  pressLike: boolean;
+  onPressHeart?: () => void;
 };
 
 const HearAndComment = ({
@@ -21,10 +24,16 @@ const HearAndComment = ({
   heartHeight,
   commentWidth,
   commentHeight,
+  pressLike,
+  onPressHeart,
 }: HearAndCommentProps) => {
   return (
     <Rowbox width="auto">
-      <IconMsg imgSrc={heartPng} height={heartWidth} width={heartHeight}>
+      <IconMsg
+        imgSrc={pressLike ? heartPng : emptyHeartPng}
+        onPress={pressLike ? undefined : onPressHeart}
+        height={heartWidth}
+        width={heartHeight}>
         <Text
           text={`${heartCount}개`}
           fontSize="11px"
@@ -33,11 +42,7 @@ const HearAndComment = ({
           marginLeft="5px"
         />
       </IconMsg>
-      <IconMsg
-        imgSrc={commentPng}
-        marginLeft="15px"
-        height={commentWidth}
-        width={commentHeight}>
+      <IconMsg imgSrc={commentPng} marginLeft="15px" height={commentWidth} width={commentHeight}>
         <Text
           text={`${commentCount}개`}
           fontSize="11px"

@@ -58,11 +58,7 @@ const ImageViewer = ({
       marginRight={marginRight}
     />
   );
-  return onPress ? (
-    <TouchableOpacity onPress={onPress}>{ImgType}</TouchableOpacity>
-  ) : (
-    ImgType
-  );
+  return onPress ? <TouchableOpacity onPress={onPress}>{ImgType}</TouchableOpacity> : ImgType;
 };
 
 export default ImageViewer;

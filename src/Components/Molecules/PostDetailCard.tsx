@@ -4,6 +4,7 @@ import { WHITE, DARK_GREY } from '~/constants/Colors';
 import { Rowbox, Colbox, Text, Image } from '../Atoms';
 import HearAndComment from './HearAndComment';
 import emptyBookmark from '@png/empty_bookmark.png';
+import fillBookmark from '@png/fill_bookmark.png';
 import Layout from '~/constants/Layout';
 import { PostDetail } from '~/store/modules/post/types';
 
@@ -20,9 +21,10 @@ const Card = styled.View`
 
 interface PostDetailCard {
   postDetailProps: PostDetail;
+  handlePressLike: (postId: number) => void;
 }
 
-const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
+const PostDetailCard = ({ postDetailProps, handlePressLike }: PostDetailCard) => {
   const {
     id,
     author,
@@ -35,10 +37,26 @@ const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
     createdDate,
     modifiedDate,
   } = postDetailProps.detailedPost;
+
+  const onPressHeart = () => {
+    handlePressLike(id);
+  };
+
   return (
     <Card>
       <Rowbox justifyContent="flex-end">
-        <Image imgSrc={emptyBookmark} width="16px" height="17px" />
+        {pressBookMark ? (
+          <Image imgSrc={fillBookmark} width="16px" height="17px" />
+        ) : (
+          <Image
+            imgSrc={emptyBookmark}
+            width="16px"
+            height="17px"
+            onPress={() => {
+              //
+            }}
+          />
+        )}
       </Rowbox>
       <Colbox>
         <Rowbox align="center" width="100%" height="182px" marginBottom="9px">
@@ -56,6 +74,8 @@ const PostDetailCard = ({ postDetailProps }: PostDetailCard) => {
           <HearAndComment
             heartCount={likes}
             commentCount={commentCount}
+            pressLike={pressLike}
+            onPressHeart={onPressHeart}
             heartWidth="20px"
             heartHeight="20px"
             commentWidth="16px"

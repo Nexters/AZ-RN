@@ -56,3 +56,13 @@ export const getMyBookmarkPosts = {
   url: `${url}/v1/api/users/:userId/bookmark/posts`,
   method: 'get',
 };
+export const postCreateLike = {
+  // 게시글 좋아요
+  url: `${url}/v1/api/posts/:postId/likes`,
+  method: 'post',
+};
+export const postCreateBookmark = {
+  // 게시글 북마크
+  url: `${url}/v1/api/users/bookmark/posts/:postId`,
+  method: 'post',
+};

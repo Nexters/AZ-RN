@@ -22,6 +22,10 @@ export const POST_COMMENT = 'post/POST_COMMENT';
 export const POST_COMMENT_SUCCESS = 'post/POST_COMMENT_SUCCESS';
 export const POST_COMMENT_FAILURE = 'post/POST_COMMENT_FAILURE';
 
+export const POST_LIKE = 'post/POST_LIKE';
+export const POST_LIKE_SUCCESS = 'post/POST_LIKE_SUCCESS';
+export const POST_LIKE_FAILURE = 'post/POST_LIKE_FAILURE';
+
 export const createPostRequestAsync = createAsyncAction(
   CREATE_POST,
   CREATE_POST_SUCCESS,
@@ -51,3 +55,9 @@ export const postCommentRequestAsync = createAsyncAction(
   POST_COMMENT_SUCCESS,
   POST_COMMENT_FAILURE,
 )<void, DetailedComment, AxiosError>();
+
+export const postCreateLikeRequestAsync = createAsyncAction(
+  POST_LIKE,
+  POST_LIKE_SUCCESS,
+  POST_LIKE_FAILURE,
+)<void, PostDetail, AxiosError>();
