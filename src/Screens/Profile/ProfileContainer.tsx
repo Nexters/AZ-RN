@@ -8,21 +8,10 @@ import naviSettingGreyPng from '@png/navi_setting_grey.png';
 import naviSettingPurplePng from '@png/navi_setting_purple.png';
 import naviPencilGreyPng from '@png/navi_pencil_grey.png';
 import naviPencilPurplePng from '@png/navi_pencil_purple.png';
-import {
-  getMyPosts,
-  getMyComments,
-  getCommnets,
-  getDetailedPost,
-  postComment,
-  getMyBookmarkPosts,
-} from '~/api';
+import { getCommnets, getDetailedPost, postComment } from '~/api';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '~/store/modules';
-import {
-  getMyCommentsThunk,
-  getMyPostsThunk,
-  getMyBookmarkPostsThunk,
-} from '~/store/modules/user/thunks';
+
 import { StackNavigationProp } from '@react-navigation/stack';
 import { LoginStackParams } from '~/@types';
 import {
@@ -39,9 +28,9 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
   const dispatch = useDispatch();
   const {
     auth: {
-      user: { id: userId },
+      user: { id: userId, nickname },
     },
-    user: { myComment, myPost, myBookmark },
+    user: { myComment, myPost, myBookmark, ratingForPromotion },
   } = useSelector((state: RootState) => state);
 
   const handleNavigateToPostDeatil = async (postId: number) => {
@@ -177,7 +166,14 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     setTabNaviOptions(update);
   }, [myComment, myPost, myBookmark]);
 
-  return <ProfileViewer handleNavigation={handleNavigation} tabNavOptions={tabNavOptions} />;
+  return (
+    <ProfileViewer
+      handleNavigation={handleNavigation}
+      tabNavOptions={tabNavOptions}
+      ratingForPromotion={ratingForPromotion}
+      nickname={nickname}
+    />
+  );
 };
 
 export default ProfileContainer;

@@ -6,6 +6,7 @@ import getUniqueKey from './getUniqueKey';
 import arrayConditionCheck from './arrayConditionCheck';
 import makeUrlOptions from './makeUrlOptions';
 import textValidation from './textValidation';
+import getLevelType from './getLevelType';
 
 export {
   callApi,
@@ -16,4 +17,5 @@ export {
   arrayConditionCheck,
   makeUrlOptions,
   textValidation,
+  getLevelType,
 };
