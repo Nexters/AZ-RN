@@ -2,15 +2,13 @@ import { createReducer } from 'typesafe-actions';
 import { PostActions, AuthStateTypes } from './types';
 import { CREATE_ACCOUNT_SUCCESS, CREATE_ACCOUNT_FAILURE, LOGOUT } from './actions';
 
-// public enum Rating {
-
 const initialState: AuthStateTypes = {
   isAuthenticated: false,
   user: {
     id: 0,
     identification: '',
     nickname: '',
-    rating: '',
+    rating: 'NEW_RECRUIT',
   },
   accessToken: {
     token: '',

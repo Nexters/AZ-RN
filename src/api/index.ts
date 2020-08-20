@@ -71,3 +71,8 @@ export const deleteBookmark = {
   url: `${url}/v1/api/users/bookmark/posts/:postId`,
   method: 'delete',
 };
+export const getRatingStatus = {
+  // 다음 레벨 조건
+  url: `${url}/v1/api/users/:userId/rating`,
+  method: 'get',
+};

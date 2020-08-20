@@ -20,5 +20,11 @@ export interface User {
   id: number;
   identification: string;
   nickname: string;
-  rating: 'NEW_RECRUIT' | 'ASSISTANT_MANAGE' | 'DEPARTMENT_HEAD' | 'MANAGING_DIRECTOR' | 'BOSS';
+  rating: Rating;
 }
+export type Rating =
+  | 'NEW_RECRUIT'
+  | 'ASSISTANT_MANAGE'
+  | 'DEPARTMENT_HEAD'
+  | 'MANAGING_DIRECTOR'
+  | 'BOSS';

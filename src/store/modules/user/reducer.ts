@@ -7,8 +7,8 @@ import {
   VERIFY_NICKNAME_FAILURE,
   LOAD_MY_COMMENTS_SUCCESS,
   LOAD_MY_POSTS_SUCCESS,
-  LOAD_MY_POSTS_FAILURE,
   LOAD_MY_BOOKMARK_POSTS_SUCCESS,
+  LOAD_RATING_SUCCESS,
 } from './actions';
 
 const initialState: UserStateTypes = {
@@ -39,6 +39,14 @@ const initialState: UserStateTypes = {
       totalPages: 0,
       totalElements: 0,
     },
+  },
+  ratingForPromotion: {
+    currentRating: 'NEW_RECRUIT',
+    nextRating: 'NEW_RECRUIT',
+    postCountForPromotion: 0,
+    commentCountForPromotion: 0,
+    progress: 0,
+    message: '',
   },
   error: '',
   status: 401,
@@ -94,6 +102,12 @@ const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
     return {
       ...state,
       myBookmark: action.payload,
+    };
+  },
+  [LOAD_RATING_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      ...action.payload,
     };
   },
 });
