@@ -56,12 +56,7 @@ const RadiusButton = ({
       marginBottom={marginBottom}
       marginRight={marginRight}
       borderRadius={borderRadius}>
-      <Text
-        color={color}
-        text={text}
-        fontSize={fontSize}
-        fontWeight={fontWeight}
-      />
+      <Text color={color} text={text} fontSize={fontSize} fontWeight={fontWeight} />
     </Container>
   );
 };

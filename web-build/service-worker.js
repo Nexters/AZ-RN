@@ -11,11 +11,9 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
 
-importScripts(
-  "/precache-manifest.21f54e9022b658aa3948d450137016bd.js"
-);
+importScripts('/precache-manifest.21f54e9022b658aa3948d450137016bd.js');
 
 workbox.skipWaiting();
 workbox.clientsClaim();
@@ -29,9 +27,15 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("index.html", {
-  
-  blacklist: [/^\/_/,/\/[^/]+\.[^/]+$/],
+workbox.routing.registerNavigationRoute('index.html', {
+  blacklist: [/^\/_/, /\/[^/]+\.[^/]+$/],
 });
 
-workbox.routing.registerRoute(/^https?.*/, workbox.strategies.networkFirst({ "cacheName":"offlineCache", plugins: [new workbox.expiration.Plugin({"maxEntries":200,"purgeOnQuotaError":false})] }), 'GET');
+workbox.routing.registerRoute(
+  /^https?.*/,
+  workbox.strategies.networkFirst({
+    cacheName: 'offlineCache',
+    plugins: [new workbox.expiration.Plugin({ maxEntries: 200, purgeOnQuotaError: false })],
+  }),
+  'GET',
+);

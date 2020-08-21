@@ -6,9 +6,7 @@ type HideScrollbarProps = {
 };
 
 const HideScrollbarWrapper = ({ children }: HideScrollbarProps) => {
-  return (
-    <ScrollView showsVerticalScrollIndicator={false}>{children}</ScrollView>
-  );
+  return <ScrollView showsVerticalScrollIndicator={false}>{children}</ScrollView>;
 };
 
 export default HideScrollbarWrapper;
