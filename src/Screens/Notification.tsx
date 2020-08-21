@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import styled from 'styled-components/native';
-import { RefreshControl } from 'react-native';
+import { RefreshControl, Platform, TouchableOpacity } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import { BackgroundContainer } from '~/Components/Templates';
 import { NotiCard } from '~/Components/Molecules';
@@ -16,7 +17,6 @@ import {
 } from '~/store/modules/post/thunks';
 import { getCommnets, getDetailedPost, postComment, getNotifications } from '~/api';
 import { getNotificationsThunk } from '~/store/modules/user/thunks';
-import { WHITE } from '~/constants/Colors';
 
 const ScrollView = styled.ScrollView``;
 
@@ -56,6 +56,7 @@ const Notification = ({ navigation }: NotificationProps) => {
       ...getDetailedPost,
       postId,
     };
+
     await dispatch(getCommentsThunk(config));
     await dispatch(getPostDetailThunk(option));
 
@@ -75,6 +76,23 @@ const Notification = ({ navigation }: NotificationProps) => {
     });
   };
 
+  useLayoutEffect(() => {
+    Platform.OS === 'web' &&
+      navigation.setOptions({
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <FontAwesome5 name="arrow-left" size={20} color="white" />
+          </TouchableOpacity>
+        ),
+        headerLeftContainerStyle: {
+          paddingLeft: 20,
+        },
+      });
+  }, []);
+
   return (
     <BackgroundContainer>
       <ScrollView
@@ -86,20 +104,18 @@ const Notification = ({ navigation }: NotificationProps) => {
           />
         }>
         {notifications.length > 0 &&
-          notifications.map(
-            ({ message, noticeId, noticeType, postId, detailedPost, createdDate }) => (
-              <NotiCard
-                onPress={() => {
-                  handleNavigateToPostDeatil(postId);
-                }}
-                type={noticeType === 'COMMENT' ? '댓글' : '좋아요'}
-                content={detailedPost.content}
-                description={message}
-                createdAt={createdDate}
-                key={getUniqueKey(noticeId)}
-              />
-            ),
-          )}
+          notifications.map(({ message, noticeId, noticeType, detailedPost, createdDate }) => (
+            <NotiCard
+              onPress={() => {
+                handleNavigateToPostDeatil(detailedPost.id);
+              }}
+              type={noticeType === 'COMMENT' ? '댓글' : '좋아요'}
+              content={detailedPost.content}
+              description={message}
+              createdAt={createdDate}
+              key={getUniqueKey(noticeId)}
+            />
+          ))}
       </ScrollView>
     </BackgroundContainer>
   );

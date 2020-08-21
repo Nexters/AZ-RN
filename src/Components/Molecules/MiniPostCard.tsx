@@ -42,13 +42,13 @@ const MiniPostCard = ({ marginBottom, postOption, handleNavigateToPostDeatil }: 
                 <Text fontSize="16px" fontWeight={800} text={post.content} color="#333333" />
               </Rowbox>
               <Rowbox width="auto">
-                <Image
+                {/* <Image
                   imgSrc={crownPng}
                   marginLeft="4px"
                   width="22px"
                   height="18px"
                   marginRight="5px"
-                />
+                /> */}
                 {post.pressBookMark && (
                   <Image imgSrc={fillBookmarkPng} marginLeft="4px" width="18px" height="18px" />
                 )}

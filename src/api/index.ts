@@ -88,5 +88,5 @@ export const postLogin = {
 export const getPopularPosts = {
   // 인기 글 리스트
   url: `${url}/v1/api/posts/popular?currentPage=:currentPage&size=:size`,
-  method: 'post',
+  method: 'get',
 };

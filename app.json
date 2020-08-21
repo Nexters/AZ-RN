@@ -2,9 +2,9 @@
   "expo": {
     "name": "AZ",
     "slug": "AZ-iOS",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -13,12 +13,17 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["assets/**/*"],
+    "assetBundlePatterns": [
+      "assets/**/*"
+    ],
     "ios": {
       "bundleIdentifier": "com.devgw.AZ-iOS"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "android": {
+      "package": "com.devgw.AZiOS"
     }
   }
 }

@@ -25,10 +25,10 @@ import {
 } from '~/store/modules/post/thunks';
 import { RootState } from '~/store/modules';
 import {
+  getMyRatingThunk,
   getMyCommentsThunk,
   getMyPostsThunk,
   getMyBookmarkPostsThunk,
-  getMyRatingThunk,
   getNotificationsThunk,
 } from '~/store/modules/user/thunks';
 
@@ -77,6 +77,8 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       currentPage: 1,
       size: 200,
     };
+    console.log('option', option);
+
     dispatch(getPopularPostsThunk(option));
     dispatch(getPostsThunk(config));
     setIsLoading(false);

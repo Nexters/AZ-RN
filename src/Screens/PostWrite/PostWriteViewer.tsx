@@ -2,7 +2,6 @@ import React from 'react';
 import { BackgroundContainer, SectionWrapper } from '~/Components/Templates';
 import { TextArea } from '~/Components/Atoms';
 import { InputBindType } from '~/hooks/useHandleInput';
-import { TouchableOpacity } from 'react-native';
 
 interface PostWriteProps {
   textAreaBinder: InputBindType;

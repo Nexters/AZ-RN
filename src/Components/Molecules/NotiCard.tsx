@@ -8,9 +8,10 @@ import HorizontalBar from '../Atoms/HorizontalBar';
 const Touchable = styled.TouchableOpacity``;
 const Notification = styled.View`
   flex-direction: row;
-  height: 120px;
+  min-height: 120px;
   padding-left: ${`${Layout.width / 18}px`};
   padding-right: ${`${Layout.width / 18}px`};
+  margin-bottom: 20px;
 `;
 const LeftArea = styled.View`
   flex: 1;
@@ -37,13 +38,7 @@ type NotiCardProps = {
   onPress: () => void;
 };
 
-const NotiCard = ({
-  onPress,
-  type,
-  content,
-  description,
-  createdAt,
-}: NotiCardProps) => {
+const NotiCard = ({ onPress, type, content, description, createdAt }: NotiCardProps) => {
   return (
     <Touchable onPress={onPress} activeOpacity={0.7}>
       <Notification>
@@ -53,13 +48,8 @@ const NotiCard = ({
           </Type>
         </LeftArea>
         <RightArea>
-          <Colbox marginTop="33px">
-            <Text
-              fontSize="16px"
-              text={content}
-              fontWeight={800}
-              color={WHITE}
-            />
+          <Colbox marginTop="20px">
+            <Text fontSize="16px" text={content} fontWeight={800} color={WHITE} />
             <Text
               fontSize="14px"
               text={description}

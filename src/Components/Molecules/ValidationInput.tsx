@@ -42,6 +42,7 @@ const ValidationInput = ({
         autoCapitalize="none"
         autoCorrect={false}
         placeholder={placeholder}
+        placeholderTextColor="red"
         onBlur={onBlur}
         isAvailable={!isUsed}
         secureTextEntry={secureTextEntry}
