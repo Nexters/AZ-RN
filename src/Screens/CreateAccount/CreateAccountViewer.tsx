@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard, TextInput, Platform } from 'react-native';
 
 import { BackgroundContainer } from '~/Components/Templates';
 import Layout from '~/constants/Layout';
@@ -9,7 +9,9 @@ import { WHITE, PURPLE } from '~/constants/Colors';
 import { ValidationInput } from '~/Components/Molecules';
 import { InputBindType } from '~/hooks/useHandleInput';
 import { getUniqueKey } from '~/lib';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 
+const STextInput = styled.TextInput``;
 const AvoidWrapper = styled.View`
   flex: 1;
   padding-left: ${`${Layout.width / 18}px`};

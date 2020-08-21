@@ -6,10 +6,10 @@ import {
   LOGOUT,
   POST_LOGIN_SUCCESS,
   POST_LOGIN_FAILURE,
+  RESET,
 } from './actions';
 
 const initialState: AuthStateTypes = {
-  isAuthenticated: false,
   user: {
     id: 0,
     identification: '',
@@ -22,7 +22,7 @@ const initialState: AuthStateTypes = {
   },
   refreshToken: '',
   error: '',
-  status: 401,
+  status: 400,
 };
 
 const authReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
@@ -52,6 +52,10 @@ const authReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
   },
   [LOGOUT]: () => ({
     ...initialState,
+  }),
+  [RESET]: () => ({
+    ...initialState,
+    status: 400,
   }),
 });
 

@@ -9,6 +9,7 @@ import { KeyboardAvoidingViewer, BackgroundContainer } from '~/Components/Templa
 import Layout from '~/constants/Layout';
 import section_png from '@png/section.png';
 import { NonLoginStackTypes } from '~/@types';
+import { InputBindType } from '~/hooks/useHandleInput';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -24,9 +25,11 @@ const Touchable = styled.TouchableOpacity``;
 type LoginProps = {
   handleLogin: () => void;
   handleNavigate: (to: NonLoginStackTypes) => void;
+  idBinder: InputBindType;
+  pwdBinder: InputBindType;
 };
 
-const LoginViewer = ({ handleLogin, handleNavigate }: LoginProps) => {
+const LoginViewer = ({ handleLogin, handleNavigate, idBinder, pwdBinder }: LoginProps) => {
   return (
     <BackgroundContainer>
       <KeyboardAvoidingViewer>
@@ -35,11 +38,13 @@ const LoginViewer = ({ handleLogin, handleNavigate }: LoginProps) => {
             <Image imgSrc={section_png} marginTop={ifIphoneX(`${Layout.height / 12}px`, '0')} />
             <MiddleBox>
               <BottomLineInput
+                inputBinder={idBinder}
                 marginBottom={'30px'}
                 placeholder="아이디"
                 keyboardType="email-address"
               />
               <BottomLineInput
+                inputBinder={pwdBinder}
                 marginBottom={'15px'}
                 secureTextEntry={true}
                 placeholder="패스워드"

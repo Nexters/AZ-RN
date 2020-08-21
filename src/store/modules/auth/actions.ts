@@ -12,6 +12,8 @@ export const POST_LOGIN_FAILURE = 'auth/POST_LOGIN_FAILURE';
 
 export const LOGOUT = 'auth/LOGOUT';
 
+export const RESET = 'auth/RESET';
+
 export const createAccountRequestAsync = createAsyncAction(
   CREATE_ACCOUNT,
   CREATE_ACCOUNT_SUCCESS,
@@ -25,3 +27,4 @@ export const postLoginRequestAsync = createAsyncAction(
 )<void, AuthStateTypes, AxiosError>();
 
 export const logout = createAction(LOGOUT)<void>();
+export const reset = createAction(RESET)<void>();

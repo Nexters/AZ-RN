@@ -4,7 +4,6 @@ import { ActionType } from 'typesafe-actions';
 export type PostActions = ActionType<typeof actions>;
 
 export interface AuthStateTypes {
-  isAuthenticated: boolean;
   user: User;
   accessToken: AccessToken;
   refreshToken: string;
