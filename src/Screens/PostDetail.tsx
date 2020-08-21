@@ -14,8 +14,16 @@ import { useHandleInput } from '~/hooks';
 import { RootState } from '~/store/modules';
 import { useSelector, useDispatch } from 'react-redux';
 import { TextInput, Platform } from 'react-native';
-import { postLike, postBookmark, deleteBookmark, getDetailedPost } from '~/api';
+import {
+  postLike,
+  postBookmark,
+  deleteBookmark,
+  getDetailedPost,
+  getMyBookmarkPosts,
+  getMyPosts,
+} from '~/api';
 import { postLikeThunk, postBookmarkThunk, getPostDetailThunk } from '~/store/modules/post/thunks';
+import { getMyBookmarkPostsThunk, getMyPostsThunk } from '~/store/modules/user/thunks';
 
 const Scroll = styled.ScrollView``;
 interface PostDetailProps {
@@ -36,6 +44,7 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
     },
     auth: {
       accessToken: { token: accessToken },
+      user: { id: userId },
     },
   } = useSelector((state: RootState) => state);
 
@@ -52,13 +61,28 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
     if (Platform.OS === 'ios') inputRef.current?.setNativeProps({ text: '' });
     else inputRef.current?.clear();
   };
-
+  const loadBookmark = () => {
+    const config = {
+      ...getMyBookmarkPosts,
+      userId,
+    };
+    dispatch(getMyBookmarkPostsThunk(config));
+  };
+  const loadMyPosts = () => {
+    const config = {
+      ...getMyPosts,
+      userId,
+    };
+    dispatch(getMyPostsThunk(config));
+  };
   const handlePressLike = (postId: number) => {
     const config = {
       ...postLike,
       postId,
     };
     dispatch(postLikeThunk(config));
+    loadBookmark();
+    loadMyPosts();
   };
 
   const handlePressBookmark = (postId: number) => {
@@ -67,8 +91,10 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
       postId,
     };
     dispatch(postBookmarkThunk(config));
+    loadBookmark();
+    loadMyPosts();
   };
-  const handlePressDeleteBookmark = async (postId: number) => {
+  const handlePressDeleteBookmark = (postId: number) => {
     const config = {
       ...deleteBookmark,
       postId,
@@ -80,7 +106,7 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
       ...getDetailedPost,
       postId,
     };
-    await callApi(config);
+    callApi(config);
     dispatch(getPostDetailThunk(option));
   };
 

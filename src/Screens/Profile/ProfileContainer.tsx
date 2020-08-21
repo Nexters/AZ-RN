@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -31,6 +31,7 @@ import naviSettingPurplePng from '@png/navi_setting_purple.png';
 import naviPencilGreyPng from '@png/navi_pencil_grey.png';
 import naviPencilPurplePng from '@png/navi_pencil_purple.png';
 import { MiniPostCard, CommentLog, UnderBarArrow } from '~/Components/Molecules';
+import { usePrevious } from '~/hooks';
 
 interface ProfileProps {
   navigation: StackNavigationProp<LoginStackParams, 'Profile'>;
@@ -43,6 +44,8 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     },
     user: { myComment, myPost, myBookmark, ratingForPromotion },
   } = useSelector((state: RootState) => state);
+
+  const prevState = usePrevious({ myBookmark });
 
   const [isLoading, setIsLiading] = useState(false);
   const [number, setNumber] = useState(1);
@@ -148,6 +151,8 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
     const config = {
       ...getCommnets,
       postId,
+      currentPage: 1,
+      size: 200,
     };
     const option = {
       ...getDetailedPost,
@@ -179,8 +184,10 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
   };
 
   useEffect(() => {
-    loadMyPosts();
-    loadBookmark();
+    if (JSON.stringify(prevState?.myBookmark) !== JSON.stringify(myBookmark)) {
+      loadBookmark();
+      loadMyPosts();
+    }
   }, [myBookmark]);
 
   return (

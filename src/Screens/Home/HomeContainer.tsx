@@ -62,7 +62,7 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     const config = {
       ...getPosts,
       currentPage: 1,
-      size: 20,
+      size: 200,
     };
     dispatch(getPostsThunk(config));
     setIsLoading(false);
