@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  createStackNavigator,
-  TransitionPresets,
-} from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import { LoginStackParams } from '@types';
 
 import Home from '~/Screens/Home';

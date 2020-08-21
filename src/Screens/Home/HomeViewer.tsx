@@ -25,6 +25,8 @@ interface HomeProps {
   handleNavigateToPostDeatil: (postId: number) => void;
   showCreatePostToast: boolean;
   ratingForPromotion: RatingForPromotion;
+  loadPosts: () => void;
+  isLoading: boolean;
 }
 
 const HomeViewer = ({
@@ -33,6 +35,8 @@ const HomeViewer = ({
   handleNavigateToPostDeatil,
   showCreatePostToast,
   ratingForPromotion,
+  loadPosts,
+  isLoading,
 }: HomeProps) => {
   return (
     <>
@@ -44,7 +48,7 @@ const HomeViewer = ({
       />
       <BackgroundContainer bgColor={GREY_DARK}>
         <SafeAreaContainer>
-          <StickyScrollView stickyPosition={1}>
+          <StickyScrollView stickyPosition={1} isLoading={isLoading} fething={loadPosts}>
             <BackgroundContainer bgColor={DARK_GREY}>
               <SectionWrapper marginBottom="25px">
                 <IntroSentence ratingForPromotion={ratingForPromotion} />

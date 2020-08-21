@@ -13,6 +13,7 @@ import {
   getMyComments,
   getMyBookmarkPosts,
   getRatingStatus,
+  getNotifications,
 } from '~/api';
 import {
   getPostsThunk,
@@ -26,6 +27,7 @@ import {
   getMyPostsThunk,
   getMyBookmarkPostsThunk,
   getMyRatingThunk,
+  getNotificationsThunk,
 } from '~/store/modules/user/thunks';
 
 interface HomeProps {
@@ -49,9 +51,56 @@ const HomeContainer = ({ navigation }: HomeProps) => {
   } = useSelector((state: RootState) => state);
 
   const [showCreatePostToast, setShowCreatePostToast] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleNavigateToPostWrite = () => {
     navigation.navigate('PostWrite');
+  };
+
+  const loadPosts = () => {
+    setIsLoading(true);
+    const config = {
+      ...getPosts,
+      currentPage: 1,
+      size: 200,
+    };
+    dispatch(getPostsThunk(config));
+    setIsLoading(false);
+  };
+  const loadRating = () => {
+    const config = {
+      ...getRatingStatus,
+      userId,
+    };
+    dispatch(getMyRatingThunk(config));
+  };
+  const loadMyComments = () => {
+    const config = {
+      ...getMyComments,
+      userId,
+    };
+    dispatch(getMyCommentsThunk(config));
+  };
+  const loadMyPosts = () => {
+    const config = {
+      ...getMyPosts,
+      userId,
+    };
+    dispatch(getMyPostsThunk(config));
+  };
+  const loadBookmark = () => {
+    const config = {
+      ...getMyBookmarkPosts,
+      userId,
+    };
+    dispatch(getMyBookmarkPostsThunk(config));
+  };
+  const loadNotifications = () => {
+    const config = {
+      ...getNotifications,
+      userId,
+    };
+    dispatch(getNotificationsThunk(config));
   };
 
   const handleNavigateToPostDeatil = async (postId: number) => {
@@ -76,41 +125,28 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       };
       dispatch(postCommentThunk(config));
     };
-
     navigation.navigate('PostDetail', {
       handlePostCommnet,
     });
   };
 
   useEffect(() => {
-    const config = {
-      ...getPosts,
-      currentPage: 1,
-      size: 200,
-    };
-    const postsConfig = {
-      ...getMyPosts,
-      userId,
-    };
-    const commentsConfig = {
-      ...getMyComments,
-      userId,
-    };
-    const bookmarkConfig = {
-      ...getMyBookmarkPosts,
-      userId,
-    };
-    const ratingConfig = {
-      ...getRatingStatus,
-      userId,
-    };
-    dispatch(getMyRatingThunk(ratingConfig));
-    dispatch(getMyCommentsThunk(commentsConfig));
-    dispatch(getMyPostsThunk(postsConfig));
-    dispatch(getMyBookmarkPostsThunk(bookmarkConfig));
-    dispatch(getPostsThunk(config));
+    loadPosts();
+    loadRating();
+    loadMyComments();
+    loadMyPosts();
+    loadBookmark();
+    loadNotifications();
   }, []);
-
+  useEffect(() => {
+    loadRating();
+  }, [posts, commentList]);
+  useEffect(() => {
+    loadMyPosts();
+  }, [posts]);
+  useEffect(() => {
+    loadMyComments();
+  }, [commentList]);
   useEffect(() => {
     if (createPostIsLoading) {
       setTimeout(() => {
@@ -121,13 +157,6 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       }, 3000);
     }
   }, [createPostIsLoading]);
-  useEffect(() => {
-    const ratingConfig = {
-      ...getRatingStatus,
-      userId,
-    };
-    dispatch(getMyRatingThunk(ratingConfig));
-  }, [posts, commentList]);
 
   return (
     <HomeViewer
@@ -136,6 +165,8 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       handleNavigateToPostDeatil={handleNavigateToPostDeatil}
       showCreatePostToast={showCreatePostToast}
       ratingForPromotion={ratingForPromotion}
+      loadPosts={loadPosts}
+      isLoading={isLoading}
     />
   );
 };

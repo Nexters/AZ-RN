@@ -7,6 +7,7 @@ import {
   loadMyCommentsRequestAsync,
   loadMyBookmarkPostsRequestAsync,
   loadMyRatingRequestAsync,
+  loadNotificationsRequestAsync,
 } from './actions';
 
 export const postVerifyIdThunk = createAsyncThunk(verifyIdRequestAsync, callApi);
@@ -20,3 +21,5 @@ export const getMyCommentsThunk = createAsyncThunk(loadMyCommentsRequestAsync, c
 export const getMyBookmarkPostsThunk = createAsyncThunk(loadMyBookmarkPostsRequestAsync, callApi);
 
 export const getMyRatingThunk = createAsyncThunk(loadMyRatingRequestAsync, callApi);
+
+export const getNotificationsThunk = createAsyncThunk(loadNotificationsRequestAsync, callApi);

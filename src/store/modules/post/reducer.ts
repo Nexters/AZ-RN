@@ -18,7 +18,6 @@ import {
 import init from './initialState';
 
 const initialState: RootPost = init;
-
 const postReducer = createReducer<RootPost, PostActions>(initialState, {
   [LOAD_POSTS_SUCCESS]: (state, action) => {
     return {
@@ -89,14 +88,36 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
   },
   [POST_COMMENT_SUCCESS]: (state, action) => {
     const {
-      comment: { commentList, simplePage },
-      post,
-    } = state.postDetail;
-    const appendComment = [...commentList, action.payload.detailedComment];
+      postDetail: {
+        comment: { commentList, simplePage },
+        post: { detailedPost },
+      },
+      postList,
+    } = state;
+
+    const { detailedComment } = action.payload;
+    const appendComment = [...commentList, detailedComment];
+
+    const updatePosts = postList.posts.map((post) => {
+      if (post.id === detailedComment.postId) {
+        return { ...post, commentCount: post.commentCount + 1 };
+      } else {
+        return { ...post };
+      }
+    });
     return {
       ...state,
+      postList: {
+        posts: updatePosts,
+        simplePage: postList.simplePage,
+      },
       postDetail: {
-        post,
+        post: {
+          detailedPost: {
+            ...detailedPost,
+            commentCount: detailedPost.commentCount + 1,
+          },
+        },
         comment: {
           commentList: appendComment,
           simplePage,

@@ -1,3 +1,5 @@
+import { RootPost } from './types';
+
 export default {
   postList: {
     posts: [],
@@ -14,7 +16,7 @@ export default {
           id: 0,
           identification: '',
           nickname: '',
-          rating: '',
+          rating: 'NEW_RECRUIT',
         },
         bookMarkCount: 0,
         commentCount: 0,
@@ -36,4 +38,4 @@ export default {
       },
     },
   },
-};
+} as RootPost;

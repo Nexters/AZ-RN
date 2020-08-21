@@ -13,6 +13,7 @@ export type UserStateTypes = {
   myPost: Post;
   myBookmark: Post;
   ratingForPromotion: RatingForPromotion;
+  notification: Notification;
 };
 export type ReqError = {
   status: number;
@@ -29,4 +30,21 @@ export interface RatingForPromotion {
   commentCountForPromotion: number;
   progress: number;
   message: string;
+}
+export interface Notification {
+  detailedNoticeList: DetailedNoticeList[];
+  simplePage: SimplePage;
+}
+
+export interface DetailedNoticeList {
+  message: string;
+  noticeId: number;
+  noticeType: string;
+  postId: number;
+}
+
+export interface SimplePage {
+  currentPage: number;
+  totalElements: number;
+  totalPages: number;
 }

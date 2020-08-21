@@ -9,6 +9,7 @@ import {
   LOAD_MY_POSTS_SUCCESS,
   LOAD_MY_BOOKMARK_POSTS_SUCCESS,
   LOAD_RATING_SUCCESS,
+  LOAD_NOTIFICATION_SUCCESS,
 } from './actions';
 
 const initialState: UserStateTypes = {
@@ -47,6 +48,21 @@ const initialState: UserStateTypes = {
     commentCountForPromotion: 0,
     progress: 0,
     message: '',
+  },
+  notification: {
+    detailedNoticeList: [
+      {
+        message: '',
+        noticeId: 0,
+        noticeType: '',
+        postId: 0,
+      },
+    ],
+    simplePage: {
+      currentPage: 0,
+      totalElements: 0,
+      totalPages: 0,
+    },
   },
   error: '',
   status: 401,
@@ -108,6 +124,14 @@ const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
     return {
       ...state,
       ...action.payload,
+    };
+  },
+  [LOAD_NOTIFICATION_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      notification: {
+        ...action.payload,
+      },
     };
   },
 });

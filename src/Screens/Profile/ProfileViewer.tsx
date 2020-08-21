@@ -12,26 +12,41 @@ import { PURPLE, GREY_DARK, DARK_GREY } from '~/constants/Colors';
 import { BottomLineTabNavi, DeviceHeaderSticky, ProfileSentence } from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
 import { RatingForPromotion } from '~/store/modules/user/types';
+import { MiniPostCard, CommentLog, UnderBarArrow } from '~/Components/Molecules';
+import { Post, Comment } from '~/store/modules/post/types';
 
 type TabNavi = {
   id: number;
   isActivation: boolean;
-  tab: React.ReactNode;
   name: string;
   inactivationIcon: any;
   activationIcon: any;
 };
 interface ProfileProps {
-  tabNavOptions: TabNavi[];
-  handleNavigation: (id: number) => void;
   ratingForPromotion: RatingForPromotion;
   nickname: string;
+  handleNavigateToPostDeatil: (postId: number) => Promise<void>;
+  myComment: Comment;
+  myPost: Post;
+  myBookmark: Post;
+  tabNavOptions: TabNavi[];
+  handleLogout: () => void;
+  handleNavigation: (id: number) => void;
+  number: number;
+  handleNavi: (id: number) => JSX.Element;
 }
 const ProfileViewer = ({
-  handleNavigation,
-  tabNavOptions,
   ratingForPromotion,
   nickname,
+  handleNavigateToPostDeatil,
+  myComment,
+  myPost,
+  myBookmark,
+  handleLogout,
+  tabNavOptions,
+  handleNavigation,
+  number,
+  handleNavi,
 }: ProfileProps) => {
   return (
     <BackgroundContainer bgColor={GREY_DARK}>
@@ -40,31 +55,24 @@ const ProfileViewer = ({
           <SectionWrapper bgColor={DARK_GREY} paddingBottom="20px">
             <ProfileSentence ratingForPromotion={ratingForPromotion} nickname={nickname} />
             <Rowbox justifyContent="space-between">
-              {tabNavOptions.map(
-                ({ isActivation, name, activationIcon, inactivationIcon, id }, index) => (
-                  <BottomLineTabNavi
-                    text={name}
-                    fontWeight={500}
-                    fontSize="13px"
-                    onPress={() => {
-                      handleNavigation(id);
-                    }}
-                    imgSrc={isActivation ? activationIcon : inactivationIcon}
-                    isActivation={isActivation}
-                    activationColor={PURPLE}
-                    key={getUniqueKey(index)}
-                  />
-                ),
-              )}
+              {tabNavOptions.map(({ isActivation, activationIcon, inactivationIcon, id, name }) => (
+                <BottomLineTabNavi
+                  text={name}
+                  fontWeight={500}
+                  fontSize="13px"
+                  onPress={() => {
+                    handleNavigation(id);
+                  }}
+                  imgSrc={isActivation ? activationIcon : inactivationIcon}
+                  isActivation={isActivation}
+                  activationColor={PURPLE}
+                  key={getUniqueKey(id)}
+                />
+              ))}
             </Rowbox>
           </SectionWrapper>
           <DeviceHeaderSticky />
-          <DeviceSection>
-            {tabNavOptions.map(
-              ({ isActivation, tab, id }) =>
-                isActivation && <React.Fragment key={getUniqueKey(id)}>{tab}</React.Fragment>,
-            )}
-          </DeviceSection>
+          <DeviceSection>{handleNavi(number)}</DeviceSection>
         </StickyScrollView>
       </SafeAreaContainer>
     </BackgroundContainer>

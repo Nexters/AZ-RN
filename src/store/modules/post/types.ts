@@ -1,5 +1,6 @@
 import * as actions from './actions';
 import { ActionType } from 'typesafe-actions';
+import { Rating } from '../auth/types';
 
 export type PostActions = ActionType<typeof actions>;
 
@@ -33,13 +34,9 @@ export interface Author {
   id: number;
   identification: string;
   nickname: string;
-  rating: Rating | string;
+  rating: Rating;
 }
 
-export enum Rating {
-  AssistantManage = 'ASSISTANT_MANAGE',
-  DepartmentHead = 'DEPARTMENT_HEAD',
-}
 export interface SimplePage {
   currentPage: number;
   totalPages: number;

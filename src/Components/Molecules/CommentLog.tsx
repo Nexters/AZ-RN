@@ -9,7 +9,7 @@ import { getUniqueKey } from '~/lib';
 const Container = styled.TouchableOpacity<MarginStyleProps>`
   padding-bottom: 16px;
   border-bottom-color: ${WHITE};
-  border-bottom-width: 1;
+  border-bottom-width: 1px;
   margin-bottom: ${({ marginBottom }) => marginBottom ?? '0px'};
 `;
 
