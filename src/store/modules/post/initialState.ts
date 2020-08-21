@@ -9,6 +9,14 @@ export default {
       totalElements: 0,
     },
   },
+  popularPosts: {
+    posts: [],
+    simplePage: {
+      currentPage: 0,
+      totalPages: 0,
+      totalElements: 0,
+    },
+  },
   postDetail: {
     post: {
       detailedPost: {

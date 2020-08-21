@@ -14,12 +14,14 @@ import {
   getMyBookmarkPosts,
   getRatingStatus,
   getNotifications,
+  getPopularPosts,
 } from '~/api';
 import {
   getPostsThunk,
   getPostDetailThunk,
   getCommentsThunk,
   postCommentThunk,
+  getPopularPostsThunk,
 } from '~/store/modules/post/thunks';
 import { RootState } from '~/store/modules';
 import {
@@ -45,6 +47,7 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       postDetail: {
         comment: { commentList },
       },
+      popularPosts: { posts: popularPosts },
     },
     user: { ratingForPromotion },
     loading: { 'post/CREATE_POST_LOADING': createPostIsLoading },
@@ -52,6 +55,11 @@ const HomeContainer = ({ navigation }: HomeProps) => {
 
   const [showCreatePostToast, setShowCreatePostToast] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isPopular, setIsPopular] = useState(false);
+
+  const handleIsPopular = () => {
+    isPopular ? setIsPopular(false) : setIsPopular(true);
+  };
 
   const handleNavigateToPostWrite = () => {
     navigation.navigate('PostWrite');
@@ -64,6 +72,12 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       currentPage: 1,
       size: 200,
     };
+    const option = {
+      ...getPopularPosts,
+      currentPage: 1,
+      size: 200,
+    };
+    dispatch(getPopularPostsThunk(option));
     dispatch(getPostsThunk(config));
     setIsLoading(false);
   };
@@ -161,12 +175,15 @@ const HomeContainer = ({ navigation }: HomeProps) => {
   return (
     <HomeViewer
       posts={posts}
+      popularPosts={popularPosts}
       handleNavigateToPostWrite={handleNavigateToPostWrite}
       handleNavigateToPostDeatil={handleNavigateToPostDeatil}
       showCreatePostToast={showCreatePostToast}
       ratingForPromotion={ratingForPromotion}
       loadPosts={loadPosts}
       isLoading={isLoading}
+      isPopular={isPopular}
+      handleIsPopular={handleIsPopular}
     />
   );
 };

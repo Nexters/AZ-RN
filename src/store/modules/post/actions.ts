@@ -30,6 +30,10 @@ export const POST_BOOKMARK = 'post/POST_BOOKMARK';
 export const POST_BOOKMARK_SUCCESS = 'post/POST_BOOKMARK_SUCCESS';
 export const POST_BOOKMARK_FAILURE = 'post/POST_BOOKMARK_FAILURE';
 
+export const LOAD_POPULAR_POST = 'post/LOAD_POPULAR_POST';
+export const LOAD_POPULAR_POST_SUCCESS = 'post/LOAD_POPULAR_POST_SUCCESS';
+export const LOAD_POPULAR_POST_FAILURE = 'post/LOAD_POPULAR_POST_FAILURE';
+
 export const createPostRequestAsync = createAsyncAction(
   CREATE_POST,
   CREATE_POST_SUCCESS,
@@ -71,3 +75,9 @@ export const postBookmarkRequestAsync = createAsyncAction(
   POST_BOOKMARK_SUCCESS,
   POST_BOOKMARK_FAILURE,
 )<void, PostDetail, AxiosError>();
+
+export const loadPopularPostsRequestAsync = createAsyncAction(
+  LOAD_POPULAR_POST,
+  LOAD_POPULAR_POST_SUCCESS,
+  LOAD_POPULAR_POST_FAILURE,
+)<void, Post, AxiosError>();
