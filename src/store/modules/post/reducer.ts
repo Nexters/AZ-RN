@@ -172,6 +172,7 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
     const {
       postList: { posts, simplePage },
       postDetail: { comment, post },
+      popularPosts: { posts: updatePopularPosts, simplePage: popularSimplePage },
     } = state;
     const { payload: postId } = action;
     const updatePosts = posts.map((post) =>
@@ -187,6 +188,10 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
       postList: {
         posts: updatePosts,
         simplePage,
+      },
+      popularPosts: {
+        posts: updatePopularPosts,
+        simplePage: popularSimplePage,
       },
       postDetail: {
         post: {
