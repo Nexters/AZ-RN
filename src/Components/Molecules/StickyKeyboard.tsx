@@ -15,6 +15,7 @@ const Input = styled.TextInput`
   width: 100%;
   padding-left: ${`${Layout.width / 18}px`};
   padding-right: ${`${Layout.width / 18}px`};
+  font-size: 17px;
 `;
 const Action = styled.View`
   position: absolute;
@@ -24,7 +25,7 @@ const Action = styled.View`
 interface StickyKeyboardProps {
   inputBinder: InputBindType;
   onPress: () => void;
-  inputRef: React.MutableRefObject<TextInput | undefined>;
+  inputRef: React.RefObject<TextInput>;
 }
 
 const StickyKeyboard = ({ inputRef, inputBinder, onPress }: StickyKeyboardProps) => {

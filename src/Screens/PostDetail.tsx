@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, createRef } from 'react';
 import styled from 'styled-components/native';
 import { useKeyboard } from 'react-native-keyboard-height';
 import { RouteProp } from '@react-navigation/native';
@@ -54,7 +54,7 @@ const PostDetail = ({ navigation, route }: PostDetailProps) => {
 
   const [showPostCommentToast, setShowPostCommentToast] = useState(false);
 
-  const inputRef = useRef<TextInput>();
+  const inputRef = createRef<TextInput>();
 
   const handleOnPress = () => {
     handlePostCommnet(post.detailedPost.id, commentBinder.text);

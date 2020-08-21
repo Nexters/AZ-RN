@@ -86,18 +86,20 @@ const Notification = ({ navigation }: NotificationProps) => {
           />
         }>
         {notifications.length > 0 &&
-          notifications.map(({ message, noticeId, noticeType, postId }) => (
-            <NotiCard
-              onPress={() => {
-                handleNavigateToPostDeatil(postId);
-              }}
-              type={noticeType === 'COMMENT' ? '댓글' : '좋아요'}
-              content="밤에 성시경이 두명이라면?"
-              description={message}
-              createdAt="5분전"
-              key={getUniqueKey(noticeId)}
-            />
-          ))}
+          notifications.map(
+            ({ message, noticeId, noticeType, postId, detailedPost, createdDate }) => (
+              <NotiCard
+                onPress={() => {
+                  handleNavigateToPostDeatil(postId);
+                }}
+                type={noticeType === 'COMMENT' ? '댓글' : '좋아요'}
+                content={detailedPost.content}
+                description={message}
+                createdAt={createdDate}
+                key={getUniqueKey(noticeId)}
+              />
+            ),
+          )}
       </ScrollView>
     </BackgroundContainer>
   );
