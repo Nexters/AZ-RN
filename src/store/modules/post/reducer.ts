@@ -1,6 +1,6 @@
 import { createReducer } from 'typesafe-actions';
 
-import { PostActions, RootPost } from './types';
+import { PostActions, RootPost, Posts } from './types';
 import {
   LOAD_POSTS_SUCCESS,
   LOAD_POSTS_FAILURE,
@@ -16,6 +16,7 @@ import {
   POST_BOOKMARK_SUCCESS,
   ACTIVATION_BOOKMARK,
   ACTIVATION_LIKE,
+  LOAD_POPULAR_POST_SUCCESS,
 } from './actions';
 import init from './initialState';
 
@@ -95,23 +96,33 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
         post: { detailedPost },
       },
       postList,
+      popularPosts: { posts: popularPosts, simplePage: popularSimplePage },
     } = state;
 
     const { detailedComment } = action.payload;
     const appendComment = [...commentList, detailedComment];
 
-    const updatePosts = postList.posts.map((post) => {
-      if (post.id === detailedComment.postId) {
-        return { ...post, commentCount: post.commentCount + 1 };
-      } else {
-        return { ...post };
-      }
-    });
+    const handleUpdatePosts = (posts: Posts[]) => {
+      const updatePosts = posts.map((post) => {
+        if (post.id === detailedComment.postId) {
+          return { ...post, commentCount: post.commentCount + 1 };
+        } else {
+          return { ...post };
+        }
+      });
+      return updatePosts;
+    };
+    const updatePosts = handleUpdatePosts(postList.posts);
+    const updatePopularPosts = handleUpdatePosts(popularPosts);
     return {
       ...state,
       postList: {
         posts: updatePosts,
         simplePage: postList.simplePage,
+      },
+      popularPosts: {
+        posts: updatePopularPosts,
+        simplePage: popularSimplePage,
       },
       postDetail: {
         post: {
@@ -185,6 +196,14 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
           },
         },
         comment: comment,
+      },
+    };
+  },
+  [LOAD_POPULAR_POST_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+      popularPosts: {
+        ...action.payload,
       },
     };
   },

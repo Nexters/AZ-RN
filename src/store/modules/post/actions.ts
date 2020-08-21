@@ -33,6 +33,10 @@ export const POST_BOOKMARK_FAILURE = 'post/POST_BOOKMARK_FAILURE';
 export const ACTIVATION_BOOKMARK = 'post/ACTIVATION_BOOKMARK';
 export const ACTIVATION_LIKE = 'post/ACTIVATION_LIKE';
 
+export const LOAD_POPULAR_POST = 'post/LOAD_POPULAR_POST';
+export const LOAD_POPULAR_POST_SUCCESS = 'post/LOAD_POPULAR_POST_SUCCESS';
+export const LOAD_POPULAR_POST_FAILURE = 'post/LOAD_POPULAR_POST_FAILURE';
+
 export const createPostRequestAsync = createAsyncAction(
   CREATE_POST,
   CREATE_POST_SUCCESS,
@@ -77,3 +81,8 @@ export const postBookmarkRequestAsync = createAsyncAction(
 
 export const activationLike = createAction(ACTIVATION_LIKE)<number>();
 export const activationBookmark = createAction(ACTIVATION_BOOKMARK)<number>();
+export const loadPopularPostsRequestAsync = createAsyncAction(
+  LOAD_POPULAR_POST,
+  LOAD_POPULAR_POST_SUCCESS,
+  LOAD_POPULAR_POST_FAILURE,
+)<void, Post, AxiosError>();
