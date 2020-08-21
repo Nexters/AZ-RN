@@ -13,9 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["assets/**/*"],
     "ios": {
       "bundleIdentifier": "com.devgw.AZ-iOS"
     },
