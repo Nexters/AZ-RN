@@ -1,9 +1,6 @@
 import { useState } from 'react';
 
-const useToggle = (
-  initialValue: boolean | undefined,
-  inputValidator: () => boolean,
-) => {
+const useToggle = (initialValue: boolean | undefined, inputValidator: () => boolean) => {
   const [isAvailable, SetisAvailable] = useState(initialValue);
   const onToggle = () => {
     const willUpdate = inputValidator();

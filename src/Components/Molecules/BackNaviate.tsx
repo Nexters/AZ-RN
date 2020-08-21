@@ -24,13 +24,7 @@ const BackNaviate = ({ title, navigation }: BackNaviateProps) => {
         }}>
         <Image imgSrc={backPng} />
       </Touchable>
-      <Text
-        text={title}
-        fontWeight={700}
-        fontSize="17px"
-        marginLeft="17px"
-        color={WHITE}
-      />
+      <Text text={title} fontWeight={700} fontSize="17px" marginLeft="17px" color={WHITE} />
     </Rowbox>
   );
 };
