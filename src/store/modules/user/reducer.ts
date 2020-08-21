@@ -10,6 +10,7 @@ import {
   LOAD_MY_BOOKMARK_POSTS_SUCCESS,
   LOAD_RATING_SUCCESS,
   LOAD_NOTIFICATION_SUCCESS,
+  REMOVE_BOOKMARK,
 } from './actions';
 
 const initialState: UserStateTypes = {
@@ -149,6 +150,31 @@ const postReducer = createReducer<UserStateTypes, UserActions>(initialState, {
       ...state,
       notification: {
         ...action.payload,
+      },
+    };
+  },
+  [REMOVE_BOOKMARK]: (state, action) => {
+    const { myBookmark, myPost } = state;
+    const { payload: id } = action;
+    const updateBookmark = myBookmark.posts.filter((post) => post.id !== id);
+    const updateMyPost = myPost.posts.map((post) =>
+      post.id === id
+        ? {
+            ...post,
+            pressBookMark: false,
+          }
+        : { ...post },
+    );
+
+    return {
+      ...state,
+      myBookmark: {
+        posts: updateBookmark,
+        simplePage: myBookmark.simplePage,
+      },
+      myPost: {
+        posts: updateMyPost,
+        simplePage: myPost.simplePage,
       },
     };
   },

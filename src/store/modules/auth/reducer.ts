@@ -37,14 +37,12 @@ const authReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
     ...action.payload,
   }),
   [POST_LOGIN_SUCCESS]: (state, action) => {
-    console.log('POST_LOGIN_SUCCESS');
     return {
       ...state,
       ...action.payload,
     };
   },
   [POST_LOGIN_FAILURE]: (state, action) => {
-    console.log('POST_LOGIN_FAILURE');
     return {
       ...state,
       ...action.payload,

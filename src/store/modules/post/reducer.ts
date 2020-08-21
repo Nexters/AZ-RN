@@ -14,6 +14,8 @@ import {
   POST_COMMENT_FAILURE,
   POST_LIKE_SUCCESS,
   POST_BOOKMARK_SUCCESS,
+  ACTIVATION_BOOKMARK,
+  ACTIVATION_LIKE,
   LOAD_POPULAR_POST_SUCCESS,
 } from './actions';
 import init from './initialState';
@@ -142,52 +144,45 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
     };
   },
   [POST_LIKE_SUCCESS]: (state, action) => {
-    const {
-      postList: { posts, simplePage },
-      postDetail: { comment },
-      popularPosts: { posts: popularPosts, simplePage: popularSimplePage },
-    } = state;
-    const { detailedPost } = action.payload;
-
-    const handleUpdatePosts = (posts: Posts[]) => {
-      const updatePosts = posts.map((post) => (post.id === detailedPost.id ? detailedPost : post));
-      return updatePosts;
-    };
-    const updatePosts = handleUpdatePosts(posts);
-    const updatePopularPosts = handleUpdatePosts(popularPosts);
-
     return {
       ...state,
-      postList: {
-        posts: updatePosts,
-        simplePage,
-      },
-      popularPosts: {
-        posts: updatePopularPosts,
-        simplePage: popularSimplePage,
-      },
-      postDetail: {
-        post: {
-          detailedPost,
-        },
-        comment,
-      },
     };
   },
   [POST_BOOKMARK_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+    };
+  },
+  [ACTIVATION_BOOKMARK]: (state, action) => {
+    const { postDetail } = state;
+    return {
+      ...state,
+      postDetail: {
+        post: {
+          detailedPost: {
+            ...postDetail.post.detailedPost,
+            pressBookMark: true,
+          },
+        },
+        comment: postDetail.comment,
+      },
+    };
+  },
+  [ACTIVATION_LIKE]: (state, action) => {
     const {
       postList: { posts, simplePage },
-      postDetail: { comment },
-      popularPosts: { posts: popularPosts, simplePage: popularSimplePage },
+      postDetail: { comment, post },
+      popularPosts: { posts: updatePopularPosts, simplePage: popularSimplePage },
     } = state;
-    const { detailedPost } = action.payload;
-    const handleUpdatePosts = (posts: Posts[]) => {
-      const updatePosts = posts.map((post) => (post.id === detailedPost.id ? detailedPost : post));
-      return updatePosts;
-    };
-    const updatePosts = handleUpdatePosts(posts);
-    const updatePopularPosts = handleUpdatePosts(popularPosts);
-
+    const { payload: postId } = action;
+    const updatePosts = posts.map((post) =>
+      post.id === postId
+        ? {
+            ...post,
+            pressLike: true,
+          }
+        : post,
+    );
     return {
       ...state,
       postList: {
@@ -200,9 +195,12 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
       },
       postDetail: {
         post: {
-          detailedPost,
+          detailedPost: {
+            ...post.detailedPost,
+            pressLike: true,
+          },
         },
-        comment,
+        comment: comment,
       },
     };
   },

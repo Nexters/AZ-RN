@@ -31,7 +31,6 @@ const LoginContainer = ({ navigation }: LoginProps) => {
       identification: idBinder.text,
       password: pwdBinder.text,
     };
-    console.log('config', config);
 
     dispatch(postLoginThunk(config));
   };

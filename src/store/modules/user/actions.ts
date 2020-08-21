@@ -1,4 +1,4 @@
-import { createAsyncAction } from 'typesafe-actions';
+import { createAsyncAction, createAction } from 'typesafe-actions';
 import { UserStateTypes, ReqError, Notification } from './types';
 import { Post, Comment } from '../post/types';
 
@@ -29,6 +29,8 @@ export const LOAD_RATING_FAILURE = 'user/LOAD_RATING_FAILURE';
 export const LOAD_NOTIFICATION = 'user/LOAD_NOTIFICATION';
 export const LOAD_NOTIFICATION_SUCCESS = 'user/LOAD_NOTIFICATION_SUCCESS';
 export const LOAD_NOTIFICATION_FAILURE = 'user/LOAD_NOTIFICATION_FAILURE';
+
+export const REMOVE_BOOKMARK = 'user/REMOVE_BOOKMARK';
 
 export const verifyIdRequestAsync = createAsyncAction(
   VERIFY_ID,
@@ -71,3 +73,5 @@ export const loadNotificationsRequestAsync = createAsyncAction(
   LOAD_NOTIFICATION_SUCCESS,
   LOAD_NOTIFICATION_FAILURE,
 )<void, Notification, ReqError>();
+
+export const removeBookmark = createAction(REMOVE_BOOKMARK)<number>();

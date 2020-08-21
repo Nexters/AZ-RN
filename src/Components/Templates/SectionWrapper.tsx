@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import Layout from '~/constants/Layout';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard, Platform } from 'react-native';
 
 const Container = styled.View<StyleProps>`
   flex: 1;
@@ -35,7 +35,7 @@ const SectionWrapper = ({
   paddingBottom,
 }: SectionWrapperProps) => {
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    <TouchableWithoutFeedback onPress={Platform.OS !== 'web' ? Keyboard.dismiss : undefined}>
       <Container
         bgColor={bgColor}
         marginBottom={marginBottom}

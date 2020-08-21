@@ -1,4 +1,4 @@
-import { createAsyncAction } from 'typesafe-actions';
+import { createAsyncAction, createAction } from 'typesafe-actions';
 import { AxiosError } from 'axios';
 import { Post, PostDetail, DetailedComment } from './types';
 
@@ -29,6 +29,9 @@ export const POST_LIKE_FAILURE = 'post/POST_LIKE_FAILURE';
 export const POST_BOOKMARK = 'post/POST_BOOKMARK';
 export const POST_BOOKMARK_SUCCESS = 'post/POST_BOOKMARK_SUCCESS';
 export const POST_BOOKMARK_FAILURE = 'post/POST_BOOKMARK_FAILURE';
+
+export const ACTIVATION_BOOKMARK = 'post/ACTIVATION_BOOKMARK';
+export const ACTIVATION_LIKE = 'post/ACTIVATION_LIKE';
 
 export const LOAD_POPULAR_POST = 'post/LOAD_POPULAR_POST';
 export const LOAD_POPULAR_POST_SUCCESS = 'post/LOAD_POPULAR_POST_SUCCESS';
@@ -76,6 +79,8 @@ export const postBookmarkRequestAsync = createAsyncAction(
   POST_BOOKMARK_FAILURE,
 )<void, PostDetail, AxiosError>();
 
+export const activationLike = createAction(ACTIVATION_LIKE)<number>();
+export const activationBookmark = createAction(ACTIVATION_BOOKMARK)<number>();
 export const loadPopularPostsRequestAsync = createAsyncAction(
   LOAD_POPULAR_POST,
   LOAD_POPULAR_POST_SUCCESS,

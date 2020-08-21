@@ -3,7 +3,6 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import { LoginStackParams } from '@types';
 
 import Home from '~/Screens/Home';
-import Detail from '~/Screens/Detail';
 import { Image } from '~/Components/Atoms';
 import { BackNaviate } from '~/Components/Molecules';
 import logo_png from '@png/logo.png';
@@ -58,7 +57,6 @@ const LoggedInStack = () => {
           };
         }}
       />
-      <CreateStack.Screen name="Detail" component={Detail} />
       <CreateStack.Screen
         name="Notification"
         component={Notification}
