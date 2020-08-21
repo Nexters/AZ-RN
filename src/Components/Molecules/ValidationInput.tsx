@@ -39,6 +39,8 @@ const ValidationInput = ({
   return (
     <Colbox>
       <Input
+        autoCapitalize="none"
+        autoCorrect={false}
         placeholder={placeholder}
         onBlur={onBlur}
         isAvailable={!isUsed}

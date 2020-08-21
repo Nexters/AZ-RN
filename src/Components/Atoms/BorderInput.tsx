@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { InputBinderTypes, MarginStyleProps } from '~/@types';
+import { MarginStyleProps } from '~/@types';
 import { marginStyles } from '~/styles/mixin';
 import { KeyboardType } from 'react-native';
 import { WHITE } from '~/constants/Colors';
+import { InputBindType } from '~/hooks/useHandleInput';
 
 const Input = styled.TextInput<BorderInputProps>`
   width: 100%;
@@ -18,7 +19,7 @@ const Input = styled.TextInput<BorderInputProps>`
 `;
 
 interface BorderInputProps extends MarginStyleProps {
-  inputBinder?: InputBinderTypes;
+  inputBinder?: InputBindType;
   placeholder?: string;
   secureTextEntry?: boolean;
   keyboardType?: KeyboardType;

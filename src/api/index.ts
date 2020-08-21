@@ -45,7 +45,6 @@ export const getMyComments = {
   url: `${url}/v1/api/users/:userId/comments`,
   method: 'get',
 };
-
 export const getMyPosts = {
   // 내가 쓴 게시글
   url: `${url}/v1/api/users/:userId/posts`,
@@ -80,4 +79,9 @@ export const getNotifications = {
   // 알림 리스트
   url: `${url}/v1/api/users/:userId/notices`,
   method: 'get',
+};
+export const postLogin = {
+  // 알림 리스트
+  url: `${url}/v1/api/auth/sign-in`,
+  method: 'post',
 };

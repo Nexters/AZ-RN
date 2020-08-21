@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { InputBinderTypes, MarginStyleProps } from '~/@types';
+import { MarginStyleProps } from '~/@types';
 import { marginStyles } from '~/styles/mixin';
 import { KeyboardType } from 'react-native';
+import { InputBindType } from '~/hooks/useHandleInput';
 
 const Input = styled.TextInput<MarginStyleProps>`
   padding-bottom: 19px;
@@ -19,7 +20,7 @@ const Input = styled.TextInput<MarginStyleProps>`
 `;
 
 interface BottomLinteProps extends MarginStyleProps {
-  inputBinder?: InputBinderTypes;
+  inputBinder?: InputBindType;
   placeholder?: string;
   secureTextEntry?: boolean;
   keyboardType?: KeyboardType;
