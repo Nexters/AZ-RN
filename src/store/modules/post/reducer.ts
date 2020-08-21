@@ -180,6 +180,7 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
         ? {
             ...post,
             pressLike: true,
+            likes: post.likes + 1,
           }
         : post,
     );

@@ -12,7 +12,6 @@ import { PURPLE, GREY_DARK, DARK_GREY } from '~/constants/Colors';
 import { BottomLineTabNavi, DeviceHeaderSticky, ProfileSentence } from '~/Components/Molecules';
 import { getUniqueKey } from '~/lib';
 import { RatingForPromotion } from '~/store/modules/user/types';
-import { MiniPostCard, CommentLog, UnderBarArrow } from '~/Components/Molecules';
 import { Post, Comment } from '~/store/modules/post/types';
 
 type TabNavi = {
@@ -38,11 +37,6 @@ interface ProfileProps {
 const ProfileViewer = ({
   ratingForPromotion,
   nickname,
-  handleNavigateToPostDeatil,
-  myComment,
-  myPost,
-  myBookmark,
-  handleLogout,
   tabNavOptions,
   handleNavigation,
   number,
