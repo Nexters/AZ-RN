@@ -15,6 +15,7 @@ import Profile from '~/Screens/Profile';
 import { WHITE } from '~/constants/Colors';
 import PostWrite from '~/Screens/PostWrite';
 import PostDetail from '~/Screens/PostDetail';
+import { Platform } from 'react-native';
 
 const CreateStack = createStackNavigator<LoginStackParams>();
 
@@ -64,7 +65,7 @@ const LoggedInStack = () => {
           return {
             headerLeft: () => (
               <HeaderWrapper>
-                <BackNaviate title=" " navigation={navigation} />
+                <BackNaviate title="" navigation={navigation} />
               </HeaderWrapper>
             ),
             headerTitle: '알림',

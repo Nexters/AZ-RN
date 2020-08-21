@@ -7,6 +7,7 @@ import { ImageSourcePropType } from 'react-native';
 
 const BottomLineNavigation = styled.TouchableOpacity<StyleProps>`
   flex: 1;
+  min-height: 30px;
   justify-content: center;
   align-items: center;
   padding-bottom: 9px;

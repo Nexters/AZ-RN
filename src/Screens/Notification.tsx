@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect } from 'react';
 import styled from 'styled-components/native';
-import { RefreshControl } from 'react-native';
+import { RefreshControl, Platform, TouchableOpacity } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import { BackgroundContainer } from '~/Components/Templates';
 import { NotiCard } from '~/Components/Molecules';
@@ -74,6 +75,23 @@ const Notification = ({ navigation }: NotificationProps) => {
       handlePostCommnet,
     });
   };
+
+  useLayoutEffect(() => {
+    Platform.OS === 'web' &&
+      navigation.setOptions({
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <FontAwesome5 name="arrow-left" size={20} color="white" />
+          </TouchableOpacity>
+        ),
+        headerLeftContainerStyle: {
+          paddingLeft: 20,
+        },
+      });
+  }, []);
 
   return (
     <BackgroundContainer>

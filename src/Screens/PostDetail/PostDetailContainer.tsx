@@ -1,23 +1,16 @@
-import React, { useState, createRef, useEffect } from 'react';
-import { Platform, TextInput } from 'react-native';
+import React, { useState, createRef, useEffect, useLayoutEffect } from 'react';
+import { Platform, TextInput, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { useKeyboard } from 'react-native-keyboard-height';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import { LoginStackParams, PostDetailParams } from '~/@types';
 import { RootState } from '~/store/modules';
 import { useHandleInput } from '~/hooks';
-import {
-  postLike,
-  postBookmark,
-  deleteBookmark,
-  getDetailedPost,
-  getMyBookmarkPosts,
-  getMyPosts,
-} from '~/api';
+import { postLike, postBookmark, deleteBookmark, getDetailedPost } from '~/api';
 import { postLikeThunk, postBookmarkThunk, getPostDetailThunk } from '~/store/modules/post/thunks';
-import { getMyBookmarkPostsThunk, getMyPostsThunk } from '~/store/modules/user/thunks';
 import { callApi } from '~/lib';
 import PostDetailViewer from './PostDetailViewer';
 import { removeBookmark } from '~/store/modules/user/actions';
@@ -103,6 +96,22 @@ const PostDetailContainer = ({ navigation, route }: PostDetailProps) => {
     }
   }, [postCommentIsLoading]);
 
+  useLayoutEffect(() => {
+    Platform.OS === 'web' &&
+      navigation.setOptions({
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <FontAwesome5 name="arrow-left" size={20} color="white" />
+          </TouchableOpacity>
+        ),
+        headerLeftContainerStyle: {
+          paddingLeft: 20,
+        },
+      });
+  }, []);
   return (
     <PostDetailViewer
       showPostCommentToast={showPostCommentToast}

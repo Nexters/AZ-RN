@@ -1,19 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Rowbox, Text, RadiusButton } from '../Atoms';
-import { WHITE, LIGHT_PURPLE, PURPLE } from '~/constants/Colors';
+import { WHITE } from '~/constants/Colors';
 
 const Container = styled.View`
   width: 100%;
-`;
-const Count = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 106px;
-  height: 45px;
-  border: 1px solid #ffffff;
-  border-radius: 25px;
 `;
 const Gage = styled.View`
   width: 100%;

@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 import { LoginStackParams } from '~/@types';

@@ -77,6 +77,8 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       currentPage: 1,
       size: 200,
     };
+    console.log('option', option);
+
     dispatch(getPopularPostsThunk(option));
     dispatch(getPostsThunk(config));
     setIsLoading(false);

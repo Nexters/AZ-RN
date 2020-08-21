@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
+import { TouchableOpacity, Platform } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 import ProfileViewer from './ProfileViewer';
 import {
@@ -189,6 +191,23 @@ const ProfileContainer = ({ navigation }: ProfileProps) => {
       loadMyPosts();
     }
   }, [myBookmark]);
+
+  useLayoutEffect(() => {
+    Platform.OS === 'web' &&
+      navigation.setOptions({
+        headerLeft: () => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.goBack();
+            }}>
+            <FontAwesome5 name="arrow-left" size={20} color="white" />
+          </TouchableOpacity>
+        ),
+        headerLeftContainerStyle: {
+          paddingLeft: 20,
+        },
+      });
+  }, []);
 
   return (
     <ProfileViewer
