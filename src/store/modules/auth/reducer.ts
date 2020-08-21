@@ -1,6 +1,12 @@
 import { createReducer } from 'typesafe-actions';
 import { PostActions, AuthStateTypes } from './types';
-import { CREATE_ACCOUNT_SUCCESS, CREATE_ACCOUNT_FAILURE, LOGOUT } from './actions';
+import {
+  CREATE_ACCOUNT_SUCCESS,
+  CREATE_ACCOUNT_FAILURE,
+  LOGOUT,
+  POST_LOGIN_SUCCESS,
+  POST_LOGIN_FAILURE,
+} from './actions';
 
 const initialState: AuthStateTypes = {
   isAuthenticated: false,
@@ -30,6 +36,20 @@ const authReducer = createReducer<AuthStateTypes, PostActions>(initialState, {
     ...state,
     ...action.payload,
   }),
+  [POST_LOGIN_SUCCESS]: (state, action) => {
+    console.log('POST_LOGIN_SUCCESS');
+    return {
+      ...state,
+      ...action.payload,
+    };
+  },
+  [POST_LOGIN_FAILURE]: (state, action) => {
+    console.log('POST_LOGIN_FAILURE');
+    return {
+      ...state,
+      ...action.payload,
+    };
+  },
   [LOGOUT]: () => ({
     ...initialState,
   }),
