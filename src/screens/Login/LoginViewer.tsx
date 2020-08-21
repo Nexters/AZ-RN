@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Keyboard, TouchableWithoutFeedback, Platform } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
 
 import { PURPLE, WHITE } from '~/constants/Colors';
@@ -33,7 +33,7 @@ const LoginViewer = ({ handleLogin, handleNavigate, idBinder, pwdBinder }: Login
   return (
     <BackgroundContainer>
       <KeyboardAvoidingViewer>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <TouchableWithoutFeedback onPress={Platform.OS !== 'web' ? Keyboard.dismiss : undefined}>
           <Wrapper>
             <Image imgSrc={section_png} marginTop={ifIphoneX(`${Layout.height / 12}px`, '0')} />
             <MiddleBox>
