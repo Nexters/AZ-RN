@@ -14,6 +14,8 @@ import {
   POST_COMMENT_FAILURE,
   POST_LIKE_SUCCESS,
   POST_BOOKMARK_SUCCESS,
+  ACTIVATION_BOOKMARK,
+  ACTIVATION_LIKE,
 } from './actions';
 import init from './initialState';
 
@@ -131,35 +133,44 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
     };
   },
   [POST_LIKE_SUCCESS]: (state, action) => {
-    const {
-      postList: { posts, simplePage },
-      postDetail: { comment },
-    } = state;
-    const { detailedPost } = action.payload;
-    const updatePosts = posts.map((post) => (post.id === detailedPost.id ? detailedPost : post));
-
     return {
       ...state,
-      postList: {
-        posts: updatePosts,
-        simplePage,
-      },
-      postDetail: {
-        post: {
-          detailedPost,
-        },
-        comment,
-      },
     };
   },
   [POST_BOOKMARK_SUCCESS]: (state, action) => {
+    return {
+      ...state,
+    };
+  },
+  [ACTIVATION_BOOKMARK]: (state, action) => {
+    const { postDetail } = state;
+    return {
+      ...state,
+      postDetail: {
+        post: {
+          detailedPost: {
+            ...postDetail.post.detailedPost,
+            pressBookMark: true,
+          },
+        },
+        comment: postDetail.comment,
+      },
+    };
+  },
+  [ACTIVATION_LIKE]: (state, action) => {
     const {
       postList: { posts, simplePage },
-      postDetail: { comment },
+      postDetail: { comment, post },
     } = state;
-    const { detailedPost } = action.payload;
-    const updatePosts = posts.map((post) => (post.id === detailedPost.id ? detailedPost : post));
-
+    const { payload: postId } = action;
+    const updatePosts = posts.map((post) =>
+      post.id === postId
+        ? {
+            ...post,
+            pressLike: true,
+          }
+        : post,
+    );
     return {
       ...state,
       postList: {
@@ -168,9 +179,12 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
       },
       postDetail: {
         post: {
-          detailedPost,
+          detailedPost: {
+            ...post.detailedPost,
+            pressLike: true,
+          },
         },
-        comment,
+        comment: comment,
       },
     };
   },
