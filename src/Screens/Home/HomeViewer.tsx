@@ -21,23 +21,30 @@ import { RatingForPromotion } from '~/store/modules/user/types';
 
 interface HomeProps {
   posts: Posts[];
+  popularPosts: Posts[];
   handleNavigateToPostWrite: () => void;
   handleNavigateToPostDeatil: (postId: number) => void;
   showCreatePostToast: boolean;
   ratingForPromotion: RatingForPromotion;
   loadPosts: () => void;
   isLoading: boolean;
+  isPopular: boolean;
+  handleIsPopular: () => void;
 }
 
 const HomeViewer = ({
   posts,
+  popularPosts,
   handleNavigateToPostWrite,
   handleNavigateToPostDeatil,
   showCreatePostToast,
   ratingForPromotion,
   loadPosts,
   isLoading,
+  isPopular,
+  handleIsPopular,
 }: HomeProps) => {
+  const postsType = isPopular ? popularPosts : posts;
   return (
     <>
       <Toast
@@ -55,10 +62,10 @@ const HomeViewer = ({
               </SectionWrapper>
             </BackgroundContainer>
             <DeviceHeaderSticky>
-              <HomeStickyInner />
+              <HomeStickyInner isPopular={isPopular} handleIsPopular={handleIsPopular} />
             </DeviceHeaderSticky>
             <DeviceSection>
-              {posts?.map((post, index) => (
+              {postsType?.map((post, index) => (
                 <PostCard
                   id={post.id}
                   nickname={post.author.nickname}

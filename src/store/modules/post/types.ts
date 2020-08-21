@@ -7,6 +7,7 @@ export type PostActions = ActionType<typeof actions>;
 export interface RootPost {
   postList: Post;
   postDetail: DetailedPost;
+  popularPosts: Post;
 }
 export interface DetailedPost {
   post: PostDetail;

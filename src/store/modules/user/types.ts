@@ -1,6 +1,6 @@
 import * as actions from './actions';
 import { ActionType } from 'typesafe-actions';
-import { Post, Comment } from '../post/types';
+import { Post, Comment, Posts } from '../post/types';
 import { Rating } from '../auth/types';
 
 export type UserActions = ActionType<typeof actions>;
@@ -41,6 +41,8 @@ export interface DetailedNoticeList {
   noticeId: number;
   noticeType: string;
   postId: number;
+  createdDate: string;
+  detailedPost: Posts;
 }
 
 export interface SimplePage {
