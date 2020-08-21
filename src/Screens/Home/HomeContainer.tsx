@@ -25,10 +25,10 @@ import {
 } from '~/store/modules/post/thunks';
 import { RootState } from '~/store/modules';
 import {
+  getMyRatingThunk,
   getMyCommentsThunk,
   getMyPostsThunk,
   getMyBookmarkPostsThunk,
-  getMyRatingThunk,
   getNotificationsThunk,
 } from '~/store/modules/user/thunks';
 

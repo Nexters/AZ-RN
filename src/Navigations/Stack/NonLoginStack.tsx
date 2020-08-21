@@ -10,6 +10,7 @@ import { HomeHeaderStyle } from './stackNaviOptions';
 import { HeaderWrapper } from '~/Components/Templates';
 import CreateAccount from '~/Screens/CreateAccount';
 import { BackNaviate } from '~/Components/Molecules';
+import { WHITE } from '~/constants/Colors';
 
 const CreateStack = createStackNavigator<NonLoginStackParams>();
 
@@ -40,6 +41,11 @@ const NonLoginStack = () => (
           ),
           headerTitle: '회원가입',
           headerStyle: HomeHeaderStyle,
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 16,
+            color: WHITE,
+          },
         };
       }}
     />
