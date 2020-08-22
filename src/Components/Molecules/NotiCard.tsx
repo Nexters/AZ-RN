@@ -8,7 +8,7 @@ import HorizontalBar from '../Atoms/HorizontalBar';
 const Touchable = styled.TouchableOpacity``;
 const Notification = styled.View`
   flex-direction: row;
-  min-height: 120px;
+  min-height: 100px;
   padding-left: ${`${Layout.width / 18}px`};
   padding-right: ${`${Layout.width / 18}px`};
   margin-bottom: 20px;
