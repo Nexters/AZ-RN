@@ -31,8 +31,11 @@
 - 쉽고 간단하게 재밌는 글을 올리고, 다른 사람의 글을 보며 공감하고 웃을 수 있는, 심심할 때 찾는 소통의 공간.
 
 <br>
+
 ### How to run
+
 #### for iOS
+
 ```
 // Can only run on OSX(MAC)
 $ npm i -g expo-cli
