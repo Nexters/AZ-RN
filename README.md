@@ -30,7 +30,9 @@
 - 소소하지만 은은한 재미를 볼 수 있는 곳, 내가 재밌게 생각하는 말장난을 적을 수 있는 곳.
 - 쉽고 간단하게 재밌는 글을 올리고, 다른 사람의 글을 보며 공감하고 웃을 수 있는, 심심할 때 찾는 소통의 공간.
 
-### How to run for iOS
+<br>
+### How to run
+#### for iOS
 ```
 // Can only run on OSX(MAC)
 $ npm i -g expo-cli
@@ -38,7 +40,7 @@ $ npm i
 $ npm run start
 ```
 
-### How to run for android
+#### for android
 ```
 $ npm i -g expo-cli
 $ npm i
