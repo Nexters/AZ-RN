@@ -199,6 +199,7 @@ const postReducer = createReducer<RootPost, PostActions>(initialState, {
           detailedPost: {
             ...post.detailedPost,
             pressLike: true,
+            likes: post.detailedPost.likes + 1,
           },
         },
         comment: comment,

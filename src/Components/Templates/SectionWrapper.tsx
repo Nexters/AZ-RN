@@ -23,7 +23,7 @@ interface StyleProps {
 }
 
 interface SectionWrapperProps extends StyleProps {
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactNode;
 }
 
 const SectionWrapper = ({

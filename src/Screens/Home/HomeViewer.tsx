@@ -30,6 +30,7 @@ interface HomeProps {
   isLoading: boolean;
   isPopular: boolean;
   handleIsPopular: () => void;
+  loadRatingIsLoading: boolean;
 }
 
 const HomeViewer = ({
@@ -43,6 +44,7 @@ const HomeViewer = ({
   isLoading,
   isPopular,
   handleIsPopular,
+  loadRatingIsLoading,
 }: HomeProps) => {
   const postsType = isPopular ? popularPosts : posts;
   return (
@@ -53,7 +55,7 @@ const HomeViewer = ({
         hideOnPress={true}
         message="게시글 작성 완료"
       />
-      <BackgroundContainer bgColor={GREY_DARK}>
+      <BackgroundContainer bgColor={DARK_GREY}>
         <SafeAreaContainer>
           <StickyScrollView stickyPosition={1} isLoading={isLoading} fething={loadPosts}>
             <BackgroundContainer bgColor={DARK_GREY}>

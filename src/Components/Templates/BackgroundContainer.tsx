@@ -11,7 +11,7 @@ interface StyleProps {
   bgColor?: string;
 }
 interface BackgroundContainerProps extends StyleProps {
-  children: React.ReactChild | React.ReactChild[];
+  children: React.ReactNode;
 }
 const BackgroundContainer = ({ children, bgColor }: BackgroundContainerProps) => {
   return <Container bgColor={bgColor}>{children}</Container>;

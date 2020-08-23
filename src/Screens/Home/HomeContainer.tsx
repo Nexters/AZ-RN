@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -31,6 +31,7 @@ import {
   getMyBookmarkPostsThunk,
   getNotificationsThunk,
 } from '~/store/modules/user/thunks';
+import { usePrevious } from '~/hooks';
 
 interface HomeProps {
   navigation: StackNavigationProp<LoginStackParams, 'Home'>;
@@ -50,7 +51,10 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       popularPosts: { posts: popularPosts },
     },
     user: { ratingForPromotion },
-    loading: { 'post/CREATE_POST_LOADING': createPostIsLoading },
+    loading: {
+      'post/CREATE_POST_LOADING': createPostIsLoading,
+      'user/LOAD_RATING_LOADING': loadRatingIsLoading,
+    },
   } = useSelector((state: RootState) => state);
 
   const [showCreatePostToast, setShowCreatePostToast] = useState(false);
@@ -77,18 +81,16 @@ const HomeContainer = ({ navigation }: HomeProps) => {
       currentPage: 1,
       size: 200,
     };
-    console.log('option', option);
-
     dispatch(getPopularPostsThunk(option));
     dispatch(getPostsThunk(config));
     setIsLoading(false);
   };
-  const loadRating = () => {
+  const loadRating = async () => {
     const config = {
       ...getRatingStatus,
       userId,
     };
-    dispatch(getMyRatingThunk(config));
+    await dispatch(getMyRatingThunk(config));
   };
   const loadMyComments = () => {
     const config = {
@@ -146,17 +148,29 @@ const HomeContainer = ({ navigation }: HomeProps) => {
     });
   };
 
-  useEffect(() => {
+  const prevState = usePrevious({ posts, commentList });
+
+  useLayoutEffect(() => {
     loadPosts();
+  }, []);
+
+  useEffect(() => {
+    if (
+      JSON.stringify(prevState?.posts) !== JSON.stringify(posts) &&
+      JSON.stringify(prevState?.commentList) !== JSON.stringify(commentList)
+    ) {
+      loadRating();
+    }
+  }, [posts, commentList]);
+
+  useEffect(() => {
     loadRating();
     loadMyComments();
     loadMyPosts();
     loadBookmark();
     loadNotifications();
   }, []);
-  useEffect(() => {
-    loadRating();
-  }, [posts, commentList]);
+
   useEffect(() => {
     loadMyPosts();
   }, [posts]);
@@ -176,6 +190,7 @@ const HomeContainer = ({ navigation }: HomeProps) => {
 
   return (
     <HomeViewer
+      loadRatingIsLoading={loadRatingIsLoading}
       posts={posts}
       popularPosts={popularPosts}
       handleNavigateToPostWrite={handleNavigateToPostWrite}
