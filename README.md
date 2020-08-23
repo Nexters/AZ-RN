@@ -36,7 +36,7 @@
 
 #### for iOS
 
-```
+```js
 // Can only run on OSX(MAC)
 $ npm i -g expo-cli
 $ npm i
@@ -44,7 +44,7 @@ $ npm run start
 ```
 
 #### for android
-```
+```js
 $ npm i -g expo-cli
 $ npm i
 
