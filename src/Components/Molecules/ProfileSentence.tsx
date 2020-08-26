@@ -27,7 +27,7 @@ const ProfileSentence = ({ ratingForPromotion, nickname }: ProfileSentenceProps)
   return (
     <Rowbox marginBottom="40px" marginTop="20px">
       <Image imgSrc={handleBadgeType()} width="92px" height="72px" marginRight="15px" />
-      <Rowbox width="auto">
+      <Rowbox width="auto" align="flex-start">
         <Text
           text={getLevelType(currentRating)}
           fontSize="30px"
@@ -35,7 +35,7 @@ const ProfileSentence = ({ ratingForPromotion, nickname }: ProfileSentenceProps)
           color={WHITE}
           marginRight="7px"
         />
-        <Text text={`${nickname}님`} fontSize="30px" fontWeight={100} color={WHITE} />
+        <Text width="70%" text={`${nickname}님`} fontSize="30px" fontWeight={100} color={WHITE} />
       </Rowbox>
     </Rowbox>
   );

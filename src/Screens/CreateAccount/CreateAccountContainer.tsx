@@ -93,7 +93,7 @@ const CreateAccountContainer = () => {
 
   const handleNicknameVerify = () => {
     const { text } = nicknameBinder;
-    if (text.length > 1 && exceptSpecialCaractor(text)) {
+    if (text.length > 1 && text.length < 9 && exceptSpecialCaractor(text)) {
       const config = {
         ...postNicknameCheck,
         nickname: text,
@@ -106,7 +106,7 @@ const CreateAccountContainer = () => {
     } else {
       setNicknameErrorMsg({
         available: true,
-        errorMsg: '2자 이상 그리고 특수문자 제외 해!',
+        errorMsg: '2자 이상 8자 이하... 특수문자 제외 해!',
       });
     }
   };
@@ -121,7 +121,7 @@ const CreateAccountContainer = () => {
     if (isNicknameUsed) {
       setNicknameErrorMsg({
         available: true,
-        errorMsg: '닉네임 중복입니다만..',
+        errorMsg: '닉네임 중복입니다만.. 또는 8글자 이하...^^',
       });
     }
   }, [isIdUsed, isNicknameUsed]);

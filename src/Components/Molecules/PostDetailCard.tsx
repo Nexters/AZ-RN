@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { WHITE, DARK_GREY } from '~/constants/Colors';
 import { Rowbox, Colbox, Text, Image } from '../Atoms';
@@ -8,7 +8,7 @@ import fillBookmark from '@png/fill_bookmark.png';
 import ellipseSetting from '@png/ellipse_setting.png';
 import Layout from '~/constants/Layout';
 import { PostDetail } from '~/store/modules/post/types';
-import { Alert } from 'react-native';
+import { Alert, ScrollView } from 'react-native';
 
 const Card = styled.View`
   width: 100%;
@@ -66,6 +66,30 @@ const PostDetailCard = ({
       { cancelable: false },
     );
 
+  const [fontStyle, setFontStyle] = useState({
+    fontSize: '35px',
+    lineHeight: '40px',
+  });
+
+  useLayoutEffect(() => {
+    if (content.length < 13) {
+      setFontStyle({
+        fontSize: '35px',
+        lineHeight: '40px',
+      });
+    } else if (content.length < 51) {
+      setFontStyle({
+        fontSize: '22px',
+        lineHeight: '27px',
+      });
+    } else {
+      setFontStyle({
+        fontSize: '16px',
+        lineHeight: '21px',
+      });
+    }
+  }, []);
+
   return (
     <Card>
       <Rowbox justifyContent="flex-end">
@@ -98,17 +122,9 @@ const PostDetailCard = ({
           }}
         />
       </Rowbox>
-      <Colbox>
-        <Rowbox align="center" width="100%" height="182px" marginBottom="9px">
-          <Text
-            text={content}
-            fontSize="43px"
-            fontWeight={800}
-            color={DARK_GREY}
-            textAlign="center"
-          />
-        </Rowbox>
-      </Colbox>
+      <ScrollView>
+        <Text text={content} {...fontStyle} fontWeight={800} color={DARK_GREY} textAlign="center" />
+      </ScrollView>
       <Rowbox width="100%" justifyContent="space-between">
         <Rowbox width="auto">
           <HearAndComment
