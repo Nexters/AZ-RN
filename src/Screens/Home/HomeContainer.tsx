@@ -150,10 +150,6 @@ const HomeContainer = ({ navigation }: HomeProps) => {
 
   const prevState = usePrevious({ posts, commentList });
 
-  useLayoutEffect(() => {
-    loadPosts();
-  }, []);
-
   useEffect(() => {
     if (
       JSON.stringify(prevState?.posts) !== JSON.stringify(posts) &&
@@ -164,7 +160,12 @@ const HomeContainer = ({ navigation }: HomeProps) => {
   }, [posts, commentList]);
 
   useEffect(() => {
-    loadRating();
+    if (JSON.stringify(prevState?.posts) !== JSON.stringify(posts)) {
+      loadPosts();
+    }
+  }, [posts]);
+
+  useEffect(() => {
     loadMyComments();
     loadMyPosts();
     loadBookmark();
