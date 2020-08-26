@@ -22,7 +22,7 @@ const NonLoginStack = () => (
       options={{
         headerLeft: () => (
           <HeaderWrapper>
-            <Image imgSrc={logo_png} />
+            <Image imgSrc={logo_png} width="57px" height="35px" />
           </HeaderWrapper>
         ),
         headerTitle: '',
