@@ -23,7 +23,7 @@ const App = (): React.ReactElement => {
     setIsReady(true);
   };
 
-  return isReady ? (
+  return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
@@ -32,14 +32,6 @@ const App = (): React.ReactElement => {
         </NavigationContainer>
       </PersistGate>
     </Provider>
-  ) : (
-    <AppLoading
-      startAsync={loadAssets}
-      onFinish={onFinish}
-      onError={(e) => {
-        console.log(e);
-      }}
-    />
   );
 };
 

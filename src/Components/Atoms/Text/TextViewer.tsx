@@ -6,10 +6,12 @@ import { LIGHT_GREY } from '~/constants/Colors';
 import { TouchableOpacity } from 'react-native';
 
 const Text = styled.Text<StyleProps>`
+  width: ${({ width }) => width ?? 'auto'};
   font-size: ${({ fontSize }) => fontSize ?? '15px'};
   color: ${({ color }) => color ?? `${LIGHT_GREY}`};
   font-weight: ${({ fontWeight }) => fontWeight ?? 'bold'};
   text-align: ${({ textAlign }) => textAlign ?? 'left'};
+  flex-wrap: wrap;
   ${marginStyles};
 `;
 
@@ -18,6 +20,7 @@ interface StyleProps extends MarginStyleProps {
   color?: string;
   fontWeight?: number;
   textAlign?: string;
+  width?: string;
 }
 
 interface TextProps extends StyleProps {
@@ -38,6 +41,7 @@ const TextViewer = ({
   onPress,
   textAlign,
   numberOfLines,
+  width,
 }: TextProps) => {
   return onPress ? (
     <TouchableOpacity onPress={onPress}>
@@ -50,7 +54,8 @@ const TextViewer = ({
         marginBottom={marginBottom}
         marginRight={marginRight}
         textAlign={textAlign}
-        fontWeight={fontWeight}>
+        fontWeight={fontWeight}
+        width={width}>
         {text}
       </Text>
     </TouchableOpacity>
@@ -64,7 +69,8 @@ const TextViewer = ({
       marginBottom={marginBottom}
       marginRight={marginRight}
       textAlign={textAlign}
-      fontWeight={fontWeight}>
+      fontWeight={fontWeight}
+      width={width}>
       {text}
     </Text>
   );

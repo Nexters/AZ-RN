@@ -8,11 +8,11 @@ import { ifIphoneX } from 'react-native-iphone-x-helper';
 const Input = styled.TextInput<StyleProps>`
   width: 100%;
   background-color: #3a3a3a;
-  padding: ${ifIphoneX('14px 24px 14px 24px', '7px 12px 7px 12px')};
+  padding: ${ifIphoneX('14px 24px 14px 24px', '8px 14px 8px 14px')};
   border: 2px solid ${({ isAvailable }) => (isAvailable ? '#5f5f5f' : '#EA4040')};
   border-radius: 10px;
   font-size: 17px;
-  margin-bottom: 10px;
+  margin-bottom: ${({ isAvailable }) => (isAvailable ? '15px' : '10px')};
 `;
 
 interface StyleProps {

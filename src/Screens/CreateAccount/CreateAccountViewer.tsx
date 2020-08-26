@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { TouchableWithoutFeedback, Keyboard, Platform } from 'react-native';
 
-import { BackgroundContainer } from '~/Components/Templates';
+import { BackgroundContainer, SafeAreaContainer } from '~/Components/Templates';
 import Layout from '~/constants/Layout';
 import { RadiusButton } from '~/Components/Atoms';
 import { WHITE, PURPLE } from '~/constants/Colors';
@@ -48,49 +48,51 @@ const CreateAccountViewer = ({
 }: CreateAccountProps) => {
   return (
     <BackgroundContainer>
-      <TouchableWithoutFeedback onPress={Platform.OS !== 'web' ? Keyboard.dismiss : undefined}>
-        <AvoidWrapper>
-          <TopWrapper>
-            {inputOptions.map(
-              ({ errorOption, onBlur, placeholder, bind, id, secureTextEntry }, index) => (
-                <ValidationInput
-                  inputBinder={bind}
-                  placeholder={placeholder}
-                  onBlur={id !== 'password' ? onBlur : undefined}
-                  isAvailable={errorOption?.available}
-                  guideMsg={id !== 'password' ? errorOption?.errorMsg : ''}
-                  secureTextEntry={secureTextEntry}
-                  key={getUniqueKey(index)}
+      <SafeAreaContainer>
+        <TouchableWithoutFeedback onPress={Platform.OS !== 'web' ? Keyboard.dismiss : undefined}>
+          <AvoidWrapper>
+            <TopWrapper>
+              {inputOptions.map(
+                ({ errorOption, onBlur, placeholder, bind, id, secureTextEntry }, index) => (
+                  <ValidationInput
+                    inputBinder={bind}
+                    placeholder={placeholder}
+                    onBlur={id !== 'password' ? onBlur : undefined}
+                    isAvailable={errorOption?.available}
+                    guideMsg={id !== 'password' ? errorOption?.errorMsg : ''}
+                    secureTextEntry={secureTextEntry}
+                    key={getUniqueKey(index)}
+                  />
+                ),
+              )}
+            </TopWrapper>
+            <BottomWrapper>
+              {isActivation ? (
+                <RadiusButton
+                  text="회원가입"
+                  height={'49px'}
+                  color={WHITE}
+                  bgColor={PURPLE}
+                  borderRadius={'45px'}
+                  fontSize={'16px'}
+                  fontWeight={800}
+                  onPress={handleCreateAccount}
                 />
-              ),
-            )}
-          </TopWrapper>
-          <BottomWrapper>
-            {isActivation ? (
-              <RadiusButton
-                text="회원가입"
-                height={'49px'}
-                color={WHITE}
-                bgColor={PURPLE}
-                borderRadius={'45px'}
-                fontSize={'16px'}
-                fontWeight={800}
-                onPress={handleCreateAccount}
-              />
-            ) : (
-              <RadiusButton
-                text="회원가입"
-                height={'49px'}
-                color={WHITE}
-                bgColor={'#999999'}
-                borderRadius={'45px'}
-                fontSize={'16px'}
-                fontWeight={800}
-              />
-            )}
-          </BottomWrapper>
-        </AvoidWrapper>
-      </TouchableWithoutFeedback>
+              ) : (
+                <RadiusButton
+                  text="회원가입"
+                  height={'49px'}
+                  color={WHITE}
+                  bgColor={'#999999'}
+                  borderRadius={'45px'}
+                  fontSize={'16px'}
+                  fontWeight={800}
+                />
+              )}
+            </BottomWrapper>
+          </AvoidWrapper>
+        </TouchableWithoutFeedback>
+      </SafeAreaContainer>
     </BackgroundContainer>
   );
 };

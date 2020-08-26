@@ -15,6 +15,7 @@ const Container = styled.View<StyleProps>`
   background-color: ${({ bgColor }) => bgColor ?? 'transparent'};
   border: ${({ border }) => border ?? 'none'};
   border-radius: ${({ borderRadius }) => borderRadius ?? '0px'};
+  flex-wrap: ${({ flexWrap }) => flexWrap ?? 'nowrap'};
 `;
 
 interface StyleProps extends MarginStyleProps, PaddingStyleProps {
@@ -23,6 +24,7 @@ interface StyleProps extends MarginStyleProps, PaddingStyleProps {
   bgColor?: string;
   align?: 'center' | 'flex-start' | 'flex-end';
   justifyContent?: 'space-around' | 'space-between' | 'center' | 'flex-start' | 'flex-end';
+  flexWrap?: 'wrap' | 'nowrap';
   border?: string;
   borderRadius?: string;
 }
@@ -48,6 +50,7 @@ const Rowbox = ({
   children,
   height,
   bgColor,
+  flexWrap,
 }: RowboxProps) => {
   return (
     <Container
@@ -65,6 +68,7 @@ const Rowbox = ({
       borderRadius={borderRadius}
       justifyContent={justifyContent}
       height={height}
+      flexWrap={flexWrap}
       bgColor={bgColor}>
       {children}
     </Container>
