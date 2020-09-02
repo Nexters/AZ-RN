@@ -51,7 +51,7 @@ const PostDetailViewer = ({
         style={{
           marginBottom: keyboardHeigth,
         }}>
-        <SectionWrapper justifyContent="flex-start">
+        <SectionWrapper justifyContent="flex-start" isDisable={true}>
           <PostDetailCard
             postDetailProps={post}
             handlePressLike={handlePressLike}

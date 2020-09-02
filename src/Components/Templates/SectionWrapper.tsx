@@ -24,6 +24,7 @@ interface StyleProps {
 
 interface SectionWrapperProps extends StyleProps {
   children: React.ReactNode;
+  isDisable?: boolean;
 }
 
 const SectionWrapper = ({
@@ -33,8 +34,18 @@ const SectionWrapper = ({
   justifyContent,
   bgColor,
   paddingBottom,
+  isDisable,
 }: SectionWrapperProps) => {
-  return (
+  return isDisable ? (
+    <Container
+      bgColor={bgColor}
+      marginBottom={marginBottom}
+      marginTop={marginTop}
+      justifyContent={justifyContent}
+      paddingBottom={paddingBottom}>
+      {children}
+    </Container>
+  ) : (
     <TouchableWithoutFeedback onPress={Platform.OS !== 'web' ? Keyboard.dismiss : undefined}>
       <Container
         bgColor={bgColor}
