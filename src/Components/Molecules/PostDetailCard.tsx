@@ -122,7 +122,9 @@ const PostDetailCard = ({
           }}
         />
       </Rowbox>
-      <ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
         <Text text={content} {...fontStyle} fontWeight={800} color={DARK_GREY} textAlign="center" />
       </ScrollView>
       <Rowbox width="100%" justifyContent="space-between">
