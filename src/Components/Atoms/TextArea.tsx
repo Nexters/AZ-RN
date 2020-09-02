@@ -37,7 +37,7 @@ const TextArea = ({ textAreaBinder, fontSize, color, lineHeight, fontWeight }: T
     <Container>
       <MultilineTextInput
         underlineColorAndroid="transparent"
-        placeholder="something"
+        placeholder="100자이내 입력부탁이용"
         numberOfLines={10}
         multiline={true}
         placeholderTextColor={DARK_GREY}
